@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<data class="com.ts.databending.activity.Hello">
+    <import type="com.ts.databending.bean.User"/>
+    <import type="com.ts.databending.activity.MainActivity"></import>
+    <import type="android.view.View"></import>
+    <import type="com.ts.databending.bean.NewBeanByBinding"></import>
+    <variable
+        name="user"
+        type="User"/>
+    <variable
+        name="bean2"
+        type="NewBeanByBinding"/>
+    <variable
+        name="str"
+        type="String"/>
+    <variable
+        name="num"
+        type="int"></variable>
+    <variable
+        name="bol"
+        type="boolean"></variable>
+
+    <variable
+        name="listKey"
+        type="int"></variable>
+    <variable
+        name="handler"
+        type="MainActivity"></variable>
+</data>
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.ts.databending.activity.MainActivity">
+    <TextView
+        android:id="@+id/extview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="@{user.name}"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+
+         android:text="@{user.sex}"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{str}"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{String.valueOf(num)}"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{String.valueOf(bol)}"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:paddingTop="@{@dimen/activity_horizontal_margin}"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{bean2.firstString}"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{String.valueOf(bean2.firstInt)}"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{bean2.bolean?`man`:`woman`}"
+        />
+
+    <!--导入View类 设置view的隐藏显示-->
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+       android:text='@{user.sex.equals("man")?String.valueOf("shachia"):"笨蛋"}'
+         android:visibility="@{!user.isBol()?View.GONE:View.VISIBLE}"
+          android:onClick="@{handler.handerEvent}"
+        />
+    <!--android:text="@{user.sex.equals(`man`)?`shabi`:`erno`}"-->
+</LinearLayout>
+</layout>

@@ -1,0 +1,39 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <data class="NewBinding">
+        <import type="com.ts.databending.bean.FucBean"></import>
+        <variable
+            name="fuck"
+            type="FucBean"></variable>
+    </data>
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ts.databending.activity.Binding1Fragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@{fuck.mystring}" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@{fuck.mystring}" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@{fuck.mystring}" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@{fuck.mystring}" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@{fuck.mystring}" />
+
+</LinearLayout>
+</layout>

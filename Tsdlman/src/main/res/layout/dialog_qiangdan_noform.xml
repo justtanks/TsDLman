@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/bigbackimg2"
+    >
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <ImageView
+           android:id="@+id/qiangdan_closebt_false"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:src="@mipmap/qingdan_closebt"
+           android:layout_alignParentEnd="true"
+           android:layout_alignParentTop="true"
+           android:layout_marginTop="15dp"
+           android:layout_marginEnd="15dp"
+           />
+
+   </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        >
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/qiangdan_noform"
+            android:layout_centerHorizontal="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_marginBottom="64dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="你来晚了，订单被别人抢走了"
+            android:textSize="14sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/qiangdanlog"
+            />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

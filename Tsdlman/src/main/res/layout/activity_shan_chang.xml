@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data></data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.daili.tsapp.tsActivity.ShanChangActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/qiangdan_toptabtex_notselect"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/shanchang_back"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"></RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/shanchanglingyu"
+            android:textColor="@color/titiletextcolor"
+            android:textSize="20sp"
+            android:textStyle="bold"
+
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:src="@mipmap/fanhui" />
+
+    </RelativeLayout>
+    <ExpandableListView
+        android:id="@+id/jindu_expendlistview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:childDivider="@color/white"
+        >
+    </ExpandableListView>
+</LinearLayout>
+</layout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+    android:background="@color/qiangdanback"
+    android:paddingTop="8dp">
+
+    <RelativeLayout
+        android:id="@+id/newform_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:visibility="visible"
+        >
+
+        <ImageView
+            android:id="@+id/newform_bigimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/qiangdan_nomsgs"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="82dp" />
+
+        <TextView
+            android:id="@+id/newform_bigtext1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/noform_msg"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/newform_bigtext2"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:textColor="@color/qiangdan_nomsg"
+           />
+
+        <TextView
+            android:id="@+id/newform_bigtext2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您暂时还没有新的订单"
+            android:layout_below="@+id/newform_bigimg"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:textColor="@color/qiangdan_nomsg"
+            />
+    </RelativeLayout>
+
+        <ListView
+            android:id="@+id/fragment_new_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/qiangdanback"
+            android:visibility="gone"
+            android:scrollbars="none"
+            android:dividerHeight="20dp" />
+
+
+
+
+</RelativeLayout>

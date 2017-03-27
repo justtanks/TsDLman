@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/jindu_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:src="@mipmap/jindu_back" />
+
+        <ImageView
+            android:id="@+id/jindu_head"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/jindu_shangbiaoname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/jindu_back"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/jindu_back"
+            android:text="商标名称"
+            android:textColor="@color/settingtext"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/num_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/jindu_back"
+            android:text="@string/zhucenum"
+            android:textColor="@color/gray1"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/jindu_zhucehao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/num_title"
+            android:text="1111111111111"
+            android:textColor="@color/gray1"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/pop_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/jindu_back"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@id/jindu_back"
+            android:text="@string/shenqingren"
+            android:textColor="@color/gray1"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/jindu_shenqinren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/jindu_back"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/pop_text"
+            android:text="@string/shenqingren"
+            android:textColor="@color/gray1"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/jindu_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/shoulishenqing"
+            android:textColor="@color/settingtext"
+            android:textSize="16sp" />
+        <!--<RelativeLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/jindu_step"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--&gt;-->
+        <!--<TextView-->
+        <!--android:id="@+id/step_next"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="14sp"-->
+        <!--android:textColor="@color/gray1"-->
+        <!--android:text="@string/next_step"-->
+        <!--/>-->
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_toRightOf="@id/step_next"-->
+        <!--android:layout_marginStart="5dp"-->
+        <!--android:textColor="@color/settingtext"-->
+        <!--android:textSize="14sp"-->
+        <!--android:text="申请仅需重的大"-->
+        <!--/>-->
+        <!--</RelativeLayout>-->
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="15dp"
+            android:text="@string/shangbiaoliucheng"
+            android:textColor="@color/settingtext"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/guanfangweizhu"
+            android:textColor="@color/gray1"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+</LinearLayout>

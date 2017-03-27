@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><!--评论列表的listview的item布局-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/selector_mainbutton">
+
+    <ImageView
+        android:id="@+id/item_msg_head_back"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/message_headback"
+        android:src="@mipmap/message_headback" />
+
+    <ImageView
+        android:id="@+id/item_msg_head"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:id="@+id/item_msg_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="27dp"
+        android:layout_toRightOf="@id/item_msg_head_back"
+        android:text="111111"
+        android:textColor="@color/settingtext"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/item_msg_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_msg_head_back"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/item_hadformtx"
+        android:textSize="12sp" />
+</RelativeLayout>

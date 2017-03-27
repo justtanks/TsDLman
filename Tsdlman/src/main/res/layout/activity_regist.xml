@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_regist"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background"
+    tools:context="com.daili.tsapp.tsActivity.RegistActivity">
+
+    <RelativeLayout
+        android:id="@+id/regist_top"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/qiangdan_toptabtex_notselect"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/regist_title"
+            android:textColor="@color/titiletextcolor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/regist_back"
+            android:layout_width="60dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:src="@mipmap/fanhui" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/regist_registbt"
+        android:layout_below="@+id/regist_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/home_background"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="10dp"
+                android:background="@mipmap/setting_linearback">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/headimg"
+                    android:textColor="@color/settingtext"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/regist_headimg"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:src="@mipmap/regist_touxiang" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@mipmap/setting_linearback">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/person_name"
+                    android:textColor="@color/settingtext"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/regist_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:background="@null"
+                    android:hint="@string/regist_savename"
+                    android:maxLines="1"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@mipmap/setting_linearback">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/regist_card_num"
+                    android:textColor="@color/settingtext"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/regist_idnum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:background="@null"
+                    android:hint="@string/cardnum_hint"
+                    android:maxLines="1"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@mipmap/setting_linearback">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/phone_move"
+                    android:textColor="@color/settingtext"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/regist_phonenum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:background="@null"
+                    android:hint="@string/phone_hint"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@mipmap/setting_linearback">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/regist_password_text"
+                    android:textColor="@color/settingtext"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/regist_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:background="@null"
+                    android:hint="@string/setting_password"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@mipmap/setting_linearback">
+
+                <Button
+                    android:id="@+id/regist_yanzhengobtainimg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="33dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:background="@mipmap/yanzhengma" />
+
+                <EditText
+                    android:id="@+id/regist_yanzheng"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:background="@null"
+                    android:hint="@string/regist_yanzhengma_hint"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/line" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/line" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@mipmap/setting_linearback">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/work_time"
+                    android:textColor="@color/settingtext"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/regist_worktime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="39dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:background="@null"
+                    android:hint="@string/nian"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:maxLines="1"
+                    android:textSize="12sp" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/line" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:background="@mipmap/setting_linearback">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="15dp"
+                    android:text="@string/persong_sex"
+                    android:textColor="@color/settingtext"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:id="@+id/regist_radiogroup_sex"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="5dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/regist_radio_man"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_change"
+                        android:text="@string/man"
+                        android:textColor="@color/gray1"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/regist_radio_woman"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@drawable/radio_change"
+                        android:text="@string/woman"
+                        android:textColor="@color/gray1"
+                        android:textSize="14sp" />
+
+                </RadioGroup>
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:src="@mipmap/line" />
+
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="54dp"-->
+                <!--android:background="@mipmap/setting_linearback">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentStart="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginStart="15dp"-->
+                    <!--android:text="@string/best_area"-->
+                    <!--android:textColor="@color/settingtext"-->
+                    <!--android:textSize="14sp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/regist_shanchanglingyu"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginLeft="5dp"-->
+                    <!--android:layout_toLeftOf="@+id/regist_pull_dowm"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:text="@string/choise"-->
+                    <!--android:textColor="@color/settingtext"-->
+                    <!--android:textSize="14sp" />-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/regist_pull_dowm"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="15dp"-->
+                    <!--android:src="@mipmap/regist_xiala" />-->
+            <!--</RelativeLayout>-->
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/regist_registbt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="0dp"
+        android:text="注册"
+        android:textColor="@color/titiletextcolor"
+        android:background="@drawable/selector_tixianbutton" />
+</RelativeLayout>

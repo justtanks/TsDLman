@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data class="MyRecycle">
+        <variable
+            name="Loser"
+            type="com.ts.databending.bean.ReccycleBean"></variable>
+        <variable
+            name="event"
+            type="com.ts.databending.activity.Myclick"></variable>
+    </data>
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+   >
+    <ImageView
+        android:id="@+id/item_recycle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        app:image="@{Loser.text1}"
+        />
+    <!--给recyclerview的其中的控件添加点击事件 这是传递参数的写法-->
+    <Button
+        android:id="@+id/button_recycle"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+           android:onClick="@{()->event.click(Loser.text2)}"
+        />
+
+
+</RelativeLayout>
+</layout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/TsDLman.iml" filepath="$PROJECT_DIR$/TsDLman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tsdlman/Tsdlman.iml" filepath="$PROJECT_DIR$/Tsdlman/Tsdlman.iml" />
+      <module fileurl="file://$PROJECT_DIR$/databending/databending.iml" filepath="$PROJECT_DIR$/databending/databending.iml" />
+    </modules>
+  </component>
+</project>

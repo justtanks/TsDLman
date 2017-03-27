@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="39dp">
+
+        <TextView
+            android:id="@+id/newform_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="状态:等待接单.."
+            android:textColor="@color/titiletextcolor"
+            android:textSize="16sp" />
+
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/item_form_line" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+
+        <TextView
+            android:id="@+id/newform_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/item_newform_head"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/item_newform_head"
+            android:text="张阳"
+            android:textColor="@color/textcolor"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/newform_usertype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/item_newform_head"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/newform_username"
+            android:text="()"
+            android:textColor="@color/textcolor"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/newform_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/item_newform_head"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/item_newform_head"
+            android:text="2015-10-1 15:00"
+            android:textColor="@color/gray" />
+
+        <RelativeLayout
+            android:id="@+id/item_newform_call"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            >
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="25dp"
+                android:src="@mipmap/phone" />
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/item_newform_head"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:src="@mipmap/head_img" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/item_form_line" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/item_form_line" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="110dp">
+
+        <TextView
+            android:id="@+id/newform_businesscontent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="9dp"
+            android:text="购买哈哈商标"
+            android:textColor="@color/gray1"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/newform_teamimg"
+            android:layout_width="85dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:src="@mipmap/sample" />
+
+        <RelativeLayout
+            android:id="@+id/newform_img_relative"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="36dp"
+            android:layout_toRightOf="@id/newform_teamimg"
+
+            >
+
+            <ImageView
+                android:id="@+id/hadform_firstimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:src="@mipmap/newform_simple_huaxue" />
+
+
+
+            <ImageView
+                android:id="@+id/hadform_thirdimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_alignParentBottom="true"
+                android:layout_marginBottom="16dp"
+                android:src="@mipmap/newform_simple_money" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/newform_img_relative"
+
+            >
+
+            <TextView
+                android:id="@+id/newform_firsttext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="化学原料"
+                android:textColor="@color/textcolor"
+                android:textSize="13sp" />
+
+
+
+            <TextView
+                android:id="@+id/newform_thirdform"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:layout_marginBottom="16dp"
+               android:layout_alignParentBottom="true"
+                android:text="总计:"
+                android:textColor="@color/textcolor" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp">
+
+
+
+            <TextView
+                android:id="@+id/newform_thirdmoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="16dp"
+                android:text="1000￥"
+                android:textColor="@color/titletextcolor" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/item_form_line" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp">
+
+        <Button
+            android:id="@+id/item_newform_qiangdanbt"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@mipmap/newform_button_nor"
+            android:text="@string/newform_buttontext"
+            android:textColor="@color/titiletextcolor"
+            android:textSize="16sp" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
