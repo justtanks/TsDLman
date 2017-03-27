@@ -9,7 +9,6 @@ import android.widget.RelativeLayout;
 import com.daili.tsapp.R;
 import com.daili.tsapp.jsBean.netBean.AddCardBean;
 import com.daili.tsapp.jsBean.netBean.NetError;
-import com.daili.tsapp.jsView.BaseData1;
 import com.daili.tsapp.jsView.PwdEditText;
 import com.daili.tsapp.tsBase.BaseActivity;
 import com.daili.tsapp.tsBase.BaseData;

@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 
 import com.daili.tsapp.R;
 import com.daili.tsapp.databinding.AgreementBinding;
-import com.daili.tsapp.jsView.BaseData1;
 import com.daili.tsapp.tsBase.BaseActivity;
 
 /**

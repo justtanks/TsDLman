@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import com.daili.tsapp.R;
 import com.daili.tsapp.databinding.CardBinding;
-import com.daili.tsapp.jsBean.ShowMsgInMineBean;
 import com.daili.tsapp.jsBean.netBean.CardsBean;
 import com.daili.tsapp.jsBean.netBean.IsHadPassBean;
-import com.daili.tsapp.jsBean.netBean.LoginBean;
-import com.daili.tsapp.jsView.BaseData1;
 import com.daili.tsapp.tsAdapter.CardListviewAdatper;
 import com.daili.tsapp.tsBase.BaseActivity;
 import com.daili.tsapp.tsBase.BaseData;
@@ -21,7 +18,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.common.Callback;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 

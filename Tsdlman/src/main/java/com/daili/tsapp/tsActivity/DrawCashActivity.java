@@ -18,7 +18,6 @@ import android.widget.TextView;
 import com.daili.tsapp.R;
 import com.daili.tsapp.jsBean.netBean.LoginBean;
 import com.daili.tsapp.jsBean.netBean.NetError;
-import com.daili.tsapp.jsView.BaseData1;
 import com.daili.tsapp.jsView.PwdEditText;
 import com.daili.tsapp.tsBase.BaseActivity;
 import com.daili.tsapp.tsBase.BaseData;
