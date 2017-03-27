@@ -69,7 +69,9 @@
         <activity android:name=".tsActivity.FillCardMsgActivity" />
         <activity android:name=".tsActivity.PhoneTestActivity" />
         <activity android:name=".tsActivity.AddcardDoneActivity" />
-        <activity android:name=".tsActivity.DrawCashActivity" />
+        <activity android:name=".tsActivity.DrawCashActivity"
+            android:launchMode="singleTask"
+            />
         <activity
             android:name=".tsActivity.ChoiseCardActivity"
             android:launchMode="singleTask" />
@@ -79,8 +81,11 @@
             android:launchMode="singleTask" />
         <activity android:name=".tsActivity.SurePasswordActivity" />
         <activity android:name=".tsActivity.AgreeMentActivity" />
-        <activity android:name=".tsActivity.OrdersActivity"></activity>
-
+        <activity android:name=".tsActivity.OrdersActivity"/>
+        <activity android:name=".tsActivity.KeFuActivity" />
+        <activity android:name=".tsActivity.FankuiActivity" />
+        <activity android:name=".tsActivity.MainActivity" />
+        <activity android:name=".tsActivity.ShanChangActivity"/>
         <!-- 统计的appkey -->
         <meta-data
             android:name="UMENG_APPKEY"
@@ -92,10 +97,6 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <!-- service -->
-        <service
-            android:name=".tsService.FindFormService"
-            android:enabled="true"
-            android:exported="true" />
         <!-- 阿里推送的receiver -->
         <receiver
             android:name=".receiver.MyMessageReceiver"
@@ -131,10 +132,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".tsActivity.KeFuActivity" />
-        <activity android:name=".tsActivity.FankuiActivity" />
-        <activity android:name=".tsActivity.MainActivity" />
-        <activity android:name=".tsActivity.ShanChangActivity"></activity>
+
     </application>
 
 </manifest>
