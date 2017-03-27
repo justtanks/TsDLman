@@ -1,9 +1,4 @@
 package com.daili.tsapp.jsBean.netBean;
-
-
-
-import com.daili.tsapp.tsBase.BaseOrders;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -332,7 +327,7 @@ public class LoginBean implements Serializable {
             }
         }
 
-        public static class PartnerAllOrderBean extends BaseOrders implements Serializable {
+        public static class PartnerAllOrderBean implements Serializable {
             /**
              * id : 86
              * order_num : 1486687262
@@ -638,7 +633,7 @@ public class LoginBean implements Serializable {
             }
         }
 
-        public static class PartnerTodayOrderBean extends BaseOrders implements Serializable {
+        public static class PartnerTodayOrderBean implements Serializable {
             /**
              * id : 88
              * order_num : 1486687867
@@ -944,7 +939,7 @@ public class LoginBean implements Serializable {
             }
         }
 
-        public static class PartnerYesterdayOrderBean extends BaseOrders implements Serializable {
+        public static class PartnerYesterdayOrderBean implements Serializable {
             /**
              * id : 87
              * order_num : 1486687307
@@ -1250,7 +1245,7 @@ public class LoginBean implements Serializable {
             }
         }
 
-        public static class PartnerBeforeYesterdayOrderBean extends BaseOrders implements Serializable {
+        public static class PartnerBeforeYesterdayOrderBean implements Serializable {
             /**
              * id : 86
              * order_num : 1486687262
