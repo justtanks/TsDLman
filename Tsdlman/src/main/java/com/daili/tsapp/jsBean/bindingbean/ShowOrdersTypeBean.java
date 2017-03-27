@@ -40,8 +40,7 @@ public class ShowOrdersTypeBean {
 
     public ShowOrdersTypeBean(String danshu) {
         this.danshu = danshu;
-//        this.shouyi = shouyi;
-         getTodayTime();
+         getdayTime();
     }
     private void getdayTime(){
         Date today = new Date();
