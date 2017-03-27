@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2017/2/15.
+ * 显示所有的银行卡的数据    测试git
  */
 
 public class CardListviewAdatper extends BaseAdapter {
