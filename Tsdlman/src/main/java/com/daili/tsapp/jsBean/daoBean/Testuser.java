@@ -5,7 +5,6 @@ import org.xutils.db.annotation.Table;
 
 /**
  * Created by Administrator on 2017/1/4.
- * 测试xutils的数据库功能
  */
 @Table(name = "person")
 public class Testuser {
@@ -19,9 +18,6 @@ public class Testuser {
     private  boolean isBorn;
     @Column(name = "otherid",property = "NOT NULL")    //设置属性非空
     private int otherid;
-
-    public Testuser() {
-    }
 
     public Testuser(int id, String name, int age, boolean isBorn) {
         this.id = id;
@@ -37,11 +33,6 @@ public class Testuser {
     public void setId(int id) {
         this.id = id;
     }
-
-
-
-
-
     public String getName() {
         return name;
     }
@@ -66,12 +57,4 @@ public class Testuser {
         isBorn = born;
     }
 
-    @Override
-    public String toString() {
-        return "Testuser{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", isBorn=" + isBorn +
-                '}';
-    }
 }

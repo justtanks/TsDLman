@@ -2,7 +2,6 @@ package com.daili.tsapp.jsBean.daoBean;
 
 /**
  * Created by Administrator on 2017/1/10.
- * 两个string
  */
 
 public class RegistArea {
@@ -12,9 +11,6 @@ public class RegistArea {
     public RegistArea(String id, String text) {
         this.id = id;
         this.text = text;
-    }
-
-    public RegistArea() {
     }
 
     public String getId() {

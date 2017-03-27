@@ -6,6 +6,7 @@ import com.daili.tsapp.utils.ImagePostUtils;
 
 /**
  * Created by Administrator on 2017/1/9.
+ * 注册时需要的信息的封装
  */
 
 public class RegistUserMsg {

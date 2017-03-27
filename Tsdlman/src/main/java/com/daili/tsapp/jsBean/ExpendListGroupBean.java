@@ -1,7 +1,4 @@
 package com.daili.tsapp.jsBean;
-
-import com.daili.tsapp.jsBean.ExpendListChildBean;
-
 import java.util.ArrayList;
 import java.util.List;
 

@@ -2,7 +2,7 @@ package com.daili.tsapp.jsBean;
 
 /**
  * Created by Administrator on 2017/1/14.
- * 新订单的eventbus使用
+ * 新订单的eventbus使用 封装数据传递
  *
  */
 
