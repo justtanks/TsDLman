@@ -1,12 +1,13 @@
 package com.daili.tsapp.jsBean.netBean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/3/28.
  * 存放待评价 已评价 已接单的所有的订单的数据
  */
-public class OrdersBean {
+public class OrdersBean implements Serializable{
     /**
      * flag : Success
      * msg : 数据获取陈宫
@@ -49,7 +50,7 @@ public class OrdersBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * waiter_receiving : [{"id":"157","order_num":"1490606640","who_put_order":"18266142739","order_name":"等待确认","order_pic":"/Public/Home/img/moren.png","order_types":"等待确认","order_price":"597","order_wait_taking":"1","order_wait_pay":"1","order_time":"2017-03-27 17:24:00","order_always_person":null,"order_qiye_name":null,"order_qiye_address":null,"order_qiye_phone":null,"order_ask_who":null,"order_ask_phone":null,"order_ask_mail":null,"order_qiye_yingyezhizhao":null,"order_always_personal":null,"order_personal_name":"等待确认","order_personal_id_card":"等待确认","order_personal_tel":null,"order_personal_ask_preson":null,"order_personal_ask_tel":null,"order_personal_id_card_pic":"/Public/Home/img/moren.png","order_personal_getizhizhao":"/Public/Home/img/moren.png","order_type":"普通注册","belong_provice":null,"belong_city":null,"belong_county":null,"order_date_day":"2017-03-27","order_acceptance_type":"1","order_id":"222","waiter_id":"71","datetime":"2017-03-27 17:24:00","get_order_date":"2017-03-27"}]
          * have_evaluate : [{"id":"14","order_num":"1490606640","who_put_order":"18266142739","order_name":"等待确认","order_pic":"/Public/Home/img/moren.png","order_types":"等待确认","order_price":"597","order_wait_taking":"1","order_wait_pay":"1","order_time":"2017-03-27 17:24:00","order_always_person":null,"order_qiye_name":null,"order_qiye_address":null,"order_qiye_phone":null,"order_ask_who":null,"order_ask_phone":null,"order_ask_mail":null,"order_qiye_yingyezhizhao":null,"order_always_personal":null,"order_personal_name":"等待确认","order_personal_id_card":"等待确认","order_personal_tel":null,"order_personal_ask_preson":null,"order_personal_ask_tel":null,"order_personal_id_card_pic":"/Public/Home/img/moren.png","order_personal_getizhizhao":"/Public/Home/img/moren.png","order_type":"普通注册","belong_provice":null,"belong_city":null,"belong_county":null,"order_date_day":"2017-03-27","order_acceptance_type":"1","waiter_id":"71","user_id":"8","waiter_evaluate":"服务超棒！赞一个！","evaluate_type":"1"}]
@@ -84,7 +85,7 @@ public class OrdersBean {
             this.have_evaluate = have_evaluate;
         }
 
-        public static class OrderBean {
+        public static class OrderBean implements Serializable{
             /**
              * id : 157
              * order_num : 1490606640

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--根据时间进行分组的订单的listview的item-->
+<!--关于已接单 待评价 已评价的listview中的item-->
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-    <data class="AllorderItem">
-
-        <variable
-            name="allorder"
-            type="com.daili.tsapp.jsBean.netBean.FormlistDateBean.DataBean.OrderBean"></variable>
+    <data class="MYorderItem">
         <variable
             name="base"
             type="com.daili.tsapp.tsBase.BaseData"></variable>
+        <variable
+            name="myallorders"
+            type="com.daili.tsapp.jsBean.netBean.OrdersBean.DataBean.OrderBean"
+            >
+        </variable>
+
     </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -21,7 +23,7 @@
             android:layout_height="90dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
-            app:image="@{base.BASEURL+allorder.order_pic}" />
+            app:image="@{base.BASEURL+myallorders.order_pic}" />
 
         <TextView
             android:id="@+id/itemallday_name"
@@ -64,7 +66,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_toRightOf="@id/itemallday_name"
-            android:text="@{allorder.order_name}" />
+            android:text="@{myallorders.order_name}" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,7 +75,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/itemallday_zizhi"
-            android:text="@{allorder.order_qiye_name==null?`个人注册`:`企业注册`}"
+            android:text="@{myallorders.order_qiye_name==null?`个人注册`:`企业注册`}"
             android:textColor="@color/gray3"
             android:textSize="13sp"
 
@@ -86,7 +88,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/itemallday_allmoney"
-            android:text="@{allorder.order_price}"
+            android:text="@{myallorders.order_price}"
             android:textColor="@color/gray3"
             android:textSize="13sp"
 
@@ -99,7 +101,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@id/itemallday_zizhi"
             android:layout_marginEnd="13dp"
-            android:text="@{allorder.order_price}"
+            android:text="@{myallorders.order_price}"
             android:textColor="@color/titiletextcolor"
             android:textSize="12sp" />
 
@@ -127,7 +129,7 @@
             android:id="@+id/itemallday_content"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="@{allorder.order_types}"
+            android:text="@{myallorders.order_types}"
             android:maxLines="1"
             android:textColor="@color/gray2"
             android:textSize="13sp"

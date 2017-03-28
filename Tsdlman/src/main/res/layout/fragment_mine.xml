@@ -133,7 +133,7 @@
     android:orientation="horizontal"
     >
     <RelativeLayout
-        android:id="@+id/mine_daijiedan"
+        android:id="@+id/mine_yijiedan"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:background="@drawable/selector_mainbutton"
@@ -158,7 +158,7 @@
 
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/mine_yijiedan"
+        android:id="@+id/mine_daipingjia"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -183,7 +183,7 @@
 
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/mine_daipingjia"
+        android:id="@+id/mine_yipingjia"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

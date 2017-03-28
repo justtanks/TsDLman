@@ -1,4 +1,5 @@
 package com.daili.tsapp.tsActivity;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -7,47 +8,22 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.daili.tsapp.R;
-import com.daili.tsapp.tsAdapter.MyFragmentPagerAdapter;
+import com.daili.tsapp.databinding.ActivityMyFormBinding;
+import com.daili.tsapp.tsAdapter.OrderFragmentPagerAdapter;
 import com.daili.tsapp.tsBase.BaseActivity;
-import com.daili.tsapp.tsFragment.AllFormFragment;
-import com.daili.tsapp.tsFragment.WaitExamineFragment;
+import com.daili.tsapp.tsFragment.HadJudgeFragment;
+import com.daili.tsapp.tsFragment.MyAllFormsFragment;
 import com.daili.tsapp.tsFragment.WaitJudgeFragment;
-import com.daili.tsapp.tsFragment.WaitReceiveFormFragment;
-import com.daili.tsapp.tsFragment.WaitSureFragment;
-
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 我的订单界面 展示已接单 未接单 和 待评价订单
+ * 我的订单界面 待评价 已评价 和 已接单 所有信息
  */
-@ContentView(R.layout.activity_my_form)
-public class MyFormActivity extends BaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
-
-
-    @ViewInject(R.id.myform_tab1)
-    private TextView tab1Text1;
-    @ViewInject(R.id.myform_tab2)
-    private TextView tab1Text2;
-    @ViewInject(R.id.myform_tab3)
-    private TextView tab1Text3;
-    @ViewInject(R.id.myform_tab4)
-    private TextView tab1Text4;
-    @ViewInject(R.id.myform_tab5)
-    private TextView tab1Text5;
-    @ViewInject(R.id.myform_tab_line)
-    private View tabline;
-    @ViewInject(R.id.myform_viewpager)
-    private ViewPager mViewpager;
-    @ViewInject(R.id.myform_back)
-    private ImageView backimg;
+ public class MyFormActivity extends BaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
     private Animation animation;
     private int currIndex = 0;
     private int bottomLineWidth;
@@ -55,97 +31,79 @@ public class MyFormActivity extends BaseActivity implements View.OnClickListener
     private int position_one;
     private int position_two;
     private int position_three;
-    private int position_four;
     private ArrayList<Fragment> fragmentList;
-    private Fragment allFormfragment, waitReceiveFragment, waitExamFragment, waitJudgeFragment, waitForSureFragment;
+    private Fragment allFormfragment, hadPingjiaFragment, waitPingJiaFragment;
     private List<TextView> textViews;
-
+    ActivityMyFormBinding b;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        x.view().inject(this);
         init();
+        int first=getIntent().getIntExtra("id",0);
+        b.orderViewpager.setCurrentItem(first);
+        setTextColor(first);
     }
 
     private void init() {
+        b= DataBindingUtil.setContentView(this,R.layout.activity_my_form);
         textViews = new ArrayList<>();
-        textViews.add(tab1Text1);
-        textViews.add(tab1Text2);
-        textViews.add(tab1Text3);
-        textViews.add(tab1Text4);
-        textViews.add(tab1Text5);
-        tab1Text1.setOnClickListener(new MyOnClickListener(0));
-        tab1Text2.setOnClickListener(new MyOnClickListener(1));
-        tab1Text3.setOnClickListener(new MyOnClickListener(2));
-        tab1Text4.setOnClickListener(new MyOnClickListener(3));
-        tab1Text5.setOnClickListener(new MyOnClickListener(4));
-
-        backimg.setOnClickListener(this);
-        initWidth();
+        textViews.add(b.formsTab1);
+        textViews.add(b.formsTab2);
+        textViews.add(b.formsTab3);
+        b.formsBack.setOnClickListener(this);
+        b.formsTab1.setOnClickListener(new MyOnClickListener(0));
+        b.formsTab2.setOnClickListener(new MyOnClickListener(1));
+        b.formsTab3.setOnClickListener(new MyOnClickListener(2));
         initAdapter();
+    }
+   //初始化 viewpager
+    private void initAdapter() {
+        fragmentList = new ArrayList<>();
+        allFormfragment = new MyAllFormsFragment();
+        hadPingjiaFragment = new HadJudgeFragment();
+        waitPingJiaFragment = new WaitJudgeFragment();
 
+        fragmentList.add(allFormfragment);
+        fragmentList.add(waitPingJiaFragment);
+        fragmentList.add(hadPingjiaFragment);
+
+        b.orderViewpager.setCurrentItem(0);
+        setTextColor(0);
+        b.orderViewpager.setOffscreenPageLimit(4);
+        b.orderViewpager.setAdapter(new OrderFragmentPagerAdapter(getSupportFragmentManager(), fragmentList));//解决fragment嵌套问题
+        b.orderViewpager.addOnPageChangeListener(this);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.forms_back:
+                onBackPressed();
+                break;
+        }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initWidth();
+    }
     private void initWidth() {
-
-        bottomLineWidth = tabline.getLayoutParams().width;
-        toast(bottomLineWidth + "");
+        bottomLineWidth = b.orderColorline.getLayoutParams().width;
         DisplayMetrics dm = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(dm);
         int screenW = dm.widthPixels;
-        offset = (int) ((screenW / 5 - bottomLineWidth) / 2);
-
-        position_one = (int) (screenW / 5.0);
+        offset = 0+30;
+        position_one = (int) (screenW / 3.0);
         position_two = position_one * 2;
         position_three = position_one * 3;
-        position_four = position_one * 4;
     }
-
-    private void initAdapter() {
-        fragmentList = new ArrayList<>();
-        allFormfragment = new AllFormFragment();
-        waitReceiveFragment = new WaitReceiveFormFragment();
-        waitExamFragment = new WaitExamineFragment();
-        waitJudgeFragment = new WaitJudgeFragment();
-        waitForSureFragment = new WaitSureFragment();
-        fragmentList.add(allFormfragment);
-        fragmentList.add(waitReceiveFragment);
-        fragmentList.add(waitExamFragment);
-        fragmentList.add(waitForSureFragment);
-        fragmentList.add(waitJudgeFragment);
-
-        mViewpager.setCurrentItem(0);
-        setTextColor(0);
-        mViewpager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList));//解决fragment嵌套问题
-        mViewpager.addOnPageChangeListener(this);
-    }
-
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.myform_back:
-                onBackPressed();
-                break;
-
+    private void setTextColor(int currIndex) {
+        for (TextView ts : textViews) {
+            ts.setTextColor(getResources().getColor(R.color.gray3));
         }
-
+        textViews.get(currIndex).setTextColor(getResources().getColor(R.color.main_tixianbutton));
 
     }
-
-    public class MyOnClickListener implements View.OnClickListener {
-        private int index = 0;
-
-        public MyOnClickListener(int i) {
-            index = i;
-        }
-
-        @Override
-        public void onClick(View v) {
-            mViewpager.setCurrentItem(index);
-        }
-    }
-
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -164,8 +122,6 @@ public class MyFormActivity extends BaseActivity implements View.OnClickListener
                     animation = new TranslateAnimation(position_two, 0, 0, 0);
                 } else if (currIndex == 3) {
                     animation = new TranslateAnimation(position_three, 0, 0, 0);
-                } else if (currIndex == 4) {
-                    animation = new TranslateAnimation(position_four, 0, 0, 0);
                 }
                 break;
             case 1:
@@ -175,8 +131,6 @@ public class MyFormActivity extends BaseActivity implements View.OnClickListener
                     animation = new TranslateAnimation(position_two, position_one, 0, 0);
                 } else if (currIndex == 3) {
                     animation = new TranslateAnimation(position_three, position_one, 0, 0);
-                } else if (currIndex == 4) {
-                    animation = new TranslateAnimation(position_four, position_one, 0, 0);
                 }
                 break;
             case 2:
@@ -186,8 +140,6 @@ public class MyFormActivity extends BaseActivity implements View.OnClickListener
                     animation = new TranslateAnimation(position_one, position_two, 0, 0);
                 } else if (currIndex == 3) {
                     animation = new TranslateAnimation(position_three, position_two, 0, 0);
-                } else if (currIndex == 4) {
-                    animation = new TranslateAnimation(position_four, position_two, 0, 0);
                 }
                 break;
             case 3:
@@ -197,27 +149,14 @@ public class MyFormActivity extends BaseActivity implements View.OnClickListener
                     animation = new TranslateAnimation(position_one, position_three, 0, 0);
                 } else if (currIndex == 2) {
                     animation = new TranslateAnimation(position_two, position_three, 0, 0);
-                } else if (currIndex == 4) {
-                    animation = new TranslateAnimation(position_four, position_three, 0, 0);
                 }
                 break;
-            case 4:
-                if (currIndex == 0) {
-                    animation = new TranslateAnimation(offset, position_four, 0, 0);
-                } else if (currIndex == 1) {
-                    animation = new TranslateAnimation(position_one, position_four, 0, 0);
-                } else if (currIndex == 2) {
-                    animation = new TranslateAnimation(position_two, position_four, 0, 0);
-                } else if (currIndex == 3) {
-                    animation = new TranslateAnimation(position_three, position_four, 0, 0);
-                }
-                break;
+
         }
         currIndex = position;
         animation.setFillAfter(true);
         animation.setDuration(100);
-        tabline.startAnimation(animation);
-
+        b.orderColorline.startAnimation(animation);
     }
 
     @Override
@@ -225,11 +164,16 @@ public class MyFormActivity extends BaseActivity implements View.OnClickListener
 
     }
 
-    private void setTextColor(int currIndex) {
-        for (TextView ts : textViews) {
-            ts.setTextColor(getResources().getColor(R.color.settingtext));
-        }
-        textViews.get(currIndex).setTextColor(getResources().getColor(R.color.myformcolor));
+    public class MyOnClickListener implements View.OnClickListener {
+        private int index = 0;
 
+        public MyOnClickListener(int i) {
+            index = i;
+        }
+
+        @Override
+        public void onClick(View v) {
+            b.orderViewpager.setCurrentItem(index);
+        }
     }
 }
