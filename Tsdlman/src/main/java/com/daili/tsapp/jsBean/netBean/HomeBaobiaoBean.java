@@ -14,6 +14,7 @@ public class HomeBaobiaoBean {
      * msg : [{"today_money":"2200","today_order":"2","this_month_money":"2200","last_month_money":"0","all_price":"2200","yesterday_counts":"0","yesterday_money":"0","before_yesterday_counts":"0","before_yesterday_money":"0","type":1}]
      * data : []
      * num : 1
+     *
      */
 
     private String flag;

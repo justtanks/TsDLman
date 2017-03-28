@@ -299,6 +299,14 @@
         android:clickable="true"
         android:background="@drawable/selector_mainbutton"
         >
+        <ImageView
+            android:id="@+id/mine_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:src="@mipmap/mine_card"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -306,7 +314,8 @@
             android:textColor="@color/gray3"
             android:textSize="14sp"
             android:layout_centerVertical="true"
-            android:layout_marginStart="15dp"
+            android:layout_toRightOf="@id/mine_card"
+            android:layout_marginStart="7dp"
             android:text="@string/mine_mycard"
             />
 
