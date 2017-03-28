@@ -24,7 +24,6 @@ public class AgreeMentActivity extends BaseActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_agree_ment);
         b= DataBindingUtil.setContentView(this, R.layout.activity_agree_ment);
         b.agreeReback.setOnClickListener(this);
         initWebview();
