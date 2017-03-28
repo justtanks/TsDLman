@@ -7,7 +7,7 @@
             type="com.daili.tsapp.jsBean.netBean.LoginBean.DataBean.PartnerYesterdayOrderBean"></variable>
         <variable
             name="base"
-            type="com.daili.tsapp.jsView.BaseData1"></variable>
+            type="com.daili.tsapp.tsBase.BaseData"></variable>
     </data>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

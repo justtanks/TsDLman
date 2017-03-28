@@ -178,4 +178,5 @@
     <string name="shanchanglingyu">擅长领域</string>
     <string name="gengxinshibai">数据更新失败，请检查网络后重新设置</string>
     <string name="gengxinshuju">正在更新数据</string>
+    <string name="yipingjia">已评价</string>
 </resources>

@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import com.daili.tsapp.R;
 import com.daili.tsapp.databinding.AgreementBinding;
 import com.daili.tsapp.tsBase.BaseActivity;
+import com.daili.tsapp.tsBase.BaseData;
 
 /**
  * 展示同意条约的activity
@@ -42,7 +43,7 @@ public class AgreeMentActivity extends BaseActivity implements View.OnClickListe
         });
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(false);
-        webView.loadUrl(BaseData1.XIEYI);
+        webView.loadUrl(BaseData.XIEYI);
     }
 
     @Override

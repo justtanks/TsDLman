@@ -189,7 +189,7 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
         parms.put("withdrawals_money", money);
         parms.put("withdrawals_password", password);
         loge("name" + bankname + "---num:" + bankNum);
-        NetUtils.Post(BaseData1.DRAW_MONEY, parms, new Callback.CommonCallback<String>() {
+        NetUtils.Post(BaseData.DRAW_MONEY, parms, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Gson gson = new Gson();
