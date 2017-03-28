@@ -16,6 +16,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daili.tsapp.R;
+import com.daili.tsapp.jsBean.netBean.CardsBean;
+import com.daili.tsapp.jsBean.netBean.DrawCashDoneBean;
 import com.daili.tsapp.jsBean.netBean.LoginBean;
 import com.daili.tsapp.jsBean.netBean.NetError;
 import com.daili.tsapp.jsView.PwdEditText;
@@ -26,6 +28,8 @@ import com.daili.tsapp.utils.SystemUtil;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.common.Callback;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -53,43 +57,41 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
     TextView backText;
     @ViewInject(R.id.tixian_bank)
     TextView bankName;
-    private LoginBean.DataBean datas = null;
+    //初始数据
+    private CardsBean  datas = null;
     private String bankname;
     private String bankNum;
     SystemUtil su = new SystemUtil(this);
     //进入银行卡选择界面后返回的标识
     public static final int TOGETCARD = 1;
-
     ProgressDialog waitDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw_cash);
-        x.view().inject(this);
         init();
     }
 
     private void init() {
-
+        EventBus.getDefault().register(this);
         changecard.setOnClickListener(this);
         backre.setOnClickListener(this);
         backText.setOnClickListener(this);
         quanbutixian.setOnClickListener(this);
         buttonTixian.setOnClickListener(this);
         moneyEdit.addTextChangedListener(new MyTextWathcer());
-        datas = (LoginBean.DataBean) getIntent().getSerializableExtra("datas");
-        currentnum.setText("可提现余额" + datas.getPartner_account_balance() + "元");
-        setName(datas.getPartner_bank_card().get(0));
+        datas = (CardsBean) getIntent().getSerializableExtra("cards");
+        setName(datas.getData().get(0));
     }
 
-    //设置界面内容
-    private void setName(LoginBean.DataBean.PartnerBankCardBean data) {
-        bankNum = data.getCard_num();
-        bankname = data.getBank_name();
+    //设置界面内容 包括银行卡号和银行名称
+    private void setName(CardsBean.DataBean card) {
+        bankNum = card.getCard_num();
+        bankname = card.getBrank_name();
         bankName.setText(bankname + "(" + getLast4String(bankNum) + ")");
     }
-
+//获取到银行卡后四位
     private String getLast4String(String num) {
         if (num.length() >= 4) {
             String strsub1 = num.substring(num.length() - 4, num.length());
@@ -110,7 +112,7 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
                 onBackPressed();
                 break;
             case R.id.tixian_quanbutixian:
-//                quanbutixian();
+                quanbutixian();
                 break;
             case R.id.tixian_button:
                 tixian();
@@ -121,7 +123,8 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
     }
 
     /*
-    选择新的卡进行提现
+    选择新的卡进行提现 需要将银行卡信息传到上面
+    这里就需要对网络进行访问 然后传递银行卡信息
      */
     private void getNewCard() {
         Intent intent = new Intent(this, ChoiseCardActivity.class);
@@ -134,18 +137,25 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == TOGETCARD) {
+        if (resultCode == TOGETCARD&&data.getExtras()!=null) {
             Bundle bundle = data.getExtras();
-            LoginBean.DataBean.PartnerBankCardBean datas = (LoginBean.DataBean.PartnerBankCardBean) bundle.getSerializable("datas1");
-            setName(datas);
+            CardsBean.DataBean datas = (CardsBean.DataBean) bundle.getSerializable("datas1");
+            if(data!=null){
+                setName(datas);
+            }
         }
     }
 
-    /*
+    //添加银行卡之后的刷新
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEventList(CardsBean datas) {
+        this.datas= datas;
+    }
+        /*
          弹出对话框输入按钮
          */
     private PopupWindow mPopuwindow;
-
+// 弹出对话框 输入密码
     private void tixian() {
         View popupView = getLayoutInflater().inflate(R.layout.dialog_tixian_password, null);
         ImageView backimg = (ImageView) popupView.findViewById(R.id.dialog_mima_back);
@@ -177,18 +187,17 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-    //访问网络进行提现 ：partner_id/3/bank_name/银行名称/bank_card_num/123/withdrawals_money/100000/withdrawals_password/123456
-    //完成之后重新登录，返回主界面 重新更新数据
+
+    ///Waiter/waiter_get_money/waiter_id/71/money/100/payment_password/123456  card_num ,bank_name
     private void drawMoneyFromNet(int money, String password) {
         waitDialog = ProgressDialog.show(this, "", "正在执行提现操作");
         waitDialog.show();
         Map<String, Object> parms = new HashMap<>();
-        parms.put("partner_id", su.showUid());
+        parms.put("waiter_id", su.showUid());
         parms.put("bank_name", bankname);
-        parms.put("bank_card_num", bankNum);
-        parms.put("withdrawals_money", money);
-        parms.put("withdrawals_password", password);
-        loge("name" + bankname + "---num:" + bankNum);
+        parms.put("card_num", bankNum);
+        parms.put("money", money);
+        parms.put("payment_password", password);
         NetUtils.Post(BaseData.DRAW_MONEY, parms, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -200,12 +209,11 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
                     error = null;
                     return;
                 } else {
-//                    DrawMoneyBean bean = gson.fromJson(result, DrawMoneyBean.class);
-//
-//                    if (bean != null && "Success".equalsIgnoreCase(bean.getFlag())) {
-//                        toast("提现成功，两小时之内到帐");
-//                        update();
-//                    }
+                    DrawCashDoneBean bean = gson.fromJson(result, DrawCashDoneBean.class);
+                    if (bean != null && "Success".equalsIgnoreCase(bean.getFlag())) {
+                        toast("提现成功，两小时之内到帐");
+                        update();
+                    }
                 }
             }
 
@@ -228,11 +236,13 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
 
     }
 
-//    private void quanbutixian() {
-//        moneyEdit.setText(datas.getPartner_account_balance()+"");
-//    }
+    private void quanbutixian() {
+        moneyEdit.setText();
+    }
 
-
+/*
+  提现按钮变化监听
+ */
     private class MyTextWathcer implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -271,7 +281,7 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
     }
 
     /*
-       设置button的点击状态
+       设置button的点击状态  默认没有文字不可以点击
      */
     private void setButton(boolean used) {
         if (used) {
@@ -294,58 +304,17 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
     }
 
     Callback.Cancelable cancel;
-
+    /*
+     更新首界面数据 通知首页重新设置数据
+     */
     private void update() {
-        Map<String, String> params = new HashMap<>();
-        params.put("partner_tel", su.showPhone());
-        params.put("partner_password", su.showPwd());
-        cancel = NetUtils.Get(BaseData.LOGIN, params, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                Gson gson = new Gson();
-                String cutResult = result.substring(0, 19);
-                if (cutResult.contains("Error")) {
-                    NetError error = gson.fromJson(result, NetError.class);
-                    toast(error.getMsg());
-                    error = null;
-                    return;
-                } else {
-                    LoginBean login = gson.fromJson(result, LoginBean.class);
-                    if ("Success".equals(login.getFlag())) {
-                        EventBus.getDefault().post(login);
-                        Intent intenm = new Intent(DrawCashActivity.this, HomeActivity.class);
-                        startActivity(intenm);
-                    } else {
-                        login = null;
-                        return;
-                    }
-
-
-                }
-
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                toast(getString(R.string.net_error));
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-            }
-
-            @Override
-            public void onFinished() {
-
-            }
-        });
-
+       EventBus.getDefault().post(new Integer(111));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
         datas=null;
         su=null;
         mPopuwindow=null;

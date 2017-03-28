@@ -41,12 +41,13 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/main_tixian_text"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
                     android:layout_centerVertical="true"
+                    android:gravity="center"
                     android:textColor="@color/titiletextcolor"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="15dp"
                     android:text="@string/tixian"
                     />
 

@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 我的银行卡界面
+ * 我的银行卡界面 展示所有银行卡信息
  */
 public class CardActivity extends BaseActivity implements View.OnClickListener {
 
@@ -46,7 +46,6 @@ public class CardActivity extends BaseActivity implements View.OnClickListener {
             adatper = new CardListviewAdatper(this,carddatas.getData());
             bingding.cardLv.setAdapter(adatper);
         }
-//
     }
 
     @Override

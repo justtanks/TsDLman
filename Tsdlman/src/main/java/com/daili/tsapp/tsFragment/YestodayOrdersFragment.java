@@ -22,6 +22,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2017/2/14.
+ * 展示昨天订单
  */
 
 public class YestodayOrdersFragment extends BaseFragment implements AdapterView.OnItemClickListener{
@@ -32,6 +33,11 @@ public class YestodayOrdersFragment extends BaseFragment implements AdapterView.
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          b= DataBindingUtil.inflate(inflater, R.layout.fragment_orders_yestoday,container,false);
+        init();
+        return  b.getRoot();
+    }
+
+    private void init(){
         FormlistDateBean bean = (FormlistDateBean) getActivity().getIntent().getSerializableExtra("forms");
         allOrderdatas= bean.getData().get(0).getYesterday_order();
         if(null!=allOrderdatas&&allOrderdatas.size()!=0){
@@ -44,7 +50,6 @@ public class YestodayOrdersFragment extends BaseFragment implements AdapterView.
             datas=new ShowOrdersTypeBean(0+"");
         }
         b.setDatas(datas);
-        return  b.getRoot();
     }
 
     @Override
