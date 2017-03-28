@@ -55,7 +55,7 @@ public class ChoiseCardActivity extends BaseActivity implements View.OnClickList
         EventBus.getDefault().register(this);
 
     }
-//每次添加银行卡都要请求网络并不很好
+//实现暂停一下然后进行跳转的效果
     Runnable runnable1 = new Runnable() {
         @Override
         public void run() {

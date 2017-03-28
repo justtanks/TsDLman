@@ -167,6 +167,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                     }
                     intent = new Intent(context, DrawCashActivity.class);
                     intent.putExtra("cards", cards);
+                    intent.putExtra("allmoney",bean.getMsg().get(0).getBalance_money());
                     startActivity(intent);
 
                 }

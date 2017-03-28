@@ -65,11 +65,13 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
     //进入银行卡选择界面后返回的标识
     public static final int TOGETCARD = 1;
     ProgressDialog waitDialog = null;
+    int largestMoney;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_draw_cash);
+        x.view().inject(this);
         init();
     }
 
@@ -82,6 +84,8 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
         buttonTixian.setOnClickListener(this);
         moneyEdit.addTextChangedListener(new MyTextWathcer());
         datas = (CardsBean) getIntent().getSerializableExtra("cards");
+        largestMoney=getIntent().getIntExtra("allmoney",0);
+        currentnum.setText(largestMoney+"元");
         setName(datas.getData().get(0));
     }
 
@@ -237,7 +241,7 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void quanbutixian() {
-        moneyEdit.setText();
+        moneyEdit.setText(largestMoney+"");
     }
 
 /*
@@ -266,7 +270,7 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
             }
             int num = Integer.parseInt(money);
             if (num > 0) {
-                if (num > datas.getPartner_account_balance()) {
+                if (num > largestMoney) {
                     toast("超出可提现余额，不能提现");
                     setButton(false);
                     return;

@@ -47,7 +47,7 @@ public class ChoiseCardLvAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return datas.size();
     }
 
     @Override
@@ -72,7 +72,6 @@ public class ChoiseCardLvAdapter extends BaseAdapter {
             convertView.setTag(holder);
         }else {
             holder= (ViewHolder) convertView.getTag();
-
         }
         String bankname=datas.get(position).getBrank_name();
         String cardnum=datas.get(position).getCard_num();

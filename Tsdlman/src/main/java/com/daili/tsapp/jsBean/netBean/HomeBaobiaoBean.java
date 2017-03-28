@@ -76,7 +76,16 @@ public class HomeBaobiaoBean {
         private String yesterday_money;
         private String before_yesterday_counts;
         private String before_yesterday_money;
+        private  int balance_money;
         private int type;
+
+        public int getBalance_money() {
+            return balance_money;
+        }
+
+        public void setBalance_money(int balance_money) {
+            this.balance_money = balance_money;
+        }
 
         public String getToday_money() {
             return today_money;
