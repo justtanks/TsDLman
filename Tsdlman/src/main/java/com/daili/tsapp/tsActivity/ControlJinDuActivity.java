@@ -20,14 +20,19 @@ import com.daili.tsapp.jsBean.ExpendListChildBean;
 import com.daili.tsapp.jsBean.ExpendListGroupBean;
 import com.daili.tsapp.jsBean.GetExpendListDatas;
 import com.daili.tsapp.jsBean.netBean.FormListnew;
+import com.daili.tsapp.jsBean.netBean.SendMsgResultBean;
 import com.daili.tsapp.tsAdapter.ExpandBleadapter;
 import com.daili.tsapp.tsBase.BaseActivity;
 import com.daili.tsapp.tsBase.BaseData;
 import com.daili.tsapp.tsNet.Xutils;
+import com.daili.tsapp.utils.NetUtils;
+import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
 import org.xutils.x;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -368,8 +373,10 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
             public void onSuccess(String result) {
                 setAdapter(contrsList);
                 savaList = new ArrayList(contrsList);
-                jindu.setText(datas.getTextByIndex(contrsList.get(contrsList.size()-1)));
-
+                String nowMsg=datas.getTextByIndex(contrsList.get(contrsList.size()-1));
+                jindu.setText(nowMsg);
+                 //调用短信接口发送
+                 sendMsgToUser(nowMsg);
             }
 
             @Override
@@ -415,6 +422,51 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
                 return b.append(']').toString();
             b.append(",");
         }
+    }
+    //向用户手机发送短信验证码
+    private  void sendMsgToUser(String value){
+        String xvalue="";
+        try {
+             xvalue= URLEncoder.encode("#code#="+value, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        Map<String,String> parms=new HashMap<>();
+        parms.put("mobile",xiangqingdatas.getOrder_ask_phone());
+        parms.put("tpl_id","30472");
+        parms.put("key",BaseData.DUANXINKEY);
+          parms.put("tpl_value",xvalue);
+        NetUtils.Get(BaseData.FASONGDUANXIN, parms, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Gson gson=new Gson();
+                SendMsgResultBean msg=gson.fromJson(result,SendMsgResultBean.class);
+                if(msg.getError_code()==0){
+                    toast("短信发送成功");
+                }else{
+                    toast("通知用户失败:"+msg.getReason());
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                  toast(getString(R.string.net_error));
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
     }
 
     /**

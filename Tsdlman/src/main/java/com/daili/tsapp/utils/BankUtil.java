@@ -1,7 +1,4 @@
 package com.daili.tsapp.utils;
-
-import android.util.Log;
-
 /**
  * 通过银行卡BIN号获取银行卡所属银行名称
  */
@@ -10,8 +7,7 @@ public class BankUtil {
     public static String getNameOfBank(String idCard) {
         int index = -1;
         if(idCard==null || idCard.length()<16 || idCard.length()>19){
-            Log.e("log",1+"");
-            return "-1";
+             return "-1";
         }
 //6位Bin号
         String cardbin_6 = idCard.substring(0, 6);
@@ -20,9 +16,9 @@ public class BankUtil {
                 index = i;
             }
         }
-        Log.e("log",2+"");
+
         if (index != -1) {
-            Log.e("log",index+"=="+bankName[index]);
+
             return bankName[index];
         }
 

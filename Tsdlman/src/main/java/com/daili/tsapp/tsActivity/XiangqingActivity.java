@@ -32,6 +32,7 @@ import com.daili.tsapp.tsBase.BaseActivity;
 import com.daili.tsapp.tsBase.BaseData;
 import com.daili.tsapp.tsDB.DButils;
 import com.daili.tsapp.tsNet.Xutils;
+import com.daili.tsapp.utils.NetUtils;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
@@ -40,6 +41,8 @@ import org.xutils.common.Callback;
 import org.xutils.ex.DbException;
 import org.xutils.x;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -280,4 +283,4 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
         }
         super.onBackPressed();
     }
-}
+ }
