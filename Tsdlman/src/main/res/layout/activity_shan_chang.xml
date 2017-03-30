@@ -18,7 +18,9 @@
         <RelativeLayout
             android:id="@+id/shanchang_back"
             android:layout_width="100dp"
-            android:layout_height="match_parent"></RelativeLayout>
+            android:layout_height="match_parent"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            ></RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,6 +29,7 @@
             android:textColor="@color/titiletextcolor"
             android:textSize="20sp"
             android:textStyle="bold"
+
 
             />
 

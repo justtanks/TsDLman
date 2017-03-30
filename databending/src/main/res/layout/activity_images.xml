@@ -19,5 +19,6 @@
         app:image="@{image}"
         />
 
+
 </RelativeLayout>
 </layout>

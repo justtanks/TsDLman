@@ -42,6 +42,7 @@
         <!--/>-->
      <Button
          android:id="@+id/carddone_complete"
+         style="@style/Widget.AppCompat.Button.Borderless.Colored"
          android:layout_width="100dp"
          android:layout_height="match_parent"
          android:layout_alignParentEnd="true"

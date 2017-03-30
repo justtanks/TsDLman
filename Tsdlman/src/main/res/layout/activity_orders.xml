@@ -47,20 +47,24 @@
             android:layout_toRightOf="@id/orders_fenlei"
             android:src="@mipmap/orders_down"
             android:visibility="invisible" />
-
+         <RelativeLayout
+             android:id="@+id/orders_back"
+             android:layout_width="70dp"
+             android:layout_height="match_parent">
+             style="@style/Widget.AppCompat.Button.Borderless.Colored"
+         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/orders_back"
             android:layout_width="60dp"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            >
             <ImageView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
                 android:src="@mipmap/fanhui"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:layout_marginStart="15dp"
+                />
         </RelativeLayout>
     </RelativeLayout>
 

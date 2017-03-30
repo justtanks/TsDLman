@@ -22,7 +22,9 @@
         <RelativeLayout
             android:id="@+id/choisecard_reback"
             android:layout_width="100dp"
-            android:layout_height="match_parent"></RelativeLayout>
+            android:layout_height="match_parent"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            ></RelativeLayout>
         <ImageView
             android:id="@+id/choisecard_back"
             android:layout_width="wrap_content"

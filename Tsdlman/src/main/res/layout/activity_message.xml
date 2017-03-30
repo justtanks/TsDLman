@@ -17,7 +17,9 @@
         <RelativeLayout
             android:id="@+id/msg_back"
             android:layout_width="100dp"
-            android:layout_height="match_parent"></RelativeLayout>
+            android:layout_height="match_parent"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            ></RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"

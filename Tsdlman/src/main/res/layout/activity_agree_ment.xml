@@ -20,7 +20,9 @@
         <RelativeLayout
             android:id="@+id/agree_reback"
             android:layout_width="120dp"
-            android:layout_height="match_parent"></RelativeLayout>
+            android:layout_height="match_parent"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            ></RelativeLayout>
         <ImageView
             android:id="@+id/agree_back"
             android:layout_width="wrap_content"

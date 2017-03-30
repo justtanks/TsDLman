@@ -14,11 +14,10 @@ android {
 
     defaultConfig {
         applicationId "com.ts.databending"
-        minSdkVersion 21
-        targetSdkVersion 25
+        minSdkVersion 26
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -59,4 +58,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:26.0.0-alpha1'
 }

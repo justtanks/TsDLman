@@ -44,6 +44,7 @@
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             >
             <ImageView
                 android:layout_width="wrap_content"

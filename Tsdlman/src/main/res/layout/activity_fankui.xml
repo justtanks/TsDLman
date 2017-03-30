@@ -19,7 +19,9 @@
         <RelativeLayout
             android:id="@+id/fankui_back"
             android:layout_width="70dp"
-            android:layout_height="match_parent"></RelativeLayout>
+            android:layout_height="match_parent"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            ></RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
