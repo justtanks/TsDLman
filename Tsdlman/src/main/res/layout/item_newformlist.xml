@@ -131,7 +131,6 @@
             >
 
             <ImageView
-                android:id="@+id/hadform_firstimg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -140,7 +139,6 @@
 
 
             <ImageView
-                android:id="@+id/hadform_thirdimg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                android:layout_alignParentBottom="true"
@@ -170,7 +168,6 @@
 
 
             <TextView
-                android:id="@+id/newform_thirdform"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                android:layout_marginBottom="16dp"

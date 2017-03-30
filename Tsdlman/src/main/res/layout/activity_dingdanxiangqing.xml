@@ -61,7 +61,6 @@
 
             />
         <TextView
-            android:id="@+id/xiangqing_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -193,7 +192,6 @@
 
             />
         <TextView
-            android:id="@+id/xiangqing_feiyongkey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="13sp"

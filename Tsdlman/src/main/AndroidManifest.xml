@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.daili.tsapp">
-
+    package="com.daili.tsapp"
+    android:versionCode="1"
+    android:versionName="1.0"
+    >
     <uses-permission android:name="com.tianyan.assistant.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />

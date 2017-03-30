@@ -1,17 +1,5 @@
 <resources>
     <string name="app_name">企成成代理人</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="home_title">首页</string>
-    <string name="home_text_search_before">注册前查询</string>
-    <string name="home_regis_text">商标注册</string>
-    <string name="home_shangbiaobuy">商标购买</string>
-    <string name="home_guobiao_text">国标注册</string>
-    <string name="home_chaxun_text">商标查询</string>
-    <string name="home_fenlei_tex">商标分类</string>
-    <string name="home_jindu_tex">进度查询</string>
-    <string name="home_jinduzhanshi">进度展示</string>
-    <string name="home_help">帮助</string>
-    <string name="home_txt_qingming">品牌起名</string>
     <string name="home_backpress">再按一次退出</string>
     <string name="net_err">网络错误，请检查网络是否连接</string>
     <string name="fight_fortip">抢单</string>
@@ -20,8 +8,6 @@
     <string name="had_form_bigtex">面包牛奶会有的，不要灰心哦~</string>
     <string name="newform_buttontext">立即抢单</string>
     <string name="netError">请检查网络</string>
-    <string name="usersetting">设置</string>
-    <string name="setting_personmsg">个人资料</string>
     <string name="setting_sage">账号安全</string>
     <string name="setting_delete">清除缓存</string>
     <string name="setting_safe">账号安全</string>
@@ -33,12 +19,7 @@
     <string name="persong_sex">性别</string>
     <string name="person_zhuzhi">地区</string>
     <string name="personm_sign">个性签名</string>
-    <string name="myform_title">我的订单</string>
     <string name="myform_daipingjia">待评价</string>
-    <string name="myform_daiqueren">待确认</string>
-    <string name="myform_daishenhe">待审核</string>
-    <string name="myform_daijiedan">待结单</string>
-    <string name="myform_allform">全部</string>
     <string name="item_waitformlist_dingdanhao">订单号:</string>
     <string name="waitform_receive_fuwufei">服务费:</string>
     <string name="phone">电话:</string>
@@ -53,15 +34,12 @@
     <string name="phone_hint">请输入你的手机号</string>
     <string name="regist_yanzhengma_hint">请输入验证码</string>
     <string name="work_time">工作年限</string>
-    <string name="sex_hint">请输入你的性别</string>
     <string name="nian">请输入工作年限</string>
-    <string name="best_area">擅长领域</string>
     <string name="man">男</string>
     <string name="woman">女</string>
     <string name="regist_password_text">密码</string>
     <string name="check_thenet">请检查您的网络</string>
     <string name="right_phonenum">请先填写正确的手机号码</string>
-    <string name="choise">选择</string>
     <string name="regist_success">注册成功</string>
     <string name="login">登录</string>
     <string name="sendyourphonenum">请输入你的手机号</string>
@@ -88,7 +66,6 @@
     <string name="choise_sex">请选择性别</string>
     <string name="put_yanzhengma">请重新输入验证码</string>
     <string name="choise_worktime">请输入工作年限数字</string>
-    <string name="putyourbestwork">选择擅长领域</string>
     <string name="setting">设置</string>
     <string name="noneed_toclean">程序暂时没有缓存</string>
     <string name="waittosee">敬请期待</string>
@@ -96,7 +73,6 @@
     <string name="pinglun">评论</string>
     <string name="zhucenum">注册号:</string>
     <string name="shenqingren">申请人:</string>
-    <string name="next_step">下一步:</string>
     <string name="shangbiaoliucheng">商标流程</string>
     <string name="guanfangweizhu">(实际以官方为主)</string>
     <string name="checkthenet">状态更新失败，请检查网络连接后重试</string>
@@ -110,7 +86,6 @@
     <string name="today_orders">今日单数</string>
     <string name="details_order">订单明细</string>
     <string name="shouyi">收益:</string>
-    <string name="zongshouyi">总收益(元)</string>
     <string name="all_yue">总余额</string>
     <string name="befores_yestoday">前日</string>
     <string name="main_shouyi">总收益:</string>
@@ -118,9 +93,7 @@
     <string name="tixian">提现</string>
 
     <!--从合伙人复制过来的-->
-    <string name="main_my">我的</string>
     <string name="mine_mycard">我的银行卡</string>
-    <string name="area">地区</string>
     <string name="add_card">添加银行卡</string>
     <string name="step1_bangdingkahao">请绑定持卡人本人银行卡</string>
     <string name="step_chikaren">持卡人</string>
@@ -144,27 +117,17 @@
     <string name="choise_bankcard">选择银行卡</string>
     <string name="mybank_card">到帐银行卡</string>
     <string name="use_newcard">使用新卡提现</string>
-    <string name="inputyourpassword">请输入提现密码</string>
     <string name="tixian_yinhangka">银行卡</string>
     <string name="tixian_twoour">两小时到帐</string>
     <string name="yuetixian">余额提现</string>
     <string name="input_tixian_password">请输入提现密码</string>
     <string name="yanzhengshenf">请输入提现密码，以验证身份</string>
-    <string name="inputyouphonenum">请输入你的手机号码</string>
-    <string name="inputyourpasswiord">请输入你的密码</string>
     <string name="net_error">网络错误，请检查网络是否连接</string>
     <string name="phonenum">手机号</string>
     <string name="orders_fenlei">全部分类</string>
     <string name="num_order">单数:</string>
     <string name="settingpass">设置提现密码</string>
     <string name="mimabuyizhi">两次密码设置不一致，请重新设置</string>
-    <string name="tuiguang">我要推广</string>
-    <string name="share">分享</string>
-    <string name="gengxinchenggong">数据更新成功</string>
-    <string name="failtorefresh">更新失败</string>
-    <string name="partner">合伙人</string>
-    <string name="renzhengdailiren">认证为代理人</string>
-    <string name="daijiedan">待结单</string>
     <string name="kefuzhongxin">客服中心</string>
     <string name="yijianfankui">意见反馈</string>
     <string name="dailiren">代理人</string>

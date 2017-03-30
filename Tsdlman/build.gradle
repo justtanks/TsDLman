@@ -22,6 +22,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -40,7 +41,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'org.xutils:xutils:3.3.40'
-    compile 'com.umeng.analytics:analytics:6.0.6'
     compile 'com.android.support:support-v4:25.1.0'
     compile 'in.srain.cube:ultra-ptr:1.0.11'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
@@ -51,4 +51,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    compile 'com.umeng.analytics:analytics:6.1.0'
 }
