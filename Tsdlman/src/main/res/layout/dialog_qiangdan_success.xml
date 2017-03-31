@@ -7,16 +7,22 @@
    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="50dp">
-       <ImageView
+       <ImageButton
            android:id="@+id/qiangdan_closebt_success"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:src="@mipmap/qingdan_closebt"
            android:layout_alignParentEnd="true"
            android:layout_alignParentTop="true"
-           android:layout_marginTop="15dp"
-           android:layout_marginEnd="15dp"
+           style="@style/Widget.AppCompat.Button.Borderless"
            />
+       <!--<RelativeLayout-->
+           <!--android:id="@+id/qiangdan_close"-->
+           <!--android:layout_width="70dp"-->
+           <!--android:layout_height="match_parent"-->
+           <!--android:layout_alignParentEnd="true"-->
+           <!--style="@style/Widget.AppCompat.Button.Borderless"-->
+           <!--&gt;</RelativeLayout>-->
 
    </RelativeLayout>
     <RelativeLayout
@@ -76,11 +82,18 @@
             android:text="11111"
             android:textColor="@color/gray" />
 
+        <RelativeLayout
+            android:id="@+id/qiangdan_call"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            style="@style/Widget.AppCompat.Button.Borderless"
+             android:layout_alignParentEnd="true"
+            ></RelativeLayout>
          <RelativeLayout
-             android:id="@+id/qiangdan_call"
              android:layout_width="60dp"
              android:layout_height="match_parent"
-             android:layout_alignParentEnd="true">
+             android:layout_alignParentEnd="true"
+             >
              <ImageView
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"

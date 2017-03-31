@@ -50,8 +50,9 @@
          <RelativeLayout
              android:id="@+id/orders_back"
              android:layout_width="70dp"
-             android:layout_height="match_parent">
+             android:layout_height="match_parent"
              style="@style/Widget.AppCompat.Button.Borderless.Colored"
+             >
          </RelativeLayout>
         <RelativeLayout
             android:layout_width="60dp"

@@ -17,7 +17,7 @@ public class NetUtils {
 
     public static  <T> Callback.Cancelable Get (String url, Map<String,String> keys, Callback.CommonCallback  <T>callback){
         RequestParams params=new RequestParams(url);
-        if(null!=params){
+        if(null!=params&&keys!=null){
             for(Map.Entry<String,String> entry:keys.entrySet()){
                 params.addQueryStringParameter(entry.getKey(),entry.getValue());
 
@@ -42,7 +42,7 @@ public class NetUtils {
     }
      //下载文件封装 待测试
     //  params.setSaveFilePath("/mnt/sdcard/demo.apk");
-     public static  <T> Callback.Cancelable downFile(String  url, Map<String,Object> maps, String saveFilepass, Callback.CommonCallback  <T> callback){
+     public static  <T> Callback.Cancelable downFile(String  url, Map<String,Object> maps, String saveFilepass, Callback.ProgressCallback <T> callback){
          RequestParams params =new RequestParams(url);
          if(null!=maps) {
              for (Map.Entry<String, Object> entry : maps.entrySet()) {
@@ -51,9 +51,10 @@ public class NetUtils {
          }
              params.setAutoRename(true);
              params.setSaveFilePath(saveFilepass);
-             Callback.Cancelable cancelable = x.http().get(params, callback);
+//             Callback.Cancelable cancelable = x.http().get(params, callback);
          //显示下载进度
-//             cancelable=x.http().post(params, new Callback.ProgressCallback<Object>() {
+         Callback.Cancelable cancelable=x.http().post(params, callback );
+
 //                 @Override
 //                 public void onSuccess(Object result) {
 //

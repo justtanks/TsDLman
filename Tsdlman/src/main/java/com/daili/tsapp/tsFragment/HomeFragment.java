@@ -67,6 +67,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         init();
     }
 
+
     private void init() {
         EventBus.getDefault().register(this);
         b.mainDingdanmingxi.setOnClickListener(this);
@@ -193,8 +194,10 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     //获取到订单信息并跳转到订单列表 /waiter_id/71
     public void getToDingdan() {
+        dialog = ProgressDialog.show(context, "", "正在获取订单信息");
+        dialog.show();
         Map<String, Object> parms = new HashMap<>();
-        parms.put("waiter_id", 71);
+        parms.put("waiter_id", su.showUid());
         NetUtils.Post(BaseData.GETORDERS, parms, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -225,7 +228,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
             @Override
             public void onFinished() {
-
+               dialog.dismiss();
             }
         });
     }

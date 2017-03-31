@@ -4,6 +4,8 @@ package com.daili.tsapp.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 
 import com.daili.tsapp.tsApplication.MyApplication;
 
@@ -264,6 +266,39 @@ public class SystemUtil {
         Editor editor = preferences.edit();
         editor.clear().commit();
     }
+    /**
+     * 返回当前程序版本名
+     */
+    public static String getAppVersionName() {
+        String versionName = "";
+        try {
+            // ---get the package info---
+            PackageManager pm = context.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            versionName = pi.versionName;
 
+            if (versionName == null || versionName.length() <= 0) {
+                return "";
+            }
+        } catch (Exception e) {
+
+        }
+        return versionName;
+    }
+    /*
+     获取程序当前版本号
+     */
+    public static  float getVersionCode()
+    {
+
+        PackageManager packageManager = context.getPackageManager();
+        PackageInfo packInfo = null;
+        try {
+            packInfo = packageManager.getPackageInfo(context.getPackageName(),0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return packInfo.versionCode;
+    }
 
 }

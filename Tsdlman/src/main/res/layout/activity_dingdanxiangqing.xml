@@ -104,7 +104,6 @@
             android:layout_alignBottom="@+id/xiangqing_head"
             android:layout_marginLeft="10dp"
             android:layout_toEndOf="@+id/xiangqing_head"
-
             android:textColor="@color/gray" />
         <RelativeLayout
             android:id="@+id/xiangqing_call"
@@ -112,14 +111,13 @@
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            style="@style/Widget.AppCompat.Button.Borderless"
             >
             <ImageView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="25dp"
                 android:src="@mipmap/phone" />
         </RelativeLayout>
 

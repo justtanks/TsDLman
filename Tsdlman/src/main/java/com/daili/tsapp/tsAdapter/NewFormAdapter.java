@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -90,7 +91,7 @@ public class NewFormAdapter extends BaseAdapter {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_qiangdan_success);
-        ImageView back = (ImageView) dialog.findViewById(R.id.qiangdan_closebt_success);
+        ImageButton back = (ImageButton) dialog.findViewById(R.id.qiangdan_closebt_success);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +131,7 @@ public class NewFormAdapter extends BaseAdapter {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_qiangdan_noform);
-        ImageView closeButton = (ImageView) dialog.findViewById(R.id.qiangdan_closebt_false);
+        ImageButton closeButton = (ImageButton) dialog.findViewById(R.id.qiangdan_closebt_false);
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

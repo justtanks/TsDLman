@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.daili.tsapp"
     android:versionCode="1"
-    android:versionName="1.0"
-    >
+    android:versionName="1.0">
+
     <uses-permission android:name="com.tianyan.assistant.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -42,7 +42,9 @@
         <!-- <activity -->
         <!-- android:name=".tsActivity.FindFormsActivity" -->
         <!-- android:launchMode="singleTask" /> -->
-        <activity android:name=".tsActivity.MyFormActivity" />
+        <activity
+            android:name=".tsActivity.MyFormActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".tsActivity.SettingActivity" />
         <activity android:name=".tsActivity.PersonalMsgActivity" />
         <activity
@@ -71,9 +73,9 @@
         <activity android:name=".tsActivity.FillCardMsgActivity" />
         <activity android:name=".tsActivity.PhoneTestActivity" />
         <activity android:name=".tsActivity.AddcardDoneActivity" />
-        <activity android:name=".tsActivity.DrawCashActivity"
-            android:launchMode="singleTask"
-            />
+        <activity
+            android:name=".tsActivity.DrawCashActivity"
+            android:launchMode="singleTask" />
         <activity
             android:name=".tsActivity.ChoiseCardActivity"
             android:launchMode="singleTask" />
@@ -83,11 +85,13 @@
             android:launchMode="singleTask" />
         <activity android:name=".tsActivity.SurePasswordActivity" />
         <activity android:name=".tsActivity.AgreeMentActivity" />
-        <activity android:name=".tsActivity.OrdersActivity"/>
+        <activity
+            android:name=".tsActivity.OrdersActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".tsActivity.KeFuActivity" />
         <activity android:name=".tsActivity.FankuiActivity" />
         <activity android:name=".tsActivity.MainActivity" />
-        <activity android:name=".tsActivity.ShanChangActivity"/>
+        <activity android:name=".tsActivity.ShanChangActivity" />
         <!-- 统计的appkey -->
         <meta-data
             android:name="UMENG_APPKEY"
@@ -134,7 +138,10 @@
             </intent-filter>
         </receiver>
 
-
+        <service
+            android:name=".tsService.UpdateService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
