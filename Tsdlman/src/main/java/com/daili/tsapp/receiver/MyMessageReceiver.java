@@ -1,11 +1,14 @@
 package com.daili.tsapp.receiver;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.alibaba.sdk.android.push.MessageReceiver;
 import com.alibaba.sdk.android.push.notification.CPushMessage;
+import com.daili.tsapp.tsService.DownLoadHelper;
+import com.daili.tsapp.tsService.UpdateService;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -36,6 +39,11 @@ public class MyMessageReceiver extends MessageReceiver {
     public void onNotification(Context context, String title, String summary, Map<String, String> extraMap) {
         // TODO 处理推送通知
         Log.e("MyMessageReceiver", "Receive notification, title: " + title + ", summary: " + summary + ", extraMap: " + extraMap);
+          String tes=   extraMap.get("gengxin");
+          if(tes.equals("1")){
+              DownLoadHelper down=new DownLoadHelper(context);
+              down.startDown();
+          }
     }
 
     /*

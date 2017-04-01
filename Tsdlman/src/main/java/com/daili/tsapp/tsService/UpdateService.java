@@ -29,7 +29,6 @@ public class UpdateService extends Service {
 
     /** 接收下载完的广播 **/
     DownloadCompleteReceiver receiver;
-
     /** 初始化下载器 **/
     private void initDownManager() {
         manager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
@@ -37,7 +36,6 @@ public class UpdateService extends Service {
         //设置下载地址
         DownloadManager.Request down = new DownloadManager.Request(
                 Uri.parse(BaseData.UPDATA));
-
         // 设置允许使用的网络类型，这里是移动网络和wifi都可以
         down.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
         // 下载时，通知栏显示途中

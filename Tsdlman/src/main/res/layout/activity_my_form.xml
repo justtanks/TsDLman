@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.ts.partner.partnerActivity.OrdersActivity">
+       >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -50,7 +50,7 @@
               android:id="@+id/forms_back"
               android:layout_width="60dp"
               android:layout_height="match_parent"
-              style="@style/Widget.AppCompat.Button.Borderless.Colored"
+              style="@style/Widget.AppCompat.Button.Borderless"
               ></RelativeLayout>
             <RelativeLayout
                 android:layout_width="60dp"
