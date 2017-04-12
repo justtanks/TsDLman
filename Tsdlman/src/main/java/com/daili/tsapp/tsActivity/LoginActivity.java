@@ -91,17 +91,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private  void jumpToFindforActivity(){
         Intent intent = new Intent(this, TabHomeActivity.class);
         startActivityForResult(intent,1122);
-        this.finish();
+
     }
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if(resultCode==3333){
-//            finish();
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==3333){
+            finish();
+        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -195,14 +194,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
-        if(dialog.isShowing()){
+        if(dialog!=null&&dialog.isShowing()){
             dialog.dismiss();
             cancel.cancel();
         }else{
             super.onBackPressed();
         }
-
     }
 
     @Override
