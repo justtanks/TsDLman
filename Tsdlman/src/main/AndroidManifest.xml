@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.daili.tsapp"
-    android:versionCode="1"
-    android:versionName="1.0">
+    android:versionCode="3"
+    android:versionName="1.2">
 
     <uses-permission android:name="com.tianyan.assistant.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -26,8 +26,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-       >
+        android:theme="@style/AppTheme">
 
         <!-- 阿里推送的添加代码 -->
         <meta-data
@@ -54,11 +53,6 @@
         <activity
             android:name=".tsActivity.LoginActivity"
             android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".tsActivity.MessageActivity" />
         <activity android:name=".tsActivity.XiangqingActivity" />
@@ -93,6 +87,13 @@
         <activity android:name=".tsActivity.FankuiActivity" />
         <activity android:name=".tsActivity.MainActivity" />
         <activity android:name=".tsActivity.ShanChangActivity" />
+        <activity android:name=".tsActivity.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!-- 统计的appkey -->
         <meta-data
             android:name="UMENG_APPKEY"
@@ -142,7 +143,9 @@
         <service
             android:name=".tsService.UpdateService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+
     </application>
 
 </manifest>

@@ -1,6 +1,9 @@
 package com.daili.tsapp.tsFragment;
 
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -117,8 +120,11 @@ public class NewFormFragment extends BaseEventFragment {
                     dataBeens = resu.getData();
                     EventBus.getDefault().post(new NewFormNum(dataBeens.size()));
                     //语音发送到activity
-                    speek.setContext("您有" + dataBeens.size() + "条新订单");
-                    EventBus.getDefault().post(speek);
+//                    speek.setContext("您有" + dataBeens.size() + "条新订单");
+//                    EventBus.getDefault().post(speek);
+                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                    Ringtone r = RingtoneManager.getRingtone(getContext(), notification);
+                    r.play();
                     adapter.setUsers(dataBeens);
                 }
             }

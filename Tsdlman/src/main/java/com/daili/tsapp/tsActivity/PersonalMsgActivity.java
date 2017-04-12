@@ -275,7 +275,7 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
     }
 
     //从服务器上请求的字符串
-    String msg = "{\n" +
+    String msg ="{\n" +
             "    \"flag\": \"Success\",\n" +
             "    \"msg\": [\n" +
             "        {\n" +
@@ -289,7 +289,7 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                    \"side_belong_id\": \"1\",\n" +
             "                    \"side_add_time\": \"2016-12-27 11:34:09\",\n" +
             "                    \"side_price\": \"597\",\n" +
-            "                    \"percentage_price\": \"200\",\n" +
+            "                    \"percentage_price\": \"10\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/097add3c3aff835d3da370ceef856c19.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/putongzhuce.png\"\n" +
             "                },\n" +
@@ -299,33 +299,33 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                    \"side_belong_id\": \"1\",\n" +
             "                    \"side_add_time\": \"2016-12-27 11:35:25\",\n" +
             "                    \"side_price\": \"1700\",\n" +
-            "                    \"percentage_price\": \"300\",\n" +
+            "                    \"percentage_price\": \"185\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/097add3c3aff835d3da370ceef856c19.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/danbaozhuce.png\"\n" +
             "                },\n" +
             "                {\n" +
             "                    \"id\": \"3\",\n" +
-            "                    \"side_name\": \"无忧注册\",\n" +
+            "                    \"side_name\": \"加急注册\",\n" +
             "                    \"side_belong_id\": \"1\",\n" +
             "                    \"side_add_time\": \"2016-12-27 11:36:08\",\n" +
             "                    \"side_price\": \"1200\",\n" +
-            "                    \"percentage_price\": \"300\",\n" +
+            "                    \"percentage_price\": \"135\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/097add3c3aff835d3da370ceef856c19.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/wuyouzhuce.png\"\n" +
             "                },\n" +
             "                {\n" +
             "                    \"id\": \"4\",\n" +
-            "                    \"side_name\": \"变更\",\n" +
+            "                    \"side_name\": \"商标变更\",\n" +
             "                    \"side_belong_id\": \"1\",\n" +
             "                    \"side_add_time\": \"2016-12-27 11:36:25\",\n" +
             "                    \"side_price\": \"1000\",\n" +
-            "                    \"percentage_price\": \"100\",\n" +
+            "                    \"percentage_price\": \"50\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/097add3c3aff835d3da370ceef856c19.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/biangeng.png\"\n" +
             "                },\n" +
             "                {\n" +
             "                    \"id\": \"5\",\n" +
-            "                    \"side_name\": \"更正\",\n" +
+            "                    \"side_name\": \"商标更正\",\n" +
             "                    \"side_belong_id\": \"1\",\n" +
             "                    \"side_add_time\": \"2016-12-27 11:36:45\",\n" +
             "                    \"side_price\": \"1000\",\n" +
@@ -335,31 +335,31 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                },\n" +
             "                {\n" +
             "                    \"id\": \"6\",\n" +
-            "                    \"side_name\": \"续展\",\n" +
+            "                    \"side_name\": \"商标续展\",\n" +
             "                    \"side_belong_id\": \"1\",\n" +
             "                    \"side_add_time\": \"2016-12-27 11:37:17\",\n" +
             "                    \"side_price\": \"2700\",\n" +
-            "                    \"percentage_price\": \"100\",\n" +
+            "                    \"percentage_price\": \"50\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/097add3c3aff835d3da370ceef856c19.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/xuzhan.png\"\n" +
             "                },\n" +
             "                {\n" +
             "                    \"id\": \"7\",\n" +
-            "                    \"side_name\": \"宽展\",\n" +
+            "                    \"side_name\": \"商标宽展\",\n" +
             "                    \"side_belong_id\": \"1\",\n" +
             "                    \"side_add_time\": \"2016-12-27 11:37:43\",\n" +
             "                    \"side_price\": \"3000\",\n" +
-            "                    \"percentage_price\": \"100\",\n" +
+            "                    \"percentage_price\": \"50\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/097add3c3aff835d3da370ceef856c19.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/kuanzhan.png\"\n" +
             "                },\n" +
             "                {\n" +
             "                    \"id\": \"8\",\n" +
-            "                    \"side_name\": \"转让\",\n" +
+            "                    \"side_name\": \"商标转让\",\n" +
             "                    \"side_belong_id\": \"1\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:20:11\",\n" +
             "                    \"side_price\": \"1500\",\n" +
-            "                    \"percentage_price\": \"100\",\n" +
+            "                    \"percentage_price\": \"75\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/097add3c3aff835d3da370ceef856c19.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/zhuanrang.png\"\n" +
             "                },\n" +
@@ -369,7 +369,7 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                    \"side_belong_id\": \"1\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:20:15\",\n" +
             "                    \"side_price\": \"800\",\n" +
-            "                    \"percentage_price\": \"100\",\n" +
+            "                    \"percentage_price\": \"50\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/097add3c3aff835d3da370ceef856c19.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/xukebeian.png\"\n" +
             "                },\n" +
@@ -379,7 +379,7 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                    \"side_belong_id\": \"1\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:20:58\",\n" +
             "                    \"side_price\": \"1500\",\n" +
-            "                    \"percentage_price\": \"100\",\n" +
+            "                    \"percentage_price\": \"50\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/097add3c3aff835d3da370ceef856c19.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/shangbiaobuzheng.png\"\n" +
             "                },\n" +
@@ -409,7 +409,7 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                    \"side_belong_id\": \"1\",\n" +
             "                    \"side_add_time\": \"2017-02-13 15:13:35\",\n" +
             "                    \"side_price\": \"597\",\n" +
-            "                    \"percentage_price\": \"200\",\n" +
+            "                    \"percentage_price\": \"10\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/097add3c3aff835d3da370ceef856c19.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/zhinengshangbiaozhuce.png\"\n" +
             "                }\n" +
@@ -436,27 +436,27 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                    \"side_belong_id\": \"2\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:22:45\",\n" +
             "                    \"side_price\": \"2700\",\n" +
-            "                    \"percentage_price\": \"300\",\n" +
+            "                    \"percentage_price\": \"150\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/70c5fb6f14ba1d217fcfdc03c4076ac0.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/shangbiaoyiyi.png\"\n" +
             "                },\n" +
             "                {\n" +
             "                    \"id\": \"15\",\n" +
-            "                    \"side_name\": \"撤三\",\n" +
+            "                    \"side_name\": \"撤销他人商标\",\n" +
             "                    \"side_belong_id\": \"2\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:23:05\",\n" +
             "                    \"side_price\": \"2700\",\n" +
-            "                    \"percentage_price\": \"200\",\n" +
+            "                    \"percentage_price\": \"150\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/70c5fb6f14ba1d217fcfdc03c4076ac0.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/chesan.png\"\n" +
             "                },\n" +
             "                {\n" +
             "                    \"id\": \"16\",\n" +
-            "                    \"side_name\": \"撤三复审\",\n" +
+            "                    \"side_name\": \"撤销商标\",\n" +
             "                    \"side_belong_id\": \"2\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:23:23\",\n" +
             "                    \"side_price\": \"3500\",\n" +
-            "                    \"percentage_price\": \"200\",\n" +
+            "                    \"percentage_price\": \"100\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/70c5fb6f14ba1d217fcfdc03c4076ac0.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/chesanfushen.png\"\n" +
             "                },\n" +
@@ -482,8 +482,8 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                    \"side_name\": \"一般作品登记（美术、音乐、文字、模型等）\",\n" +
             "                    \"side_belong_id\": \"3\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:24:50\",\n" +
-            "                    \"side_price\": \"498\",\n" +
-            "                    \"percentage_price\": \"200\",\n" +
+            "                    \"side_price\": \"770\",\n" +
+            "                    \"percentage_price\": \"100\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/79feb2984f17a2ec7b71e42e023697f1.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/yibanzuopindengji.png\"\n" +
             "                },\n" +
@@ -492,58 +492,18 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                    \"side_name\": \"一般作品加急登记（美术、音乐、文字、模型等）\",\n" +
             "                    \"side_belong_id\": \"3\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:25:13\",\n" +
-            "                    \"side_price\": \"898\",\n" +
-            "                    \"percentage_price\": \"300\",\n" +
+            "                    \"side_price\": \"1800\",\n" +
+            "                    \"percentage_price\": \"100\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/79feb2984f17a2ec7b71e42e023697f1.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/yibanzuopinjiajidnegji.png\"\n" +
-            "                },\n" +
-            "                {\n" +
-            "                    \"id\": \"20\",\n" +
-            "                    \"side_name\": \"一般作品普特急登记\",\n" +
-            "                    \"side_belong_id\": \"3\",\n" +
-            "                    \"side_add_time\": \"2016-12-27 16:25:39\",\n" +
-            "                    \"side_price\": \"2000\",\n" +
-            "                    \"percentage_price\": \"300\",\n" +
-            "                    \"side_pic\": \"/Public/Home/img/side/79feb2984f17a2ec7b71e42e023697f1.jpg\",\n" +
-            "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/yibanzuopintejidengji.png\"\n" +
-            "                },\n" +
-            "                {\n" +
-            "                    \"id\": \"21\",\n" +
-            "                    \"side_name\": \"一般作品变更\",\n" +
-            "                    \"side_belong_id\": \"3\",\n" +
-            "                    \"side_add_time\": \"2016-12-27 16:26:07\",\n" +
-            "                    \"side_price\": \"700\",\n" +
-            "                    \"percentage_price\": \"100\",\n" +
-            "                    \"side_pic\": \"/Public/Home/img/side/79feb2984f17a2ec7b71e42e023697f1.jpg\",\n" +
-            "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/yibanzuopingenggai.png\"\n" +
-            "                },\n" +
-            "                {\n" +
-            "                    \"id\": \"22\",\n" +
-            "                    \"side_name\": \"一般作品转让\",\n" +
-            "                    \"side_belong_id\": \"3\",\n" +
-            "                    \"side_add_time\": \"2016-12-27 16:26:37\",\n" +
-            "                    \"side_price\": \"900\",\n" +
-            "                    \"percentage_price\": \"100\",\n" +
-            "                    \"side_pic\": \"/Public/Home/img/side/79feb2984f17a2ec7b71e42e023697f1.jpg\",\n" +
-            "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/yibanzuopinzhuanrang.png\"\n" +
-            "                },\n" +
-            "                {\n" +
-            "                    \"id\": \"23\",\n" +
-            "                    \"side_name\": \"一般作品补证\",\n" +
-            "                    \"side_belong_id\": \"3\",\n" +
-            "                    \"side_add_time\": \"2016-12-27 16:27:01\",\n" +
-            "                    \"side_price\": \"600\",\n" +
-            "                    \"percentage_price\": \"100\",\n" +
-            "                    \"side_pic\": \"/Public/Home/img/side/79feb2984f17a2ec7b71e42e023697f1.jpg\",\n" +
-            "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/yibanzuopinbuzheng.png\"\n" +
             "                },\n" +
             "                {\n" +
             "                    \"id\": \"24\",\n" +
             "                    \"side_name\": \"软件著作权登记\",\n" +
             "                    \"side_belong_id\": \"3\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:27:37\",\n" +
-            "                    \"side_price\": \"2400\",\n" +
-            "                    \"percentage_price\": \"200\",\n" +
+            "                    \"side_price\": \"1500\",\n" +
+            "                    \"percentage_price\": \"100\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/79feb2984f17a2ec7b71e42e023697f1.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/ruanjianzzhuzuoquan.png\"\n" +
             "                },\n" +
@@ -552,8 +512,8 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                    \"side_name\": \"软件著作权加急登记\",\n" +
             "                    \"side_belong_id\": \"3\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:28:01\",\n" +
-            "                    \"side_price\": \"4600\",\n" +
-            "                    \"percentage_price\": \"300\",\n" +
+            "                    \"side_price\": \"2700\",\n" +
+            "                    \"percentage_price\": \"150\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/79feb2984f17a2ec7b71e42e023697f1.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/ruanjianzhuzuoquanjiaji.png\"\n" +
             "                }\n" +
@@ -607,7 +567,7 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                    \"side_belong_id\": \"5\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:29:55\",\n" +
             "                    \"side_price\": \"5999\",\n" +
-            "                    \"percentage_price\": \"500\",\n" +
+            "                    \"percentage_price\": \"4200\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/a82e2958c13f4d90ab9aeae8c076f740.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/falvnianduguwen.png\"\n" +
             "                }\n" +
@@ -623,52 +583,15 @@ public class PersonalMsgActivity extends BaseActivity implements View.OnClickLis
             "                    \"side_name\": \"高新技术企业认证\",\n" +
             "                    \"side_belong_id\": \"6\",\n" +
             "                    \"side_add_time\": \"2016-12-27 16:30:24\",\n" +
-            "                    \"side_price\": \"20000\",\n" +
-            "                    \"percentage_price\": \"800\",\n" +
+            "                    \"side_price\": \"19999\",\n" +
+            "                    \"percentage_price\": \"2400\",\n" +
             "                    \"side_pic\": \"/Public/Home/img/side/a82e2958c13f4d90ab9aeae8c076f740.jpg\",\n" +
             "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/gaoxijishuqiyerenzheng.png\"\n" +
-            "                }\n" +
-            "            ]\n" +
-            "        },\n" +
-            "        {\n" +
-            "            \"sid\": \"7\",\n" +
-            "            \"name\": \"国际商标注册\",\n" +
-            "            \"time\": \"2016-12-27 11:30:38\",\n" +
-            "            \"sid_side\": [\n" +
-            "                {\n" +
-            "                    \"id\": \"31\",\n" +
-            "                    \"side_name\": \"一标一类\",\n" +
-            "                    \"side_belong_id\": \"7\",\n" +
-            "                    \"side_add_time\": \"2016-12-27 16:30:46\",\n" +
-            "                    \"side_price\": \"1000\",\n" +
-            "                    \"percentage_price\": \"300\",\n" +
-            "                    \"side_pic\": \"/Public/Home/img/side/b457446046d1b887c8c3fe05c2e575be.jpg\",\n" +
-            "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/yibiaoyilei.png\"\n" +
-            "                },\n" +
-            "                {\n" +
-            "                    \"id\": \"32\",\n" +
-            "                    \"side_name\": \"一标两类\",\n" +
-            "                    \"side_belong_id\": \"7\",\n" +
-            "                    \"side_add_time\": \"2016-12-27 16:31:15\",\n" +
-            "                    \"side_price\": \"2400\",\n" +
-            "                    \"percentage_price\": \"300\",\n" +
-            "                    \"side_pic\": \"/Public/Home/img/side/b457446046d1b887c8c3fe05c2e575be.jpg\",\n" +
-            "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/yibiaolianglei.png\"\n" +
-            "                },\n" +
-            "                {\n" +
-            "                    \"id\": \"33\",\n" +
-            "                    \"side_name\": \"一标三类\",\n" +
-            "                    \"side_belong_id\": \"7\",\n" +
-            "                    \"side_add_time\": \"2016-12-27 16:31:32\",\n" +
-            "                    \"side_price\": \"1000\",\n" +
-            "                    \"percentage_price\": \"300\",\n" +
-            "                    \"side_pic\": \"/Public/Home/img/side/b457446046d1b887c8c3fe05c2e575be.jpg\",\n" +
-            "                    \"side_jieshao_pic\": \"/Public/Home/img/sides/yibiaosanlei.png\"\n" +
             "                }\n" +
             "            ]\n" +
             "        }\n" +
             "    ],\n" +
             "    \"data\": [],\n" +
             "    \"num\": 1\n" +
-            "}";
+            "}" ;
 }

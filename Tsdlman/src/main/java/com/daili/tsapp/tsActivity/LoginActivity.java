@@ -71,7 +71,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         x.view().inject(this);
         init();
-        autoLogin();
+//        autoLogin();
     }
 
     private void init() {
@@ -86,29 +86,22 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         isEnable.put("name", false);
         isEnable.put("pass", false);
     }
-    //自动登录
-    private void autoLogin() {
-        if ("".equals(su.showPhone()) || su.showPhone() == null || "".equals(su.showPwd()) || su.showPwd() == null) {
-            return;
-        } else {
-          jumpToFindforActivity();
-        }
-    }
+
   //跳转到首页activity
     private  void jumpToFindforActivity(){
         Intent intent = new Intent(this, TabHomeActivity.class);
         startActivityForResult(intent,1122);
+        this.finish();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        loge(requestCode+"");
-        loge(resultCode+"");
-        if(resultCode==3333){
-            finish();
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if(resultCode==3333){
+//            finish();
+//        }
+//    }
 
     @Override
     public void onClick(View v) {

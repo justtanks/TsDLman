@@ -1,6 +1,9 @@
 package com.ts.databending.activity;
 
 import android.databinding.DataBindingUtil;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +29,9 @@ public class Constraint3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Constraint3Activity.this, "这下好玩了", Toast.LENGTH_SHORT).show();
+                Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                r.play();
             }
         });
 

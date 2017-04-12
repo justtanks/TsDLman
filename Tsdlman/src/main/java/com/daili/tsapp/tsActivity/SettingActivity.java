@@ -115,7 +115,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
+                  toast(getString(R.string.net_error));
             }
 
             @Override
@@ -137,7 +137,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 setCancelable(false).setPositiveButton("是", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//                downAndFresh();
                 downLoad();
                 dialog.cancel();
             }
