@@ -33,7 +33,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile files('libs/com.baidu.tts_2.2.9.20161020_154fa02_release.jar')
     compile files('libs/galaxy-v2.0.jar')
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.google.code.gson:gson:2.8.0'

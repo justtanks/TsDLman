@@ -1,7 +1,5 @@
 package com.daili.tsapp.tsActivity;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,7 +21,7 @@ public class WelcomeActivity extends BaseActivity {
     SystemUtil su = new SystemUtil(this);
     Intent intent;
     int isFresh=0;
-
+    Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +31,13 @@ public class WelcomeActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-
                 autoLogin();
                 WelcomeActivity.this.finish();
             }
         }, 2000);
     }
 
-    Handler handler = new Handler();
+
 
     //自动登录
     private void autoLogin() {

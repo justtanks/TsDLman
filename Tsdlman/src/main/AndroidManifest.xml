@@ -28,7 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- 阿里推送的添加代码 -->
+        <!-- 阿里推送的添加代码 好像必须放在这个位置 -->
         <meta-data
             android:name="com.alibaba.app.appkey"
             android:value="23663188" />
