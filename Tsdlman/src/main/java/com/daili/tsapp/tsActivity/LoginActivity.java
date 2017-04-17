@@ -85,6 +85,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         pass.addTextChangedListener(new PWatcher());
         isEnable.put("name", false);
         isEnable.put("pass", false);
+
     }
 
   //跳转到首页activity
@@ -153,7 +154,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     }
                     final LoginBean2 bean = gson.fromJson(result, LoginBean2.class);
                     if ("Success".equals(bean.getFlag())) {
-                        saveNameAndPass(name, pasword, bean.getData().get(0).getWaiter_id());
+                        saveNameAndPass(name, pasword, bean.getData().get(0).getWaiter_id(),bean.getData().get(0).getIs_renzheng());
                         MobclickAgent.onProfileSignIn(name);
                         new Thread(new Runnable() {
                             @Override
@@ -207,11 +208,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         super.onRestart();
     }
     //保存用户名和密码
-    private void saveNameAndPass(String name, String pass, String uid) {
+    private void saveNameAndPass(String name, String pass, String uid,int isrenzheng) {
         su.savePhone(name);
         su.savePwd(pass);
         su.saveUid(Integer.parseInt(uid));
         su.saveRegesterState(1);
+        su.saveIsRenZheng(isrenzheng);
     }
 
     @Override

@@ -59,8 +59,6 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     private RadioButton registRadioMan;
     @ViewInject(R.id.regist_radio_woman)
     private RadioButton registRadioWoman;
-//    @ViewInject(R.id.regist_pull_dowm)
-//    private ImageView registPullDowm;
     @ViewInject(R.id.regist_name)
     private EditText username;
     @ViewInject(R.id.regist_idnum)
@@ -73,12 +71,12 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     private EditText userworktime;
     @ViewInject(R.id.regist_registbt)
     private Button registBt;
-//    @ViewInject(R.id.regist_shanchanglingyu)
-//    private TextView registText;
     @ViewInject(R.id.regist_password)
     private EditText userpassword;
     @ViewInject(R.id.regist_yanzhengobtainimg)
     private Button regist_obtainyanzheng;
+    @ViewInject(R.id.regist_qq)
+    private  EditText qq;
     RegistUserMsg userMsg;
     PopupWindow mPopuWindow;
     //设置短信获取的时间
@@ -98,46 +96,9 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         registHeadimg.setOnClickListener(this);
         regist_obtainyanzheng.setOnClickListener(this);
         registBt.setOnClickListener(this);
-//        registPullDowm.setOnClickListener(this);
         registRadiogroupSex.setOnCheckedChangeListener(this);
-//        registText.setOnClickListener(this);
-//        getBestArea();
-    }
 
-    //获取擅长领域第一层的标示   不用了
-//    Callback.Cancelable cancelable;
-//
-//    private void getBestArea() {
-//        cancelable = Xutils.Get(BaseData.GOODWORK1, new HashMap<String, String>(), new Callback.CommonCallback<String>() {
-//            @Override
-//            public void onSuccess(String result) {
-//                Gson gson = new Gson();
-//                BestWorkBean beW1 = gson.fromJson(result, BestWorkBean.class);
-//                List<BestWorkBean.MsgBean> beans = beW1.getMsg();
-//                for (BestWorkBean.MsgBean be : beans) {
-//                    RegistArea are = new RegistArea(be.getSid(), be.getName());
-//                    bestArea.add(are);
-//                }
-//                showPopuwindow();
-//            }
-//
-//            @Override
-//            public void onError(Throwable ex, boolean isOnCallback) {
-//                toast(getResources().getString(R.string.net_err));
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(CancelledException cex) {
-//
-//            }
-//
-//            @Override
-//            public void onFinished() {
-//
-//            }
-//        });
-//    }
+    }
 
     //设置验证码的发送时间间隔
     private int beginTime = duanxin;
@@ -188,14 +149,6 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 //点击获取验证码
                 getWordFromNet();
                 break;
-
-//            case R.id.regist_pull_dowm:
-//                //点击选择擅长领域
-//
-//                break;
-//            case R.id.regist_shanchanglingyu:
-//                getBestArea();
-//                break;
             case R.id.regist_registbt:
                 registExam();
                 break;
@@ -203,36 +156,6 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
-
-    //点击之后弹出弹窗选择擅长领域
-
-   /*
-   展示第二层的popuwindow   显示擅长领域
-    */
-//    private void show2popuwindow(List<BestWork2Bean.MsgBean> beans) {
-//        View popupView = getLayoutInflater().inflate(R.layout.popuwindow_regist_bestarea, null);
-//        ListView mList = (ListView) popupView.findViewById(R.id.regist_bestarea_list);
-//        mPopuWindow = new PopupWindow(popupView, ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT, true);
-//        mPopuWindow.setTouchable(true);
-//        mPopuWindow.setOutsideTouchable(true);
-//        mPopuWindow.setBackgroundDrawable(getResources().getDrawable(R.mipmap.tab_background));
-//        final List<RegistArea> ares = new ArrayList<>();
-//        for (BestWork2Bean.MsgBean be : beans) {
-//            ares.add(new RegistArea(be.getId(), be.getSide_name()));
-//        }
-//        ItemRegistBestareaListAdapter adapter = new ItemRegistBestareaListAdapter(this, ares);
-//        mList.setAdapter(adapter);
-//        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                userMsg.setFavouraeID(ares.get(position).getId());
-//                registText.setText(ares.get(position).getText());
-//                mPopuWindow.dismiss();
-//
-//            }
-//        });
-//        mPopuWindow.showAtLocation(regist_obtainyanzheng, Gravity.CENTER, 0, 0);
-//    }
 
     /*
     检查是否为正确格式
@@ -244,6 +167,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         String userpas = userpassword.getText().toString();
         String userback = useryanzheng.getText().toString();
         String userworkTime = userworktime.getText().toString();
+        String qqnum=qq.getText().toString();
         if (userMsg.getImageBase() == null) {
             toast(getResources().getString(R.string.choise_head));
             return;
@@ -270,6 +194,9 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
             toast(getResources().getString(R.string.choise_sex));
             return;
         }
+        if(qqnum==null||qqnum.equals("")){
+            toast(getString(R.string.inputyourqq));
+        }
 
         if (userback == null || !userback.equals(userMsg.getBackMsg())) {
             toast(getResources().getString(R.string.put_yanzhengma));
@@ -278,7 +205,6 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         if (userworkTime == null || "".equals(userworkTime) || !StringUtils.isNumeric(userworkTime)) {
             toast(getResources().getString(R.string.choise_worktime));
             return;
-
         }
 //        if (null == userMsg.getFavouraeID() || "".equals(userMsg.getFavouraeID())) {
 //            toast(getResources().getString(R.string.putyourbestwork));
@@ -289,6 +215,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         userMsg.setPhoneNum(userPhone);
         userMsg.setWorkTime(userworkTime);
         userMsg.setPassword(userpas);
+        userMsg.setQq(qqnum);
         registOnNet(userMsg);
     }
 
@@ -305,7 +232,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         parms.put("agent_sex", userMsg.getSex());
         parms.put("agent_tel", userMsg.getPhoneNum());
         parms.put("agent_work_time", userMsg.getWorkTime());
-//        parms.put("agent_good_work", userMsg.getFavouraeID());
+        parms.put("waiter_qq",userMsg.getQq());
         parms.put("agent_password", userMsg.getPassword());
         registBt.setEnabled(false);
         Xutils.Post(BaseData.REGISTER, parms, new Callback.CommonCallback<String>() {

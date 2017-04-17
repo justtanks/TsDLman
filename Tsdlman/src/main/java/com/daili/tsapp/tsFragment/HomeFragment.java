@@ -21,21 +21,27 @@ import com.daili.tsapp.jsBean.netBean.CardsBean;
 import com.daili.tsapp.jsBean.netBean.ErrorBean;
 import com.daili.tsapp.jsBean.netBean.FormlistDateBean;
 import com.daili.tsapp.jsBean.netBean.HomeBaobiaoBean;
+import com.daili.tsapp.jsBean.netBean.LoginBean2;
 import com.daili.tsapp.jsBean.netBean.NetError;
 import com.daili.tsapp.tsActivity.CardActivity;
 import com.daili.tsapp.tsActivity.DrawCashActivity;
 import com.daili.tsapp.tsActivity.OrdersActivity;
+import com.daili.tsapp.tsActivity.SettingActivity;
 import com.daili.tsapp.tsActivity.TabHomeActivity;
 import com.daili.tsapp.tsBase.BaseData;
 import com.daili.tsapp.tsBase.BaseFragment;
+import com.daili.tsapp.tsDB.DButils;
+import com.daili.tsapp.tsNet.Xutils;
 import com.daili.tsapp.utils.NetUtils;
 import com.daili.tsapp.utils.SystemUtil;
 import com.google.gson.Gson;
+import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.common.Callback;
+import org.xutils.ex.DbException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -76,23 +82,22 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         su = new SystemUtil(context);
         setCircle();
         getDataOnNet();
+        loginToNet();
 
     }
 
     //设置刷新控件
     private void setCircle() {
-
         b.mainRefresh.setOnRefreshListener(this);
         b.mainRefresh.setColorSchemeResources(android.R.color.holo_blue_bright);
         b.mainRefresh.setDistanceToTriggerSync(300);
         b.mainRefresh.setSize(SwipeRefreshLayout.DEFAULT);
     }
-
+//服务器获取首页信息
     private void getDataOnNet() {
         b.mainRefresh.setRefreshing(true);
         Map<String, Object> param = new HashMap<>();
         param.put("waiter_id", su.showUid());
-//        param.put("waiter_id",71);
         NetUtils.Post(BaseData.BAOBIAO, param, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -148,6 +153,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                 break;
         }
     }
+
     private void toDrawCards() {
         dialog = ProgressDialog.show(context, "", "正在获取银行卡信息");
         dialog.show();
@@ -238,6 +244,46 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
        if(x==111){
            getDataOnNet();
        }
+    }
+    //登录操作 如果是自动登录 访问网络 然后主要修改状态
+    private void loginToNet() {
+        final String name = su.showPhone();
+        final String pasword = su.showPwd();
+        Map<String, String> passkey = new HashMap<>();
+        passkey.put("agent_tel", name);
+        passkey.put("agent_password", pasword);
+        Xutils.Get(BaseData.LOGIN, passkey, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                if (result != null) {
+                    Gson gson = new Gson();
+                    if(result.substring(0,18).contains("Error")){
+                        ErrorBean bean=gson.fromJson(result,ErrorBean.class);
+                        Toast.makeText(getContext(),"账号异常，请重新登录",Toast.LENGTH_LONG);
+                        //异常登陆状态 比如服务器删除账号等 暂时调用settingActivity的退出登录
+                        Intent intent=new Intent(getActivity(), SettingActivity.class);
+                        intent.putExtra("tuihui",11);
+                        startActivity(intent);
+                        Toast.makeText(getContext(),"账号有问题，请重新进行登录",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+            @Override
+            public void onFinished() {
+
+            }
+        });
     }
 
     @Override

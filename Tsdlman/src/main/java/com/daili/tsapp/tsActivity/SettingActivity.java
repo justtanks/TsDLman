@@ -69,8 +69,15 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         quitLogin.setOnClickListener(this);
         gengxin.setOnClickListener(this);
         builder = new AlertDialog.Builder(this);
+        back();
     }
-
+    //登录状态变化 后调回退
+    private void back(){
+        int  isback=getIntent().getIntExtra("tuihui",0);
+        if(isback==11){
+            quitlogin();
+        }
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()){

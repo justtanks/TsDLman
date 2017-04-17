@@ -124,10 +124,8 @@ public class OwnedFormFragment extends BaseEventFragment implements AdapterView.
 
     //返回订单，将网络请求数据返回，然后删掉旧表，新建表
     private void getAllFormsFromNet() {
-       //waiter_id
         Map<String,String> parems=new HashMap<>();
         parems.put("waiter_id",su.showUid()+"");
-//        parems.put("waiter_id",90+"");
         Xutils.Get(BaseData.YIJIEDINGDAN, parems, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -140,7 +138,6 @@ public class OwnedFormFragment extends BaseEventFragment implements AdapterView.
                 FormListnew bean;
                 if (result != null) {
                     bean = gson.fromJson(result, FormListnew.class);
-
                     //删除表，然后写入
                     try {
                         DbManager manager = DButils.DB;

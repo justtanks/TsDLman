@@ -19,6 +19,7 @@ public class RegistUserMsg {
 //    String bestArea;
     String backMsg;
     String imageBase;
+    String qq;
     //擅长的领域的id
 //    String favouraeID;
 //    String favouraText1;
@@ -64,14 +65,23 @@ public class RegistUserMsg {
         this.backMsg = backMsg;
     }
 
-    public RegistUserMsg(String name, String persionId, String phoneNum, String password, String sex, String workTime, String bestArea) {
+    public RegistUserMsg(String name, String persionId, String phoneNum, String password, String sex, String workTime, String bestArea,String qq) {
         this.name = name;
         this.persionId = persionId;
         this.phoneNum = phoneNum;
         this.password = password;
         this.sex = sex;
         this.workTime = workTime;
+        this.qq=qq;
 //        this.bestArea = bestArea;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
     }
 
     public RegistUserMsg() {

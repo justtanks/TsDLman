@@ -50,7 +50,7 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
     CardsBean carddatas;
     AlertDialog.Builder builder;
     ProgressDialog progressDialog;
-    private PopupWindow mPopuwindow; // 输入密码的弹出框
+    PopupWindow mPopuwindow; // 输入密码的弹出框
     Gson gson = new Gson();
 
     @Override
@@ -93,7 +93,6 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
         NetUtils.Post(BaseData.HAVAPASS, params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Gson gson = new Gson();
                 IsHadPassBean bean = gson.fromJson(result, IsHadPassBean.class);
                 if (bean.getData() == 1) {
                     //已经设置密码
@@ -192,7 +191,6 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
             }
         });
         mPopuwindow.showAtLocation(bingding.cardBack, Gravity.CENTER, 0, 0);
-
     }
 
     //请求网络进行删除操作
@@ -240,7 +238,6 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
         NetUtils.Post(BaseData.GETCARDS, parm, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-
                 if (result.substring(0, 18).contains("Error")) {
                     NetError error = gson.fromJson(result, NetError.class);
                     toast(error.getMsg());
@@ -253,12 +250,9 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
             }
-
             @Override
             public void onCancelled(CancelledException cex) {
-
             }
 
             @Override

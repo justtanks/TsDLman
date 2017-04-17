@@ -26,8 +26,6 @@ public class SystemUtil {
     private static final String PHONE = "phonenum";
     private static final String PWD = "pass";
     private static final String USER_HEADER = "user_header";
-//    private static final String CITY_NAME = "city_name";
-
     private static final String MODEL_STATE = "modle_state";
     private static final String IS_SHOW = "is_show";
     private static final String REGESTERSTATE = "regesterstate";
@@ -126,20 +124,20 @@ public class SystemUtil {
         String url = preferences.getString(USER_HEADER, "");
         return url;
     }
-
-    public void saveOnlyID(String onlyID) {
+   //添加认证状态
+    public void saveIsRenZheng(int onlyID) {
         SharedPreferences preferences = context.getSharedPreferences(MINE,
                 Context.MODE_PRIVATE);
         Editor editor = preferences.edit();
-        editor.putString(ONLY_ID, onlyID);
+        editor.putInt(ONLY_ID, onlyID);
         editor.commit();
     }
 
-
-    public String showOnlyID() {
+// 获取认证状态
+    public int showIsRenzheng() {
         SharedPreferences preferences = context.getSharedPreferences(MINE,
                 Context.MODE_PRIVATE);
-        String onlyid = preferences.getString(ONLY_ID, "");
+        int onlyid = preferences.getInt(ONLY_ID, 0);
         return onlyid;
     }
 

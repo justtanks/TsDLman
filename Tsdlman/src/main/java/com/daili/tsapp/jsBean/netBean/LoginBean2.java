@@ -90,7 +90,7 @@ public class LoginBean2 {
        @Column(name = "waiter_good_work")
         private String waiter_good_work;
        @Column(name = "is_renzheng")
-        private String is_renzheng;
+        private int is_renzheng;
        @Column(name = "evaluate_num")
        private int evaluate_num;
 
@@ -174,11 +174,11 @@ public class LoginBean2 {
             this.waiter_good_work = waiter_good_work;
         }
 
-        public String getIs_renzheng() {
+        public int getIs_renzheng() {
             return is_renzheng;
         }
 
-        public void setIs_renzheng(String is_renzheng) {
+        public void setIs_renzheng(int is_renzheng) {
             this.is_renzheng = is_renzheng;
         }
 

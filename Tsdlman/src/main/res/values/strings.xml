@@ -142,4 +142,7 @@
     <string name="gengxinshibai">数据更新失败，请检查网络后重新设置</string>
     <string name="gengxinshuju">正在更新数据</string>
     <string name="yipingjia">已评价</string>
+    <string name="qq">输入你的qq号</string>
+    <string name="qqnumber">QQ号</string>
+    <string name="inputyourqq">请输入你的qq号</string>
 </resources>
