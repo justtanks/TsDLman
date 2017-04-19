@@ -59,6 +59,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private ImageView forgetPass;
     @ViewInject(R.id.login_loginbutton)
     private Button loginbt;
+
     Callback.Cancelable cancel;
     private SystemUtil su = new SystemUtil(this);
     ProgressDialog dialog = null;
@@ -124,7 +125,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 startActivity(intent);
                 break;
             case R.id.login_forgetpass:
-
+               getPass();
                 break;
             case R.id.login_loginbutton:
                 loginToNet();
@@ -246,6 +247,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 break;
 
         }
+    }
+//跳转到修改密码界面
+    public void getPass() {
+         Intent intent=new Intent(this,GetPassActivity.class);
+        startActivity(intent);
     }
 
     class NameWatcher implements TextWatcher {

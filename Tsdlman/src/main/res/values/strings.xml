@@ -145,4 +145,6 @@
     <string name="qq">输入你的qq号</string>
     <string name="qqnumber">QQ号</string>
     <string name="inputyourqq">请输入你的qq号</string>
+    <string name="xiugaichenggong">修改密码成功</string>
+    <string name="huoquyanzhengma">获取验证码</string>
 </resources>
