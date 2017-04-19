@@ -86,11 +86,11 @@ public class HadFormAdapter extends BaseAdapter {
         holder.money.setText(mlist.get(i).getOrder_price() + "元");
 
         //支付状态修改  网络修改和数据库修改
-//        if(mlist.get(i).getOrder_wait_pay().equals(1)){
+        if(mlist.get(i).getOrder_wait_pay().equals(1)){
             holder.ispay.setText("已支付");
-//        }else {
-//            holder.ispay.setText("未支付");
-//        }
+        }else {
+            holder.ispay.setText("未支付");
+        }
 
         if(mlist.get(i).getOrder_type().equals("企业注册")){
 
@@ -106,7 +106,7 @@ public class HadFormAdapter extends BaseAdapter {
             holder.phonenum=mlist.get(i).getOrder_personal_tel();
         }
 
-        holder.title.setText(mlist.get(i).getShangbiao_name());
+        holder.title.setText(mlist.get(i).getType());
         holder.phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

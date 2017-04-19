@@ -64,14 +64,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     ProgressDialog dialog = null;
     Map<String, Boolean> isEnable = new HashMap<>();
     public static String DATAS_KEY = "datas";//使用合伙人代码时候加入的 暂时不要删除
-
+   Intent intent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         x.view().inject(this);
         init();
-//        autoLogin();
+        autoLogin();
     }
 
     private void init() {
@@ -93,6 +93,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         Intent intent = new Intent(this, TabHomeActivity.class);
         startActivityForResult(intent,1122);
 
+    }
+    //自动登录 首先处理好数据传输问题 因为是所哟数据一起进行传递，所以需要找个地方访问数据
+    private void autoLogin() {
+        if ("".equals(su.showPhone()) || su.showPhone() == null || "".equals(su.showPwd()) || su.showPwd() == null) {
+            return;
+        } else {
+            intent = new Intent(this, TabHomeActivity.class);
+            intent.putExtra("isfresh",getIntent().getIntExtra("isfresh",0));
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -120,7 +130,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 loginToNet();
                 break;
         }
-
     }
 
 

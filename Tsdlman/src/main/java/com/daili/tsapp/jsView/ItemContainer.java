@@ -38,6 +38,7 @@ public class ItemContainer extends LinearLayout {
         }
         width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
          //根据自身的宽度约束子控件宽度
+
         measureChildren(widthMeasureSpec, heightMeasureSpec);
         //设置自身宽度
         setMeasuredDimension(width, height);

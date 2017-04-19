@@ -31,37 +31,23 @@ public class WelcomeActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                autoLogin();
+                toLogin();
                 WelcomeActivity.this.finish();
             }
         }, 2000);
     }
 
-
-
-    //自动登录
-    private void autoLogin() {
-        if ("".equals(su.showPhone()) || su.showPhone() == null || "".equals(su.showPwd()) || su.showPwd() == null) {
+//跳转到登录界面
+    private void toLogin() {
             intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        } else {
-            intent = new Intent(this, TabHomeActivity.class);
             intent.putExtra("isfresh",isFresh);
             startActivity(intent);
-        }
+
     }
     //设置全屏展示
       private void setStates(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
-            // Translucent status bar
-//            window.setFlags(
-//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//            // Translucent navigation bar
-//            window.setFlags(
-//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
-//                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
@@ -95,7 +81,6 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void onFinished() {
             }
-        })    ;
-
+        });
     }
 }

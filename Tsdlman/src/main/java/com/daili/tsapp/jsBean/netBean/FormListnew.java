@@ -124,11 +124,20 @@ public class FormListnew implements Serializable {
         private String order_personal_id_card_pic;
         @Column(name = "order_personal_getizhizhao")
         private String order_personal_getizhizhao;
-
+        @Column(name = "type")
+        private String type;
         @Column(name = "order_num")
         private String order_num;
         //json 中没有这个值，只是将下面的所有的order_acceptance_type中数据拿出来转化为字符串存储在
         //数据库中
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
 
         public String getOrder_num() {
             return order_num;
