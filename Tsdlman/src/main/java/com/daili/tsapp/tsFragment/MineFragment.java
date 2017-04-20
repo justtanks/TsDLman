@@ -270,6 +270,11 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 } else {
                     Picasso.with(getActivity()).load(BaseData.BASEURL + "//" + image).into(b.mineHead);
                 }
+                if(su.showIsRenzheng()==1){
+                    b.mineRenzhengtext.setText("代理人");
+                }else{
+                    b.mineRenzhengtext.setText("尚未认证");
+                }
             }
             if (bean.getWaiter_name() != null) {
                 b.mineName.setText(bean.getWaiter_name());

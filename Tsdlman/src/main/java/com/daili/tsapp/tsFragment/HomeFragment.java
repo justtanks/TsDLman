@@ -266,6 +266,9 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                         startActivity(intent);
                         Toast.makeText(getContext(),"账号有问题，请重新进行登录",Toast.LENGTH_SHORT).show();
                         return;
+                    }else{
+                         LoginBean2 bean2=gson.fromJson(result,LoginBean2.class);
+                          su.saveIsRenZheng(bean2.getData().get(0).getIs_renzheng());
                     }
                 }
             }

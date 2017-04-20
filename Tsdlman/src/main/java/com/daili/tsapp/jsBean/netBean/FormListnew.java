@@ -28,6 +28,8 @@ public class FormListnew implements Serializable {
      * order_personal_ask_preson":"123","order_personal_ask_tel":"123","order_personal_id_card_pic":"/Uploads/587435536910b.jpg","order_personal_getizhizhao":
      * "/Uploads/587435536ac41.png","order_type":"个人注册"}]
      * num : 1
+     *  "order_hetong": "/Uploads/2017-04-20/58f81ee4c933e.pdf",
+     "order_weituoshu": "/Uploads/2017-04-20/58f81ee4cbed3.pdf",
      */
 
     private String flag;
@@ -71,7 +73,6 @@ public class FormListnew implements Serializable {
     public static class DataBean implements Serializable{
         /**
          */
-
         @Column(name = "id", isId = true)
         private int id;
         @Column(name = "order_id", property = "UNIQUE")
@@ -128,8 +129,28 @@ public class FormListnew implements Serializable {
         private String type;
         @Column(name = "order_num")
         private String order_num;
+        @Column(name = "order_hetong")
+        private  String   order_hetong;
+        @Column(name = "order_weituoshu")
+        private String  order_weituoshu;
+
         //json 中没有这个值，只是将下面的所有的order_acceptance_type中数据拿出来转化为字符串存储在
         //数据库中
+        public String getOrder_hetong() {
+            return order_hetong;
+        }
+
+        public void setOrder_hetong(String order_hetong) {
+            this.order_hetong = order_hetong;
+        }
+
+        public String getOrder_weituoshu() {
+            return order_weituoshu;
+        }
+
+        public void setOrder_weituoshu(String order_weituoshu) {
+            this.order_weituoshu = order_weituoshu;
+        }
 
         public String getType() {
             return type;

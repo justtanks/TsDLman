@@ -222,7 +222,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         su.savePhone(name);
         su.savePwd(pass);
         su.saveUid(Integer.parseInt(uid));
-        su.saveRegesterState(1);
+        su.saveIsRenZheng(isrenzheng);
         su.saveIsRenZheng(isrenzheng);
     }
 

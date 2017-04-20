@@ -36,6 +36,7 @@ import com.daili.tsapp.utils.NetUtils;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
 import org.xutils.DbManager;
 import org.xutils.common.Callback;
 import org.xutils.ex.DbException;
@@ -60,8 +61,16 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
     private TextView xiangqingFeiyongvalue;
     private TextView xiangqingFuwuvalue;
     private ImageView xiangqingZhizhaopic;
+    private TextView idlianjie;
+    private TextView zhizhaolianjie;
+    private TextView weituoshu;
+    private TextView hetong;
     private Button addStep;
     private String phone;
+    private ImageView shenfenimage;
+    private ImageView zhizhaoimg;
+    private ImageView hetongimg;
+    private ImageView weituoImag;
     PopupWindow mPopuwindow;
     FormListnew.DataBean data;
     Gson gson = new Gson();
@@ -89,6 +98,14 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
         xiangqingZhizhaopic = (ImageView) findViewById(R.id.xiangqing_zhizhaopic);
         xiangqingFuwuvalue = (TextView) findViewById(R.id.xiangqing_fuwuvalue);
         addStep = (Button) findViewById(R.id.xiangqing_addjindu);
+        idlianjie = (TextView) this.findViewById(R.id.xiangqing_shenfenzheng);
+        zhizhaolianjie = (TextView) this.findViewById(R.id.xiangqing_yingyezhizhao);
+        weituoshu = (TextView) this.findViewById(R.id.xiangqing_weituoshu);
+        hetong = (TextView) this.findViewById(R.id.xiangqing_hetong);
+        shenfenimage= (ImageView) this.findViewById(R.id.xiangqing_shenfenimg);
+        zhizhaoimg= (ImageView) this.findViewById(R.id.xiangqing_zhizhaoimg);
+        hetongimg= (ImageView) this.findViewById(R.id.xiangqing_hetongimg);
+        weituoImag= (ImageView) this.findViewById(R.id.xiangqing_weituoimg);
         addStep.setOnClickListener(this);
         itemNewformCall.setOnClickListener(this);
         dingdanxiangqingBack.setOnClickListener(this);
@@ -115,15 +132,47 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
             xiangqingNamevalue.setText(data.getShangbiao_name());
             xiangqingZizhivalue.setText(data.getOrder_type());
             xiangqingFeiyongvalue.setText(data.getOrder_price());
+            idlianjie.setText(BaseData.WEBSITE + data.getOrder_personal_id_card_pic());
+            zhizhaolianjie.setText(data.getOrder_personal_getizhizhao() == null ? BaseData.WEBSITE + data.getOrder_qiye_yingyezhizhao() : BaseData.WEBSITE + data.getOrder_personal_getizhizhao());
+            hetong.setText(BaseData.WEBSITE + data.getOrder_hetong());
+            weituoshu.setText(BaseData.WEBSITE + data.getOrder_weituoshu());
             String datatypes = data.getOrder_types();
-            loge(datatypes);
             String tex = datatypes.replaceAll("\\s*", "");
             String text = null;
             text = tex.replaceAll("第", "    " + "第");
             xiangqingFuwuvalue.setText(text);
-
         }
 
+    }
+
+    //设置合同等图片 如果是pdf 直接展示一个pdf的图片
+    private void setImage() {
+        String idcardurl=data.getOrder_personal_id_card_pic();
+        String zhizhaourl=data.getOrder_personal_getizhizhao()==null?data.getOrder_qiye_yingyezhizhao():data.getOrder_personal_getizhizhao();
+        String herongurl=data.getOrder_hetong();
+        String weituourl=data.getOrder_weituoshu();
+        configImage(shenfenimage,idcardurl);
+        configImage(zhizhaoimg,zhizhaourl);
+        configImage(hetongimg,herongurl);
+        configImage(weituoImag,weituoImag);
+
+    }
+    private  void  configImage(ImageView image,String url){
+        if(url!=null){
+            if(isPdf(url)){
+
+            }else {
+                x.image().bind(image,BaseData.BASEURL+url);
+            }
+        }else{
+            shenfenimage.setVisibility(View.INVISIBLE);
+        }
+    }
+    private boolean isPdf(String url){
+        if(url.substring(url.length()-3,url.length()).equalsIgnoreCase("pdf")){
+            return true;
+        }
+        return false;
     }
 
     private FormListnew.DataBean getData(String orderid) {
@@ -283,4 +332,4 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
         }
         super.onBackPressed();
     }
- }
+}

@@ -94,6 +94,7 @@ public class LoginBean2 {
        @Column(name = "evaluate_num")
        private int evaluate_num;
 
+
        public int getEvaluate_num() {
            return evaluate_num;
        }

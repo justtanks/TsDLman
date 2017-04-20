@@ -29,6 +29,7 @@ public class SystemUtil {
     private static final String MODEL_STATE = "modle_state";
     private static final String IS_SHOW = "is_show";
     private static final String REGESTERSTATE = "regesterstate";
+    private static final String ISRENZHENG = "isrenzheng";
     public SystemUtil(Context context) {
         this.context = context;
     }
@@ -146,6 +147,21 @@ public class SystemUtil {
                 Context.MODE_PRIVATE);
         Editor editor = preferences.edit();
         editor.putInt(UID, uid);
+        editor.commit();
+    }
+
+  //保存认证状态
+    public int showRensheng() {
+        SharedPreferences preferences = context.getSharedPreferences(MINE,
+                Context.MODE_PRIVATE);
+        int uid = preferences.getInt(ISRENZHENG, -1);
+        return uid;
+    }
+    public void saveRenzheng(int uid) {
+        SharedPreferences preferences = context.getSharedPreferences(MINE,
+                Context.MODE_PRIVATE);
+        Editor editor = preferences.edit();
+        editor.putInt(ISRENZHENG, uid);
         editor.commit();
     }
 
