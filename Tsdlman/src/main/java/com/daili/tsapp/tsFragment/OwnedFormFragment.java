@@ -100,7 +100,6 @@ public class OwnedFormFragment extends BaseEventFragment implements AdapterView.
         users = getFormFromDB();
         if (users != null) {
             EventBus.getDefault().post(new HadFormNum(users.size()));
-
             listView.setVisibility(View.VISIBLE);
             relativeLayout.setVisibility(View.GONE);
             hadFormAdapter.setData(users);

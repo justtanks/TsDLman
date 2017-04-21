@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,8 @@ public class HadFormAdapter extends BaseAdapter {
         this.mlist = mlist;
         this.context = context;
         this.inflater = LayoutInflater.from(context);
+        Log.e("infor", mlist.size()+"");
+
     }
 
     public void setData(List<FormListnew.DataBean> mlist) {
@@ -50,6 +53,9 @@ public class HadFormAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        if(mlist==null){
+            return 0;
+        }
         return mlist.size();
     }
 
@@ -86,41 +92,45 @@ public class HadFormAdapter extends BaseAdapter {
         holder.money.setText(mlist.get(i).getOrder_price() + "元");
 
         //支付状态修改  网络修改和数据库修改
-        if(mlist.get(i).getOrder_wait_pay().equals(1)){
-            holder.ispay.setText("已支付");
-        }else {
-            holder.ispay.setText("未支付");
-        }
+        if(mlist.size()!=0){
 
-        if(mlist.get(i).getOrder_type().equals("企业注册")){
-
-            if(mlist.get(i).getOrder_qiye_yingyezhizhao()!=null){
-                x.image().bind(holder.headImage, BaseData.BASEIMG+mlist.get(i).getOrder_qiye_yingyezhizhao());
+            if(mlist.get(i).getOrder_wait_pay()==1){
+                holder.ispay.setText("已支付");
+            }else {
+                holder.ispay.setText("未支付");
             }
-            holder.phonenum=mlist.get(i).getOrder_ask_phone();
 
-        }else if(mlist.get(i).getOrder_type().equals("个人注册")){
-            if(mlist.get(i).getOrder_personal_id_card_pic()!=null){
-                x.image().bind(holder.headImage, BaseData.BASEIMG+mlist.get(i).getOrder_personal_id_card_pic());
-            }
-            holder.phonenum=mlist.get(i).getOrder_personal_tel();
-        }
+            if(mlist.get(i).getOrder_type().equals("企业注册")){
 
-        holder.title.setText(mlist.get(i).getType());
-        holder.phone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //打电话
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                Uri data = Uri.parse("tel:" + holder.phonenum);
-                intent.setData(data);
-                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(context,"请设置应用允许拨打电话权限",Toast.LENGTH_SHORT);
-                    return;
+                if(mlist.get(i).getOrder_qiye_yingyezhizhao()!=null){
+                    x.image().bind(holder.headImage, BaseData.BASEIMG+mlist.get(i).getOrder_qiye_yingyezhizhao());
                 }
-                context.startActivity(intent);
+                holder.phonenum=mlist.get(i).getOrder_ask_phone();
+
+            }else if(mlist.get(i).getOrder_type().equals("个人注册")){
+                if(mlist.get(i).getOrder_personal_id_card_pic()!=null){
+                    x.image().bind(holder.headImage, BaseData.BASEIMG+mlist.get(i).getOrder_personal_id_card_pic());
+                }
+                holder.phonenum=mlist.get(i).getOrder_personal_tel();
             }
-        });
+
+            holder.title.setText(mlist.get(i).getType());
+            holder.phone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //打电话
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    Uri data = Uri.parse("tel:" + holder.phonenum);
+                    intent.setData(data);
+                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        Toast.makeText(context,"请设置应用允许拨打电话权限",Toast.LENGTH_SHORT);
+                        return;
+                    }
+                    context.startActivity(intent);
+                }
+            });
+
+        }
 
 
         return view;

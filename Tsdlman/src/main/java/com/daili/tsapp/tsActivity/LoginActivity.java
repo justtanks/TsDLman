@@ -102,7 +102,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         } else {
             intent = new Intent(this, TabHomeActivity.class);
             intent.putExtra("isfresh",getIntent().getIntExtra("isfresh",0));
-            startActivity(intent);
+            startActivityForResult(intent,1122);
         }
     }
 

@@ -52,8 +52,7 @@
             android:windowSoftInputMode="stateUnchanged|adjustPan|stateHidden" />
         <activity
             android:name=".tsActivity.LoginActivity"
-            android:launchMode="singleTask">
-        </activity>
+            android:launchMode="singleTask"></activity>
         <activity android:name=".tsActivity.MessageActivity" />
         <activity android:name=".tsActivity.XiangqingActivity" />
         <activity android:name=".tsActivity.ControlJinDuActivity" />
@@ -94,7 +93,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tsActivity.GetPassActivity"></activity>
+        <activity android:name=".tsActivity.GetPassActivity" />
         <!-- 统计的appkey -->
         <meta-data
             android:name="UMENG_APPKEY"
@@ -146,7 +145,7 @@
             android:enabled="true"
             android:exported="true" />
 
-
+        <activity android:name=".tsActivity.ShowPdfActivity"></activity>
     </application>
 
 </manifest>

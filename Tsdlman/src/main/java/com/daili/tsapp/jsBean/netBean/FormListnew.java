@@ -88,7 +88,7 @@ public class FormListnew implements Serializable {
         @Column(name = "order_price")
         private String order_price;
         @Column(name = "order_wait_pay")
-        private String order_wait_pay;
+        private int order_wait_pay;
         @Column(name = "order_time")
         private String order_time;
         @Column(name = "order_always_person")
@@ -216,11 +216,11 @@ public class FormListnew implements Serializable {
             this.order_price = order_price;
         }
 
-        public String getOrder_wait_pay() {
+        public int getOrder_wait_pay() {
             return order_wait_pay;
         }
 
-        public void setOrder_wait_pay(String order_wait_pay) {
+        public void setOrder_wait_pay(int order_wait_pay) {
             this.order_wait_pay = order_wait_pay;
         }
 

@@ -102,10 +102,17 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
         zhizhaolianjie = (TextView) this.findViewById(R.id.xiangqing_yingyezhizhao);
         weituoshu = (TextView) this.findViewById(R.id.xiangqing_weituoshu);
         hetong = (TextView) this.findViewById(R.id.xiangqing_hetong);
-        shenfenimage= (ImageView) this.findViewById(R.id.xiangqing_shenfenimg);
-        zhizhaoimg= (ImageView) this.findViewById(R.id.xiangqing_zhizhaoimg);
-        hetongimg= (ImageView) this.findViewById(R.id.xiangqing_hetongimg);
-        weituoImag= (ImageView) this.findViewById(R.id.xiangqing_weituoimg);
+
+        shenfenimage = (ImageView) this.findViewById(R.id.xiangqing_shenfenimg);
+        zhizhaoimg = (ImageView) this.findViewById(R.id.xiangqing_zhizhaoimg);
+        hetongimg = (ImageView) this.findViewById(R.id.xiangqing_hetongimg);
+        weituoImag = (ImageView) this.findViewById(R.id.xiangqing_weituoimg);
+
+        shenfenimage.setOnClickListener(this);
+        zhizhaoimg.setOnClickListener(this);
+        hetongimg.setOnClickListener(this);
+        weituoImag.setOnClickListener(this);
+
         addStep.setOnClickListener(this);
         itemNewformCall.setOnClickListener(this);
         dingdanxiangqingBack.setOnClickListener(this);
@@ -141,35 +148,38 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
             String text = null;
             text = tex.replaceAll("第", "    " + "第");
             xiangqingFuwuvalue.setText(text);
+            setImage();
         }
 
     }
 
     //设置合同等图片 如果是pdf 直接展示一个pdf的图片
     private void setImage() {
-        String idcardurl=data.getOrder_personal_id_card_pic();
-        String zhizhaourl=data.getOrder_personal_getizhizhao()==null?data.getOrder_qiye_yingyezhizhao():data.getOrder_personal_getizhizhao();
-        String herongurl=data.getOrder_hetong();
-        String weituourl=data.getOrder_weituoshu();
-        configImage(shenfenimage,idcardurl);
-        configImage(zhizhaoimg,zhizhaourl);
-        configImage(hetongimg,herongurl);
-        configImage(weituoImag,weituoImag);
-
+        String idcardurl = data.getOrder_personal_id_card_pic();
+        String zhizhaourl = data.getOrder_personal_getizhizhao() == null ? data.getOrder_qiye_yingyezhizhao() : data.getOrder_personal_getizhizhao();
+        String herongurl = data.getOrder_hetong();
+        String weituourl = data.getOrder_weituoshu();
+        configImage(shenfenimage, idcardurl);
+        configImage(zhizhaoimg, zhizhaourl);
+        configImage(hetongimg, herongurl);
+        configImage(weituoImag, weituourl);
     }
-    private  void  configImage(ImageView image,String url){
-        if(url!=null){
-            if(isPdf(url)){
 
-            }else {
-                x.image().bind(image,BaseData.BASEURL+url);
+    //判断是否是url或者是否存在
+    private void configImage(ImageView image, String url) {
+        if (url != null) {
+            if (isPdf(url)) {
+
+            } else {
+                x.image().bind(image, BaseData.BASEURL + url);
             }
-        }else{
+        } else {
             shenfenimage.setVisibility(View.INVISIBLE);
         }
     }
-    private boolean isPdf(String url){
-        if(url.substring(url.length()-3,url.length()).equalsIgnoreCase("pdf")){
+
+    private boolean isPdf(String url) {
+        if (url.substring(url.length() - 3, url.length()).equalsIgnoreCase("pdf")) {
             return true;
         }
         return false;
@@ -205,13 +215,13 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
     }
 
     //通过dialog查看大图
-    private void showBydialog() {
+    private void showBydialog(String url) {
         final Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.xiangqing_bigimge);
         ImageView imageView = (ImageView) dialog.findViewById(R.id.xiangqing_bigimage);
 //        x.image().bind(imageView,BaseData.BASEIMG+data.getOrder_qiye_yingyezhizhao());
-        Picasso.with(this).load(BaseData.BASEIMG + data.getOrder_qiye_yingyezhizhao()).into(imageView);
+        Picasso.with(this).load(BaseData.BASEIMG + url).into(imageView);
         Window win = dialog.getWindow();
         win.getDecorView().setPadding(0, 0, 0, 0);
         WindowManager.LayoutParams lp = win.getAttributes();
@@ -244,15 +254,46 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
                 this.startActivity(intent);
                 break;
             case R.id.xiangqing_zhizhaopic:
-//                 showBigImage();
-                showBydialog();
                 break;
             case R.id.xiangqing_addjindu:
                 findJinduOnNet();
                 break;
-
+            case R.id.xiangqing_shenfenimg:
+                showweituo(this.data.getOrder_personal_id_card_pic());
+                break;
+            case R.id.xiangqing_hetongimg:
+                showweituo(this.data.getOrder_hetong());
+                break;
+            case R.id.xiangqing_zhizhaoimg:
+                showweituo(this.data.getOrder_personal_getizhizhao() == null ? this.data.getOrder_qiye_yingyezhizhao() : this.data.getOrder_personal_getizhizhao());
+                break;
+            case R.id.xiangqing_weituoimg:
+                showweituo(this.data.getOrder_weituoshu());
+                break;
         }
 
+    }
+
+    private void showweituo(String url) {
+        if (url != null) {
+            if (!isPdf(url)) {
+                showBydialog(url);
+            } else {
+                Intent intent = new Intent(this, ShowPdfActivity.class);
+                intent.putExtra("pdf", BaseData.BASEURL + url);
+                startActivity(intent);
+            }
+        } else {
+        }
+    }
+
+    private void showzhizhao() {
+    }
+
+    private void showhetong() {
+    }
+
+    private void showshenfen() {
     }
 
     //显示并且添加进度 跳转到进度展示界面 通过网络获取到现在的进度，并传递两个对象
@@ -290,7 +331,6 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
         Map<String, Object> parms = new HashMap<>();
         parms.put("order_id", data.getOrder_id());
         loge(data.getOrder_id());
-//        parms.put("order_id",126);
         cancel = Xutils.Post(BaseData.JINDU, parms, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {

@@ -43,6 +43,7 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
         b.tab3.setOnClickListener(this);
         currentTime = System.currentTimeMillis();
         MobclickAgent.openActivityDurationTrack(false);
+        this.setResult(3333);
         initAdapter();
         setTab(0);
         getFresh();
@@ -157,7 +158,7 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
             currentTime = time;
             return;
         }
-        this.setResult(3333);
+
         super.onBackPressed();
      }
 }

@@ -165,7 +165,11 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
                 if (result.substring(0, 18).contains("Error")) {
                     NetError error = gson.fromJson(result, NetError.class);
-                    Toast.makeText(getActivity(), error.getMsg(), Toast.LENGTH_SHORT).show();
+                    if(error.getMsg().equals("0")){
+                        Toast.makeText(getActivity(), "您还没有银行卡，请先添加银行卡后再进行提现操作", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getContext(),"您还没有进行认证，无法获取银行卡信息",Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     CardsBean cards = gson.fromJson(result, CardsBean.class);
                     if(cards.getData().size()==0){

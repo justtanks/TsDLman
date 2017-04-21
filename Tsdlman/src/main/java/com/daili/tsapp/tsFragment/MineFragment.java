@@ -170,7 +170,12 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
 
                 if (result.substring(0, 18).contains("Error")) {
                     NetError error = gson.fromJson(result, NetError.class);
-                    Toast.makeText(getActivity(), error.getMsg(), Toast.LENGTH_SHORT).show();
+                    if(error.getMsg().equals("0")){
+                        Intent intent = new Intent(getActivity(), CardActivity.class);
+                        startActivity(intent);
+                    }else if(error.getMsg().equals("1")){
+                        Toast.makeText(getContext(),"您还没有进行认证，无法获取银行卡信息",Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     CardsBean cards = gson.fromJson(result, CardsBean.class);
                     intent = new Intent(activity, CardActivity.class);

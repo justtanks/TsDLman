@@ -60,5 +60,7 @@ dependencies {
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.contrarywind:Android-PickerView:3.2.4'
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
+    compile 'com.github.barteksc:android-pdf-viewer:2.4.0'
     testCompile 'junit:junit:4.12'
+    compile 'org.processing:pdf:3.2.3'
 }
