@@ -60,19 +60,28 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void init() {
-        EventBus.getDefault().register(this);
         builder = new AlertDialog.Builder(this);
         bingding = DataBindingUtil.setContentView(this, R.layout.activity_card);
         bingding.cardAddnewcard.setOnClickListener(this);
         bingding.cardBacktext.setOnClickListener(this);
         bingding.cardLv.setOnItemLongClickListener(this);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         carddatas = (CardsBean) getIntent().getSerializableExtra("cards");
         if (carddatas != null && carddatas.getData() != null) {
             adatper = new CardListviewAdatper(this, carddatas.getData());
             bingding.cardLv.setAdapter(adatper);
         }
     }
-
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -123,17 +132,21 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
 
     }
 
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onEventList(CardsBean datas) {
+//    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+//    public void onEventList(CardsBean datas) {
+//        carddatas=datas;
+//        adatper.setDatas(datas.getData());
+//        adatper.notifyDataSetChanged();
+//    }
+    private void  setcard(CardsBean datas){
+        carddatas=datas;
         adatper.setDatas(datas.getData());
         adatper.notifyDataSetChanged();
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
         su = null;
         adatper = null;
         bingding = null;
@@ -240,11 +253,13 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
             public void onSuccess(String result) {
                 if (result.substring(0, 18).contains("Error")) {
                     NetError error = gson.fromJson(result, NetError.class);
-                    toast(error.getMsg());
+                    if(error.getMsg().equals("0")){
+//                        EventBus.getDefault().post(new CardsBean());
+                        setcard(new CardsBean());
+                    }
                 } else {
                     carddatas = gson.fromJson(result, CardsBean.class);
-                    adatper.setDatas(carddatas.getData());
-                    adatper.notifyDataSetChanged();
+                    setcard(carddatas);
                 }
             }
 

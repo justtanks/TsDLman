@@ -149,7 +149,6 @@ public class PhoneTestActivity extends BaseActivity implements View.OnClickListe
                 Regist_phoneback phoneMsg = gson.fromJson(result, Regist_phoneback.class);
                 yanzhen=phoneMsg.getMsg();
                 loge("yanzheng",yanzhen);
-
             }
 
             @Override

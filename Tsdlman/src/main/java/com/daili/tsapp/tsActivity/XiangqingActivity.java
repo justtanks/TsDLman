@@ -144,10 +144,12 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
             hetong.setText(BaseData.WEBSITE + data.getOrder_hetong());
             weituoshu.setText(BaseData.WEBSITE + data.getOrder_weituoshu());
             String datatypes = data.getOrder_types();
-            String tex = datatypes.replaceAll("\\s*", "");
-            String text = null;
-            text = tex.replaceAll("第", "    " + "第");
-            xiangqingFuwuvalue.setText(text);
+            if(datatypes!=null){
+                String tex = datatypes.replaceAll("\\s*", "");
+                String text = null;
+                text = tex.replaceAll("第", "    " + "第");
+                xiangqingFuwuvalue.setText(text);
+            }
             setImage();
         }
 

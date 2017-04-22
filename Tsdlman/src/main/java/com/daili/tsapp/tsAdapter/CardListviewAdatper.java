@@ -38,7 +38,10 @@ public class CardListviewAdatper extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return datas.size();
+        if(datas!=null){
+            return datas.size();
+        }
+        return 0;
     }
 
     @Override

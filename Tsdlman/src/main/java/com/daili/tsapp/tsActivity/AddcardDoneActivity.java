@@ -70,17 +70,18 @@ public class AddcardDoneActivity extends BaseActivity {
                 } else {
                     CardsBean cards = gson.fromJson(result, CardsBean.class);
                     if ("Success".equals(cards.getFlag())) {
-                        EventBus.getDefault().postSticky(cards);
                         switch (processid){
                             case 0:
                                 toast("bug");
                                 break;
                             case 1:
                                 Intent intent=new Intent(AddcardDoneActivity.this,ChoiseCardActivity.class);
+                                intent.putExtra("datas",cards);
                                 startActivity(intent);
                                 break;
                             case 2:
                                 Intent intent1 = new Intent(AddcardDoneActivity.this, CardActivity.class);
+                                intent1.putExtra("cards",cards);
                                 startActivity(intent1);
                                 break;
                         }
