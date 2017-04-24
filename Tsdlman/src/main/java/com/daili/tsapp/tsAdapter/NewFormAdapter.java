@@ -141,17 +141,6 @@ public class NewFormAdapter extends BaseAdapter {
 
         dialog.show();
     }
-    //抢单成功之后将数据存入数据库 然后通知界面让界面刷新
-//    private void saveToDB(FormListnew.DataBean data){
-//        try {
-//           DbManager manager= x.getDb(DButils.getDaoConfig());
-//            manager.save(data);
-//        } catch (DbException e) {
-//            e.printStackTrace();
-//        }
-//
-//
-//    }
 
     @Override
     public long getItemId(int i) {
@@ -199,7 +188,7 @@ public class NewFormAdapter extends BaseAdapter {
             } else {
                 holder.headImg.setImageResource(R.mipmap.head_img);
             }
-            holder.phonenum = users.get(i).getOrder_qiye_phone();
+            holder.phonenum = users.get(i).getWho_put_order();
 
 
         } else if (users.get(i).getOrder_type().equals("个人注册")) {
@@ -209,9 +198,8 @@ public class NewFormAdapter extends BaseAdapter {
             } else {
                 holder.headImg.setImageResource(R.mipmap.head_img);
             }
-            holder.phonenum = users.get(i).getOrder_personal_tel();
+            holder.phonenum = users.get(i).getWho_put_order();
         }
-
         holder.name.setText(users.get(i).getWho_put_order());
         holder.time.setText(users.get(i).getOrder_time());
         holder.title.setText("状态:等待接单..");

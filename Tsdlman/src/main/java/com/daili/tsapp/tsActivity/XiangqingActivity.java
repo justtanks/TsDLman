@@ -130,11 +130,11 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
             if (data.getOrder_type().equals("企业注册")) {
                 x.image().bind(xiangqingHead, BaseData.BASEIMG + data.getOrder_qiye_yingyezhizhao());
                 x.image().bind(xiangqingZhizhaopic, BaseData.BASEIMG + data.getOrder_qiye_yingyezhizhao());
-                phone = data.getOrder_ask_phone();
+                phone = data.getWho_put_order();
             } else {
                 x.image().bind(xiangqingHead, BaseData.BASEIMG + data.getOrder_personal_id_card_pic());
                 x.image().bind(xiangqingZhizhaopic, BaseData.BASEIMG + data.getOrder_personal_getizhizhao());
-                phone = data.getOrder_personal_ask_tel();
+                phone =   data.getWho_put_order();
             }
             xiangqingNamevalue.setText(data.getShangbiao_name());
             xiangqingZizhivalue.setText(data.getOrder_type());

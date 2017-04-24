@@ -15,17 +15,20 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.daili.tsapp.R;
 import com.daili.tsapp.jsBean.ExpendListChildBean;
 import com.daili.tsapp.jsBean.ExpendListGroupBean;
 import com.daili.tsapp.jsBean.GetExpendListDatas;
 import com.daili.tsapp.jsBean.netBean.FormListnew;
+import com.daili.tsapp.jsBean.netBean.NetError;
 import com.daili.tsapp.jsBean.netBean.SendMsgResultBean;
 import com.daili.tsapp.tsAdapter.ExpandBleadapter;
 import com.daili.tsapp.tsBase.BaseActivity;
 import com.daili.tsapp.tsBase.BaseData;
 import com.daili.tsapp.tsNet.Xutils;
 import com.daili.tsapp.utils.NetUtils;
+import com.daili.tsapp.utils.SystemUtil;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
@@ -42,13 +45,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 首先通过一个list管理adapter 中可以显示的选项，通过对其中数字控制控制adapter显示哪项为选中
- * 通过一个备份的list保存点击之前的数据，避免网络失败后无法继续点击
- * 先判断是否能够点击以及点击效果变化 然后弹出弹框 访问服务器 然后成功后修改界面
- * 接收数据是[1,2]样式的字符串，因为要存放到数据库，所以存放的是string
- *  将string 转换为 list<Integer> 使用
- *  然后上传到服务器后将list<integer>转换为string发送
- *  。。
+ * 进度变化的activity
  */
 public class ControlJinDuActivity extends BaseActivity implements View.OnClickListener, ExpandableListView.OnChildClickListener {
     RelativeLayout back;
@@ -66,6 +63,7 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
     AlertDialog.Builder builder;
     //更改状态的时候显示的dialog
     ProgressDialog dialog = null;
+    SystemUtil su;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +71,10 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
         setContentView(R.layout.activity_control_jin_du);
         getDataFromXiangqingActivity();
         init();
-//        loge(xiangqingdatas.getOrder_acceptance_type());
-
     }
 
     private void init() {
+        su = new SystemUtil(this);
         back = (RelativeLayout) this.findViewById(R.id.jindu_back);
         lv = (ExpandableListView) this.findViewById(R.id.jindu_expendlistview);
         lv.setGroupIndicator(null);
@@ -102,12 +99,11 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
         /*
         设置headview 的内容
          */
-        jindu.setText(datas.getTextByIndex(contrsList.get(contrsList.size()-1)));
+        jindu.setText(datas.getTextByIndex(contrsList.get(contrsList.size() - 1)));
         back.setOnClickListener(this);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //放在这里避免触发expendlistview的点击事件
             }
         });
         lv.addHeaderView(view);
@@ -122,11 +118,11 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
         xiangqingdatas = (FormListnew.DataBean) intent.getSerializableExtra("xiangqing");
         loge(intent.getStringExtra("jindu"));
         contrsList = str2list(intent.getStringExtra("jindu"));
-        if(!contrsList.contains(1)){
+        if (!contrsList.contains(1)) {
             contrsList.add(1);
         }
         savaList = new ArrayList(contrsList);
-     }
+    }
 
     @Override
     public void onClick(View v) {
@@ -140,15 +136,15 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
     //将最初的返回的字符串转换为list
     private List<Integer> str2list(String str) {
         str = str.replaceAll("\\s*", "");
-        List<Integer>ints=new ArrayList<>();
+        List<Integer> ints = new ArrayList<>();
         StringBuffer sf = new StringBuffer(str);
         if (str != null) {
 
-            if(str.equals("null")){
+            if (str.equals("null")) {
                 return ints;
             }
-            if(!str.contains(",")){
-            }else{
+            if (!str.contains(",")) {
+            } else {
                 String[] strs = str.split(",");
                 for (String s1 : strs) {
                     ints.add(Integer.parseInt(s1));
@@ -331,7 +327,7 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
                 contrsList.add(19);
                 break;
         }
-          showDialog(text);
+        showDialog(text);
     }
 
     private void showDialog(String text) {
@@ -360,10 +356,9 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
 
     /*
          修改服务器订单的进度
-
       */
     private void changeStep() {
-        dialog=ProgressDialog.show(this,"","正在更新");
+        dialog = ProgressDialog.show(this, "", "正在更新");
         dialog.show();
         Map<String, Object> parms = new HashMap<>();
         parms.put("order_id", xiangqingdatas.getOrder_id());
@@ -373,10 +368,10 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
             public void onSuccess(String result) {
                 setAdapter(contrsList);
                 savaList = new ArrayList(contrsList);
-                String nowMsg=datas.getTextByIndex(contrsList.get(contrsList.size()-1));
+                String nowMsg = datas.getTextByIndex(contrsList.get(contrsList.size() - 1));
                 jindu.setText(nowMsg);
-                 //调用短信接口发送
-                 sendMsgToUser(nowMsg);
+                //调用短信接口发送
+                sendMsgToUser(nowMsg);
             }
 
             @Override
@@ -392,7 +387,7 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
 
             @Override
             public void onFinished() {
-              dialog.dismiss();
+                dialog.dismiss();
             }
         });
     }
@@ -404,11 +399,12 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
         for (int i = 0; i < ins.size(); i++) {
             s[i] = ins.get(i);
         }
-        String sk=array2String(s);
-        return  sk.substring(1,sk.length()-1);
+        String sk = array2String(s);
+        return sk.substring(1, sk.length() - 1);
     }
+
     //将数组转化为string
-    private static String array2String(int [] a){
+    private static String array2String(int[] a) {
         if (a == null)
             return "[]";
         int iMax = a.length - 1;
@@ -423,35 +419,37 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
             b.append(",");
         }
     }
+
     //向用户手机发送短信验证码
-    private  void sendMsgToUser(String value){
-        String xvalue="";
+    private void sendMsgToUser(final String value) {
+        String xvalue = "";
         try {
-             xvalue= URLEncoder.encode("#code#="+value, "UTF-8");
+            xvalue = URLEncoder.encode("#code#=" + value, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
-        Map<String,String> parms=new HashMap<>();
-        parms.put("mobile",xiangqingdatas.getOrder_ask_phone());
-        parms.put("tpl_id","30472");
-        parms.put("key",BaseData.DUANXINKEY);
-          parms.put("tpl_value",xvalue);
+        Map<String, String> parms = new HashMap<>();
+        parms.put("mobile", xiangqingdatas.getWho_put_order());
+        parms.put("tpl_id", "30472");
+        parms.put("key", BaseData.DUANXINKEY);
+        parms.put("tpl_value", xvalue);
         NetUtils.Get(BaseData.FASONGDUANXIN, parms, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Gson gson=new Gson();
-                SendMsgResultBean msg=gson.fromJson(result,SendMsgResultBean.class);
-                if(msg.getError_code()==0){
+                Gson gson = new Gson();
+                SendMsgResultBean msg = gson.fromJson(result, SendMsgResultBean.class);
+                if (msg.getError_code() == 0) {
                     toast("短信发送成功");
-                }else{
-                    toast("通知用户失败:"+msg.getReason());
+                    changJinDuOnNet(value);
+                } else {
+                    toast("通知用户失败:" + msg.getReason());
                 }
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                  toast(getString(R.string.net_error));
+                toast(getString(R.string.net_error));
             }
 
             @Override
@@ -466,7 +464,6 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
         });
 
 
-
     }
 
     /**
@@ -478,5 +475,36 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    //waiter_id/71/order_num/1/nav/1  推送成功后给服务器的记录
+    private void changJinDuOnNet(String nav) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("waiter_id", su.showUid());
+        param.put("order_num", xiangqingdatas.getOrder_num() + "");
+        param.put("nav", nav);
+        NetUtils.Post(BaseData.CHANGJINDU, param, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Log.e("changejincu", result);
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
     }
 }

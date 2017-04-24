@@ -105,13 +105,13 @@ public class HadFormAdapter extends BaseAdapter {
                 if(mlist.get(i).getOrder_qiye_yingyezhizhao()!=null){
                     x.image().bind(holder.headImage, BaseData.BASEIMG+mlist.get(i).getOrder_qiye_yingyezhizhao());
                 }
-                holder.phonenum=mlist.get(i).getOrder_ask_phone();
+                holder.phonenum=mlist.get(i).getWho_put_order();
 
             }else if(mlist.get(i).getOrder_type().equals("个人注册")){
                 if(mlist.get(i).getOrder_personal_id_card_pic()!=null){
                     x.image().bind(holder.headImage, BaseData.BASEIMG+mlist.get(i).getOrder_personal_id_card_pic());
                 }
-                holder.phonenum=mlist.get(i).getOrder_personal_tel();
+                holder.phonenum=mlist.get(i).getWho_put_order();
             }
 
             holder.title.setText(mlist.get(i).getType());
