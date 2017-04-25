@@ -71,9 +71,6 @@ public class AddcardDoneActivity extends BaseActivity {
                     CardsBean cards = gson.fromJson(result, CardsBean.class);
                     if ("Success".equals(cards.getFlag())) {
                         switch (processid){
-                            case 0:
-                                toast("bug");
-                                break;
                             case 1:
                                 Intent intent=new Intent(AddcardDoneActivity.this,ChoiseCardActivity.class);
                                 intent.putExtra("datas",cards);
@@ -81,7 +78,6 @@ public class AddcardDoneActivity extends BaseActivity {
                                 break;
                             case 2:
                                 Intent intent1 = new Intent(AddcardDoneActivity.this, CardActivity.class);
-                                intent1.putExtra("cards",cards);
                                 startActivity(intent1);
                                 break;
                         }
@@ -90,10 +86,7 @@ public class AddcardDoneActivity extends BaseActivity {
                         cards = null;
                         return;
                     }
-
-
                 }
-
             }
 
             @Override

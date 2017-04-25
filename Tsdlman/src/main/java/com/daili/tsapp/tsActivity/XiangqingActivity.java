@@ -3,6 +3,7 @@ package com.daili.tsapp.tsActivity;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
@@ -23,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daili.tsapp.R;
 import com.daili.tsapp.jsBean.netBean.DingdanJinDuBean;
@@ -61,16 +63,17 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
     private TextView xiangqingFeiyongvalue;
     private TextView xiangqingFuwuvalue;
     private ImageView xiangqingZhizhaopic;
-    private TextView idlianjie;
-    private TextView zhizhaolianjie;
-    private TextView weituoshu;
-    private TextView hetong;
+//    private TextView idlianjie;
+//    private TextView zhizhaolianjie;
+//    private TextView weituoshu;
+//    private TextView hetong;
     private Button addStep;
     private String phone;
     private ImageView shenfenimage;
     private ImageView zhizhaoimg;
     private ImageView hetongimg;
     private ImageView weituoImag;
+    private Button fzshenfen, fzhetong, fzzhizhao, fzweituo;
     PopupWindow mPopuwindow;
     FormListnew.DataBean data;
     Gson gson = new Gson();
@@ -98,11 +101,11 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
         xiangqingZhizhaopic = (ImageView) findViewById(R.id.xiangqing_zhizhaopic);
         xiangqingFuwuvalue = (TextView) findViewById(R.id.xiangqing_fuwuvalue);
         addStep = (Button) findViewById(R.id.xiangqing_addjindu);
-        idlianjie = (TextView) this.findViewById(R.id.xiangqing_shenfenzheng);
-        zhizhaolianjie = (TextView) this.findViewById(R.id.xiangqing_yingyezhizhao);
-        weituoshu = (TextView) this.findViewById(R.id.xiangqing_weituoshu);
-        hetong = (TextView) this.findViewById(R.id.xiangqing_hetong);
 
+        fzhetong = (Button) this.findViewById(R.id.xiangqing_bt_hetong);
+        fzshenfen = (Button) this.findViewById(R.id.xiangqing_bt_shenfen);
+        fzweituo = (Button) this.findViewById(R.id.xiangqing_bt_weituo);
+        fzzhizhao = (Button) this.findViewById(R.id.xiangqing_bt_zhizhao);
         shenfenimage = (ImageView) this.findViewById(R.id.xiangqing_shenfenimg);
         zhizhaoimg = (ImageView) this.findViewById(R.id.xiangqing_zhizhaoimg);
         hetongimg = (ImageView) this.findViewById(R.id.xiangqing_hetongimg);
@@ -112,6 +115,11 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
         zhizhaoimg.setOnClickListener(this);
         hetongimg.setOnClickListener(this);
         weituoImag.setOnClickListener(this);
+
+        fzzhizhao.setOnClickListener(this);
+        fzweituo.setOnClickListener(this);
+        fzshenfen.setOnClickListener(this);
+        fzhetong.setOnClickListener(this);
 
         addStep.setOnClickListener(this);
         itemNewformCall.setOnClickListener(this);
@@ -134,17 +142,13 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
             } else {
                 x.image().bind(xiangqingHead, BaseData.BASEIMG + data.getOrder_personal_id_card_pic());
                 x.image().bind(xiangqingZhizhaopic, BaseData.BASEIMG + data.getOrder_personal_getizhizhao());
-                phone =   data.getWho_put_order();
+                phone = data.getWho_put_order();
             }
             xiangqingNamevalue.setText(data.getShangbiao_name());
             xiangqingZizhivalue.setText(data.getOrder_type());
             xiangqingFeiyongvalue.setText(data.getOrder_price());
-            idlianjie.setText(BaseData.WEBSITE + data.getOrder_personal_id_card_pic());
-            zhizhaolianjie.setText(data.getOrder_personal_getizhizhao() == null ? BaseData.WEBSITE + data.getOrder_qiye_yingyezhizhao() : BaseData.WEBSITE + data.getOrder_personal_getizhizhao());
-            hetong.setText(BaseData.WEBSITE + data.getOrder_hetong());
-            weituoshu.setText(BaseData.WEBSITE + data.getOrder_weituoshu());
             String datatypes = data.getOrder_types();
-            if(datatypes!=null){
+            if (datatypes != null) {
                 String tex = datatypes.replaceAll("\\s*", "");
                 String text = null;
                 text = tex.replaceAll("第", "    " + "第");
@@ -272,8 +276,44 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
             case R.id.xiangqing_weituoimg:
                 showweituo(this.data.getOrder_weituoshu());
                 break;
+            case R.id.xiangqing_bt_hetong:
+                setHetong();
+                break;
+            case R.id.xiangqing_bt_shenfen:
+                setShenfen();
+                break;
+            case R.id.xiangqing_bt_weituo:
+                setWeituo();
+                break;
+            case R.id.xiangqing_bt_zhizhao:
+                setZhizhao();
+                break;
         }
 
+    }
+
+    private void setZhizhao() {
+       setToBoard(data.getOrder_personal_getizhizhao() == null ? BaseData.WEBSITE + data.getOrder_qiye_yingyezhizhao() : BaseData.WEBSITE + data.getOrder_personal_getizhizhao());
+    }
+
+    private void setWeituo() {
+        setToBoard(BaseData.WEBSITE + data.getOrder_weituoshu());
+    }
+
+    private void setShenfen() {
+        setToBoard(BaseData.WEBSITE + data.getOrder_personal_id_card_pic());
+    }
+
+    private void setHetong() {
+        setToBoard(BaseData.WEBSITE + data.getOrder_hetong());
+    }
+
+    //复制到粘贴板
+    private void setToBoard(String text) {
+        ClipboardManager cm = (ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE);
+        // 将文本内容放到系统剪贴板里。
+        cm.setText(text);
+        Toast.makeText(this, "复制成功", Toast.LENGTH_LONG).show();
     }
 
     private void showweituo(String url) {

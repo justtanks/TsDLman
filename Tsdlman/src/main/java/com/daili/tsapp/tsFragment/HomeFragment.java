@@ -86,13 +86,14 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     }
 
-     private void setCircle() {
+    private void setCircle() {
         b.mainRefresh.setOnRefreshListener(this);
         b.mainRefresh.setColorSchemeResources(android.R.color.holo_blue_bright);
         b.mainRefresh.setDistanceToTriggerSync(300);
         b.mainRefresh.setSize(SwipeRefreshLayout.DEFAULT);
     }
-//服务器获取首页信息
+
+    //服务器获取首页信息
     private void getDataOnNet() {
         b.mainRefresh.setRefreshing(true);
         Map<String, Object> param = new HashMap<>();
@@ -158,26 +159,26 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         dialog.show();
         Map<String, Object> parm = new HashMap<>();
         parm.put("waiter_id", su.showUid());
-        cancel=NetUtils.Post(BaseData.GETCARDS, parm, new Callback.CommonCallback<String>() {
+        cancel = NetUtils.Post(BaseData.GETCARDS, parm, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
 
                 if (result.substring(0, 18).contains("Error")) {
                     NetError error = gson.fromJson(result, NetError.class);
-                    if(error.getMsg().equals("0")){
+                    if (error.getMsg().equals("0")) {
                         Toast.makeText(getActivity(), "您还没有银行卡，请先添加银行卡后再进行提现操作", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(getContext(),"您还没有进行认证，无法获取银行卡信息",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "您还没有进行认证，无法获取银行卡信息", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     CardsBean cards = gson.fromJson(result, CardsBean.class);
-                    if(cards.getData().size()==0){
+                    if (cards.getData().size() == 0) {
                         Toast.makeText(getActivity(), "您还没有银行卡，请先添加银行卡后再进行提现操作", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     intent = new Intent(context, DrawCashActivity.class);
                     intent.putExtra("cards", cards);
-                    intent.putExtra("allmoney",bean.getMsg().get(0).getBalance_money());
+                    intent.putExtra("allmoney", bean.getMsg().get(0).getBalance_money());
                     startActivity(intent);
 
                 }
@@ -200,58 +201,22 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         });
     }
 
-   private void  gettoDingdan(){
-       Intent intent = new Intent(context, OrdersActivity.class);
-       startActivity(intent);
-   }
     //获取到订单信息并跳转到订单列表 /waiter_id/71
-    public void getToDingdan() {
-        dialog = ProgressDialog.show(context, "", "正在获取订单信息");
-        dialog.show();
-        Map<String, Object> parms = new HashMap<>();
-        parms.put("waiter_id", su.showUid());
-        NetUtils.Post(BaseData.GETORDERS, parms, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                if (result.substring(0, 18).contains("Error")) {
-                    ErrorBean error = gson.fromJson(result, ErrorBean.class);
-                    Toast.makeText(context, error.getMsg(), Toast.LENGTH_SHORT).show();
-                } else {
-                    FormlistDateBean data = gson.fromJson(result, FormlistDateBean.class);
-                    if (!data.getFlag().equals("Success")) {
-
-                    } else {
-                        Intent intent = new Intent(context, OrdersActivity.class);
-                        intent.putExtra("forms", data);
-                        startActivity(intent);
-                    }
-                }
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-               dialog.dismiss();
-            }
-        });
+    private void gettoDingdan() {
+        Intent intent = new Intent(context,
+                OrdersActivity.class);
+        startActivity(intent);
     }
+
 
     //重新刷新界面请求数据
     @Subscribe
     public void onEventMainThread(Integer x) {
-       if(x==111){
-           getDataOnNet();
-       }
+        if (x == 111) {
+            getDataOnNet();
+        }
     }
+
     //登录操作 如果是自动登录 访问网络 然后主要修改状态
     private void loginToNet() {
         final String name = su.showPhone();
@@ -264,18 +229,18 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             public void onSuccess(String result) {
                 if (result != null) {
                     Gson gson = new Gson();
-                    if(result.substring(0,18).contains("Error")){
-                        ErrorBean bean=gson.fromJson(result,ErrorBean.class);
-                        Toast.makeText(getContext(),"账号异常，请重新登录",Toast.LENGTH_LONG);
+                    if (result.substring(0, 18).contains("Error")) {
+                        ErrorBean bean = gson.fromJson(result, ErrorBean.class);
+                        Toast.makeText(getContext(), "账号异常，请重新登录", Toast.LENGTH_LONG);
                         //异常登陆状态 比如服务器删除账号等 暂时调用settingActivity的退出登录
-                        Intent intent=new Intent(getActivity(), SettingActivity.class);
-                        intent.putExtra("tuihui",11);
+                        Intent intent = new Intent(getActivity(), SettingActivity.class);
+                        intent.putExtra("tuihui", 11);
                         startActivity(intent);
-                        Toast.makeText(getContext(),"账号有问题，请重新进行登录",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "账号有问题，请重新进行登录", Toast.LENGTH_SHORT).show();
                         return;
-                    }else{
-                         LoginBean2 bean2=gson.fromJson(result,LoginBean2.class);
-                          su.saveIsRenZheng(bean2.getData().get(0).getIs_renzheng());
+                    } else {
+                        LoginBean2 bean2 = gson.fromJson(result, LoginBean2.class);
+                        su.saveIsRenZheng(bean2.getData().get(0).getIs_renzheng());
                     }
                 }
             }
@@ -289,6 +254,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             public void onCancelled(CancelledException cex) {
 
             }
+
             @Override
             public void onFinished() {
 
