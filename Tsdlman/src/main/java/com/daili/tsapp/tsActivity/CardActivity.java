@@ -7,15 +7,13 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.daili.tsapp.R;
 import com.daili.tsapp.databinding.CardBinding;
 import com.daili.tsapp.jsBean.netBean.CardsBean;
@@ -29,34 +27,29 @@ import com.daili.tsapp.tsBase.BaseData;
 import com.daili.tsapp.utils.NetUtils;
 import com.daili.tsapp.utils.SystemUtil;
 import com.google.gson.Gson;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.common.Callback;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 我的银行卡界面 展示所有银行卡信息
  */
-public class CardActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemLongClickListener {
+public class CardActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemLongClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     CardBinding bingding;
     CardListviewAdatper adatper;
     SystemUtil su = new SystemUtil(this);
-    CardsBean carddatas;
+    CardsBean carddatas = new CardsBean();
     AlertDialog.Builder builder;
     ProgressDialog progressDialog;
-    PopupWindow mPopuwindow; // 输入密码的弹出框
+    PopupWindow mPopuwindow;
     Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init();
+        setCircle();
     }
 
     private void init() {
@@ -65,23 +58,30 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
         bingding.cardAddnewcard.setOnClickListener(this);
         bingding.cardBacktext.setOnClickListener(this);
         bingding.cardLv.setOnItemLongClickListener(this);
+        adatper = new CardListviewAdatper(this, carddatas.getData());
+        bingding.cardLv.setAdapter(adatper);
 
+    }
+
+    private void setCircle() {
+        bingding.cardFresh.setOnRefreshListener(this);
+        bingding.cardFresh.setColorSchemeResources(android.R.color.holo_blue_bright);
+        bingding.cardFresh.setDistanceToTriggerSync(300);
+        bingding.cardFresh.setSize(SwipeRefreshLayout.DEFAULT);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        carddatas = (CardsBean) getIntent().getSerializableExtra("cards");
-        if (carddatas != null && carddatas.getData() != null) {
-            adatper = new CardListviewAdatper(this, carddatas.getData());
-            bingding.cardLv.setAdapter(adatper);
-        }
+        getCardOnNET();
     }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         setIntent(intent);
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -130,18 +130,6 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
             }
         });
 
-    }
-
-//    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-//    public void onEventList(CardsBean datas) {
-//        carddatas=datas;
-//        adatper.setDatas(datas.getData());
-//        adatper.notifyDataSetChanged();
-//    }
-    private void  setcard(CardsBean datas){
-        carddatas=datas;
-        adatper.setDatas(datas.getData());
-        adatper.notifyDataSetChanged();
     }
 
     @Override
@@ -223,7 +211,7 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
                 } else {
                     DeleteCardSuccess sumsg = gson.fromJson(result, DeleteCardSuccess.class);
                     toast(sumsg.getMsg());
-                    freshData();
+                    getCardOnNET();
                 }
             }
 
@@ -244,37 +232,49 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
         });
     }
 
-    //从新请求网络加载银行卡数据  adapter重新加载数据
-    private void freshData() {
+    @Override
+    public void onRefresh() {
+        getCardOnNET();
+    }
+
+    //获取到所有的银行卡信息
+    private void getCardOnNET() {
+        bingding.cardFresh.setRefreshing(true);
         Map<String, Object> parm = new HashMap<>();
         parm.put("waiter_id", su.showUid());
         NetUtils.Post(BaseData.GETCARDS, parm, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+
                 if (result.substring(0, 18).contains("Error")) {
                     NetError error = gson.fromJson(result, NetError.class);
-                    if(error.getMsg().equals("0")){
-//                        EventBus.getDefault().post(new CardsBean());
-                        setcard(new CardsBean());
+                    if (error.getMsg().equals("0")) {
+                        //没有银行卡
+                        toast("您还没有银行卡");
+                    } else if (error.getMsg().equals("1")) {
+                        Toast.makeText(CardActivity.this, "您还没有进行认证，无法获取银行卡信息", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     carddatas = gson.fromJson(result, CardsBean.class);
-                    setcard(carddatas);
+                    adatper.setDatas(carddatas.getData());
                 }
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                toast(getString(R.string.getcardagain));
             }
+
             @Override
             public void onCancelled(CancelledException cex) {
+
             }
 
             @Override
             public void onFinished() {
+                bingding.cardFresh.setRefreshing(false);
             }
         });
+
     }
-
-
 }

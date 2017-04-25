@@ -86,8 +86,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     }
 
-    //设置刷新控件
-    private void setCircle() {
+     private void setCircle() {
         b.mainRefresh.setOnRefreshListener(this);
         b.mainRefresh.setColorSchemeResources(android.R.color.holo_blue_bright);
         b.mainRefresh.setDistanceToTriggerSync(300);
@@ -146,7 +145,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.main_dingdanmingxi:
-                getToDingdan();
+                gettoDingdan();
                 break;
             case R.id.main_tixian_text:
                 toDrawCards();
@@ -201,7 +200,10 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         });
     }
 
-
+   private void  gettoDingdan(){
+       Intent intent = new Intent(context, OrdersActivity.class);
+       startActivity(intent);
+   }
     //获取到订单信息并跳转到订单列表 /waiter_id/71
     public void getToDingdan() {
         dialog = ProgressDialog.show(context, "", "正在获取订单信息");
@@ -242,6 +244,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
             }
         });
     }
+
     //重新刷新界面请求数据
     @Subscribe
     public void onEventMainThread(Integer x) {

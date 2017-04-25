@@ -101,107 +101,72 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 toPersonMsg();
                 break;
             case R.id.home_card:
-                toCards();
+                tocard();
                 break;
             case R.id.home_myform:
-                toForms(0);
+                toform(0);
                 break;
             case R.id.mine_yijiedan:
-                toForms(0);
+                toform(0);
                 break;
             case R.id.mine_daipingjia:
-                toForms(1);
+                toform(1);
                 break;
             case R.id.mine_yipingjia:
-                toForms(2);
+                toform(2);
                 break;
         }
     }
+    private void toform(int id){
+        intent = new Intent(activity, MyFormActivity.class);
+        intent.putExtra("id",id);
+        startActivity(intent);
+    }
     Callback.Cancelable cancel;
 //跳转到我的订单界面
-    private void toForms(final int id) {
-        dialog = ProgressDialog.show(activity, "", "正在获取订单信息");
-        dialog.show();
-        Map<String, Object> parm = new HashMap<>();
-        parm.put("waiter_id", su.showUid());
-//        parm.put("waiter_id", 71);
-        cancel=    NetUtils.Post(BaseData.ALLORDERS, parm, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-                if (result.substring(0, 18).contains("Error")) {
-                    NetError error = gson.fromJson(result, NetError.class);
-                    Toast.makeText(getActivity(), error.getMsg(), Toast.LENGTH_SHORT).show();
-                } else {
-                    OrdersBean forms = gson.fromJson(result, OrdersBean.class);
-                    intent = new Intent(activity, MyFormActivity.class);
-                    intent.putExtra("allorders", forms);
-                    intent.putExtra("id",id);
-                    startActivity(intent);
-                }
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-               dialog.dismiss();
-            }
-        });
-    }
+//    private void toForms(final int id) {
+//        dialog = ProgressDialog.show(activity, "", "正在获取订单信息");
+//        dialog.show();
+//        Map<String, Object> parm = new HashMap<>();
+//        parm.put("waiter_id", su.showUid());
+//        cancel=    NetUtils.Post(BaseData.ALLORDERS, parm, new Callback.CommonCallback<String>() {
+//            @Override
+//            public void onSuccess(String result) {
+//                if (result.substring(0, 18).contains("Error")) {
+//                    NetError error = gson.fromJson(result, NetError.class);
+//                    Toast.makeText(getActivity(), error.getMsg(), Toast.LENGTH_SHORT).show();
+//                } else {
+//                    OrdersBean forms = gson.fromJson(result, OrdersBean.class);
+//                    intent = new Intent(activity, MyFormActivity.class);
+//                    intent.putExtra("allorders", forms);
+//                    intent.putExtra("id",id);
+//                    startActivity(intent);
+//                }
+//            }
+//
+//            @Override
+//            public void onError(Throwable ex, boolean isOnCallback) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(CancelledException cex) {
+//
+//            }
+//
+//            @Override
+//            public void onFinished() {
+//               dialog.dismiss();
+//            }
+//        });
+//    }
 
 
     //跳转到我的银行卡界面
-    private void toCards() {
-        dialog = ProgressDialog.show(activity, "", "正在获取银行卡信息");
-        dialog.show();
-        Map<String, Object> parm = new HashMap<>();
-        parm.put("waiter_id", su.showUid());
-        cancel=NetUtils.Post(BaseData.GETCARDS, parm, new Callback.CommonCallback<String>() {
-            @Override
-            public void onSuccess(String result) {
-
-                if (result.substring(0, 18).contains("Error")) {
-                    NetError error = gson.fromJson(result, NetError.class);
-                    if(error.getMsg().equals("0")){
-                        Intent intent = new Intent(getActivity(), CardActivity.class);
-                        startActivity(intent);
-                    }else if(error.getMsg().equals("1")){
-                        Toast.makeText(getContext(),"您还没有进行认证，无法获取银行卡信息",Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    CardsBean cards = gson.fromJson(result, CardsBean.class);
-                    intent = new Intent(activity, CardActivity.class);
-                    intent.putExtra("cards", cards);
-                    startActivity(intent);
-
-                }
-            }
-
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-
-            }
-
-            @Override
-            public void onCancelled(CancelledException cex) {
-
-            }
-
-            @Override
-            public void onFinished() {
-                dialog.dismiss();
-            }
-        });
+    private void tocard(){
+        intent = new Intent(activity, CardActivity.class);
+        startActivity(intent);
     }
-
 
     //跳转到个人信息界面
     private void toPersonMsg() {

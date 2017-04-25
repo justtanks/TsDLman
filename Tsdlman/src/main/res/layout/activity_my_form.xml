@@ -66,6 +66,15 @@
             </RelativeLayout>
         </RelativeLayout>
 
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/form_fresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
         <LinearLayout
             android:id="@+id/myform_tab_layout"
             android:layout_width="match_parent"
@@ -138,13 +147,12 @@
                 android:visibility="invisible"
                 ></Button>
         </LinearLayout>
-
-
         <android.support.v4.view.ViewPager
             android:id="@+id/order_viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             ></android.support.v4.view.ViewPager>
-
+        </LinearLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
 </layout>

@@ -18,7 +18,9 @@ import com.daili.tsapp.jsBean.netBean.FormlistDateBean;
 import com.daili.tsapp.tsActivity.XiangqingActivity;
 import com.daili.tsapp.tsAdapter.simpleAdapter.ListAdapter;
 import com.daili.tsapp.tsBase.BaseFragment;
+import com.daili.tsapp.tsBase.impl.OnOrdersChangeListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,27 +28,31 @@ import java.util.List;
  * 其中的adapter  缺少 item 的数据 点击之后订单详情数据不同
  */
 
-public class AllOrdersFragment extends BaseFragment implements AdapterView.OnItemClickListener {
+public class AllOrdersFragment extends BaseFragment implements AdapterView.OnItemClickListener, OnOrdersChangeListener {
     AlldayBinding b;
-    List<FormlistDateBean.DataBean.OrderBean> allOrderdatas;
+    List<FormlistDateBean.DataBean.OrderBean> allOrderdatas = new ArrayList<>();
+    ListAdapter<FormlistDateBean.DataBean.OrderBean> adapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         b = DataBindingUtil.inflate(inflater, R.layout.fragment_orders_all, container, false);
-        FormlistDateBean bean = (FormlistDateBean) getActivity().getIntent().getSerializableExtra("forms");
-        allOrderdatas= bean.getData().get(0).getAll_order();
-        if (null != allOrderdatas && allOrderdatas.size() != 0) {
-            ListAdapter<FormlistDateBean.DataBean.OrderBean> adapter = new ListAdapter<>(getActivity(), allOrderdatas, BR.allorder, R.layout.item_allorder);
-            b.alldayLv.setAdapter(adapter);
-        }
+        adapter = new ListAdapter<>(getActivity(), allOrderdatas, BR.allorder, R.layout.item_allorder);
+        b.alldayLv.setAdapter(adapter);
         return b.getRoot();
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent=new Intent(getActivity(), XiangqingActivity.class);
-        intent.putExtra("id",1);
-        intent.putExtra("datas",allOrderdatas.get(position));
+        Intent intent = new Intent(getActivity(), XiangqingActivity.class);
+        intent.putExtra("id", 1);
+        intent.putExtra("datas", allOrderdatas.get(position));
         startActivity(intent);
+    }
+
+    @Override
+    public void onOrdersChange(FormlistDateBean orders) {
+        allOrderdatas = orders.getData().get(0).getAll_order();
+        adapter.setDatas(allOrderdatas);
     }
 }
