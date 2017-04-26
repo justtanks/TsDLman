@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -68,6 +69,23 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
         bingding.cardFresh.setColorSchemeResources(android.R.color.holo_blue_bright);
         bingding.cardFresh.setDistanceToTriggerSync(300);
         bingding.cardFresh.setSize(SwipeRefreshLayout.DEFAULT);
+        bingding.cardLv.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                boolean enable = false;
+                if (bingding.cardLv != null && bingding.cardLv.getChildCount() > 0) {
+                    boolean firstItemVisible = bingding.cardLv.getFirstVisiblePosition() == 0;
+                    boolean topOfFirstItemVisible = bingding.cardLv.getChildAt(0).getTop() == 0;
+                    enable = firstItemVisible && topOfFirstItemVisible;
+                }
+                bingding.cardFresh.setEnabled(enable);
+            }
+        });
     }
 
     @Override

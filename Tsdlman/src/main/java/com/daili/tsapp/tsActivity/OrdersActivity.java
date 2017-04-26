@@ -243,6 +243,7 @@ public class OrdersActivity extends BaseActivity implements View.OnClickListener
         b.ordersFresh.setColorSchemeResources(android.R.color.holo_blue_bright);
         b.ordersFresh.setDistanceToTriggerSync(300);
         b.ordersFresh.setSize(SwipeRefreshLayout.DEFAULT);
+        b.ordersFresh.setEnabled(false);
     }
 
     FormlistDateBean orders;

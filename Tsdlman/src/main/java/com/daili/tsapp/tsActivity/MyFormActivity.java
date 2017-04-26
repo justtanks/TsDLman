@@ -83,6 +83,7 @@ public class MyFormActivity extends BaseActivity implements View.OnClickListener
         b.formFresh.setColorSchemeResources(android.R.color.holo_blue_bright);
         b.formFresh.setDistanceToTriggerSync(300);
         b.formFresh.setSize(SwipeRefreshLayout.DEFAULT);
+        b.formFresh.setEnabled(false);
     }
 
     //初始化 viewpager

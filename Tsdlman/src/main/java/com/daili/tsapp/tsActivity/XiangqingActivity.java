@@ -63,10 +63,6 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
     private TextView xiangqingFeiyongvalue;
     private TextView xiangqingFuwuvalue;
     private ImageView xiangqingZhizhaopic;
-//    private TextView idlianjie;
-//    private TextView zhizhaolianjie;
-//    private TextView weituoshu;
-//    private TextView hetong;
     private Button addStep;
     private String phone;
     private ImageView shenfenimage;
@@ -358,7 +354,6 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
         for (DingdanJinDuBean.MsgBean be : bean.getMsg()) {
             bu.append(be.getType() + ",");
         }
-        Log.e("jindu", "bean2String: " + bu.substring(0, bu.length() - 1));
         return bu.substring(0, bu.length() - 1);
     }
 

@@ -5,8 +5,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,18 +37,16 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
     private ArrayList<Fragment> fragmentList=new ArrayList<>();
     private long currentTime;
     AlertDialog.Builder builder;
+    MenuItem prevMenuItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         b = DataBindingUtil.setContentView(this, R.layout.activity_tab_home);
-        b.tab1.setOnClickListener(this);
-        b.tab2.setOnClickListener(this);
-        b.tab3.setOnClickListener(this);
         currentTime = System.currentTimeMillis();
         MobclickAgent.openActivityDurationTrack(false);
+        b.firstTab.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         this.setResult(3333);
         initAdapter();
-        setTab(0);
         getFresh();
 
     }
@@ -56,6 +57,27 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
         }
 
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.action_home:
+                     b.firstPager.setCurrentItem(0);
+                    return true;
+                case R.id.action_qiangdan:
+                    b.firstPager.setCurrentItem(1);
+                    return true;
+                case R.id.action_me:
+                    b.firstPager.setCurrentItem(2);
+                    return true;
+            }
+            return false;
+        }
+
+    };
     //弹出对话框
     private void showDialog() {
         builder = new AlertDialog.Builder(this);
@@ -92,49 +114,9 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tab1:
-                setTab(0);
-                b.firstPager.setCurrentItem(0);
-                break;
-            case R.id.tab2:
-                setTab(1);
-                b.firstPager.setCurrentItem(1);
-                break;
-            case R.id.tab3:
-                setTab(2);
-                b.firstPager.setCurrentItem(2);
-                break;
+
         }
     }
-    private  void setTab(int id){
-        if(id==0){
-            b.firstHomeimg.setImageDrawable(getResources().getDrawable(R.mipmap.home_home_yes));
-            b.firstHomeimg2.setImageDrawable(getResources().getDrawable(R.mipmap.home_qiangdan_no));
-            b.firstHomeimg3.setImageDrawable(getResources().getDrawable(R.mipmap.home_mine_no));
-
-            b.tabText1.setTextColor(getResources().getColor(R.color.zhucecolortitle));
-            b.tabText2.setTextColor(getResources().getColor(R.color.gray1));
-            b.tabText3.setTextColor(getResources().getColor(R.color.gray1));
-        }else if(id==1){
-            b.firstHomeimg.setImageDrawable(getResources().getDrawable(R.mipmap.hoem_home_not));
-            b.firstHomeimg2.setImageDrawable(getResources().getDrawable(R.mipmap.home_qiangdan_yes));
-            b.firstHomeimg3.setImageDrawable(getResources().getDrawable(R.mipmap.home_mine_no));
-
-            b.tabText1.setTextColor(getResources().getColor(R.color.gray1));
-            b.tabText2.setTextColor(getResources().getColor(R.color.zhucecolortitle));
-            b.tabText3.setTextColor(getResources().getColor(R.color.gray1));
-        }else if(id==2){
-            b.firstHomeimg.setImageDrawable(getResources().getDrawable(R.mipmap.hoem_home_not));
-            b.firstHomeimg2.setImageDrawable(getResources().getDrawable(R.mipmap.home_qiangdan_no));
-            b.firstHomeimg3.setImageDrawable(getResources().getDrawable(R.mipmap.home_mine_yes));
-
-            b.tabText1.setTextColor(getResources().getColor(R.color.gray1));
-            b.tabText2.setTextColor(getResources().getColor(R.color.gray1));
-            b.tabText3.setTextColor(getResources().getColor(R.color.zhucecolortitle));
-        }
-
-    }
-
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -143,7 +125,13 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onPageSelected(int position) {
-        setTab(position);
+        if (prevMenuItem != null) {
+            prevMenuItem.setChecked(false);
+        } else {
+            b.firstTab.getMenu().getItem(0).setChecked(false);
+        }
+        b.firstTab.getMenu().getItem(position).setChecked(true);
+        prevMenuItem =  b.firstTab.getMenu().getItem(position);
     }
 
     @Override

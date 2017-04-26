@@ -52,7 +52,7 @@
             android:windowSoftInputMode="stateUnchanged|adjustPan|stateHidden" />
         <activity
             android:name=".tsActivity.LoginActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
         <activity android:name=".tsActivity.MessageActivity" />
         <activity android:name=".tsActivity.XiangqingActivity" />
         <activity android:name=".tsActivity.ControlJinDuActivity" />
@@ -145,7 +145,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".tsActivity.ShowPdfActivity"></activity>
+        <activity android:name=".tsActivity.ShowPdfActivity" />
     </application>
 
 </manifest>
