@@ -34,7 +34,7 @@ public class WelcomeActivity extends BaseActivity {
                 toLogin();
                 WelcomeActivity.this.finish();
             }
-        }, 2000);
+        }, 1000);
     }
 
 //跳转到登录界面

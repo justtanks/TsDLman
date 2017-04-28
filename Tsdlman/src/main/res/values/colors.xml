@@ -42,4 +42,5 @@
     <color name="color_ff0000">#ff0000</color>
     <color name="registhintcolor">#bababa</color>
     <color name="webcolor">#4691e6</color>
+    <color name="green">#00C853</color>
 </resources>

@@ -18,6 +18,18 @@
             android:text=""
             />
         <TextView
+            android:id="@+id/hadform_zhiding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="13sp"
+            android:layout_toLeftOf="@+id/hadform_paystyle"
+            android:layout_marginEnd="6dp"
+            android:text="(用户指定代理人订单)"
+            android:textColor="@color/green"
+            android:visibility="gone"
+            />
+        <TextView
             android:id="@+id/hadform_paystyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

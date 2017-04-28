@@ -49,8 +49,6 @@ public class HadFormAdapter extends BaseAdapter {
     public void setData(List<FormListnew.DataBean> mlist) {
         this.mlist = mlist;
     }
-
-
     @Override
     public int getCount() {
         if(mlist==null){
@@ -82,6 +80,7 @@ public class HadFormAdapter extends BaseAdapter {
             holder.phone = (RelativeLayout) view.findViewById(R.id.item_hadform_call);
             holder.name = (TextView) view.findViewById(R.id.hadform_username);
             holder.time = (TextView) view.findViewById(R.id.hadform_time);
+            holder.zhiding= (TextView) view.findViewById(R.id.hadform_zhiding);
             view.setTag(holder);
 
         } else {
@@ -93,11 +92,14 @@ public class HadFormAdapter extends BaseAdapter {
 
         //支付状态修改  网络修改和数据库修改
         if(mlist.size()!=0){
-
             if(mlist.get(i).getOrder_wait_pay()==1){
                 holder.ispay.setText("已支付");
+                holder.ispay.setTextColor(context.getResources().getColor(R.color.item_hadformtx2));
+                holder.zhiding.setVisibility(View.INVISIBLE);
             }else {
                 holder.ispay.setText("未支付");
+                holder.ispay.setTextColor(context.getResources().getColor(R.color.color_ff0000));
+                holder.zhiding.setVisibility(View.VISIBLE);
             }
 
             if(mlist.get(i).getOrder_type().equals("企业注册")){
@@ -129,10 +131,7 @@ public class HadFormAdapter extends BaseAdapter {
                     context.startActivity(intent);
                 }
             });
-
         }
-
-
         return view;
     }
 
@@ -145,5 +144,6 @@ public class HadFormAdapter extends BaseAdapter {
         TextView time;
         TextView money;
         String phonenum;
+        TextView zhiding;
     }
 }

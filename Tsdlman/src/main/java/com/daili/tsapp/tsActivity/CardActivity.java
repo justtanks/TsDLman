@@ -265,13 +265,18 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
             public void onSuccess(String result) {
 
                 if (result.substring(0, 18).contains("Error")) {
-                    NetError error = gson.fromJson(result, NetError.class);
-                    if (error.getMsg().equals("0")) {
-                        //没有银行卡
-                        toast("您还没有银行卡");
-                    } else if (error.getMsg().equals("1")) {
-                        Toast.makeText(CardActivity.this, "您还没有进行认证，无法获取银行卡信息", Toast.LENGTH_SHORT).show();
-                    }
+//                    NetError error = gson.fromJson(result, NetError.class);
+//                    if (error.getMsg().equals("0")) {
+//                        //没有银行卡
+//                        toast("您现在没有银行卡银行卡");
+//                        carddatas=new CardsBean();
+//                        adatper.setDatas(carddatas.getData());
+//                    } else if (error.getMsg().equals("1")) {
+//                        Toast.makeText(CardActivity.this, "您还没有进行认证，无法获取银行卡信息", Toast.LENGTH_SHORT).show();
+//                    }
+                    toast("您现在没有银行卡银行卡");
+                    carddatas=new CardsBean();
+                    adatper.setDatas(carddatas.getData());
                 } else {
                     carddatas = gson.fromJson(result, CardsBean.class);
                     adatper.setDatas(carddatas.getData());
