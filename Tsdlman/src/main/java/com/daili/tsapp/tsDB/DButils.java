@@ -18,7 +18,6 @@ import java.util.List;
  * Created by Administrator on 2017/1/4.
  * 数据库操作工具类
  */
-
 public class DButils {
     static DbManager.DaoConfig daoConfig;
   public static  DbManager DB=getDBmanager();

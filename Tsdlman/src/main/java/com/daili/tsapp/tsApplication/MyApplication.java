@@ -22,6 +22,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+import cn.sharesdk.framework.ShareSDK;
+
 
 /**
  * Created by Administrator on 2016/12/28.
@@ -34,6 +36,7 @@ public class MyApplication extends Application {
         super.onCreate();
         x.Ext.init(this);
         initCloudChannel(this);
+
 
     }
 

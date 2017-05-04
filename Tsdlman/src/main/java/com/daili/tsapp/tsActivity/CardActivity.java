@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
 import com.daili.tsapp.R;
 import com.daili.tsapp.databinding.CardBinding;
 import com.daili.tsapp.jsBean.netBean.CardsBean;
@@ -28,7 +29,9 @@ import com.daili.tsapp.tsBase.BaseData;
 import com.daili.tsapp.utils.NetUtils;
 import com.daili.tsapp.utils.SystemUtil;
 import com.google.gson.Gson;
+
 import org.xutils.common.Callback;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,7 +39,6 @@ import java.util.Map;
  * 我的银行卡界面 展示所有银行卡信息
  */
 public class CardActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemLongClickListener, SwipeRefreshLayout.OnRefreshListener {
-
     CardBinding bingding;
     CardListviewAdatper adatper;
     SystemUtil su = new SystemUtil(this);
@@ -201,7 +203,6 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
                 mPopuwindow.dismiss();
             }
         });
-
         password.setOnInputFinishListener(new PwdEditText.OnInputFinishListener() {
             @Override
             public void onInputFinish(String password) {
@@ -250,10 +251,12 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
         });
     }
 
+    //下拉刷新的回调
     @Override
     public void onRefresh() {
         getCardOnNET();
     }
+
 
     //获取到所有的银行卡信息
     private void getCardOnNET() {
@@ -275,7 +278,7 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
 //                        Toast.makeText(CardActivity.this, "您还没有进行认证，无法获取银行卡信息", Toast.LENGTH_SHORT).show();
 //                    }
                     toast("您现在没有银行卡银行卡");
-                    carddatas=new CardsBean();
+                    carddatas = new CardsBean();
                     adatper.setDatas(carddatas.getData());
                 } else {
                     carddatas = gson.fromJson(result, CardsBean.class);

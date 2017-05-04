@@ -25,6 +25,8 @@ import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 
+import cn.sharesdk.framework.ShareSDK;
+
 /**
  * 首页存放tab和fragment的activity  也就是登录界面跳转之后的界面
  */
@@ -44,6 +46,7 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
         b = DataBindingUtil.setContentView(this, R.layout.activity_tab_home);
         currentTime = System.currentTimeMillis();
         MobclickAgent.openActivityDurationTrack(false);
+        ShareSDK.initSDK(this);
         b.firstTab.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         this.setResult(3333);
         initAdapter();

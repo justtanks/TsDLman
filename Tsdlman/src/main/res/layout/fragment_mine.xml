@@ -49,6 +49,17 @@
                 android:layout_marginStart="7dp"
                 android:text="hello"
                 />
+            <TextView
+                android:id="@+id/mine_shoucard"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_toLeftOf="@+id/mine_rezheng"
+                android:text="显示名片"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorPrimary"
+                android:visibility="gone"
+                />
             <RelativeLayout
                 android:id="@+id/mine_rezheng"
                 android:layout_width="120dp"
@@ -299,7 +310,7 @@
         android:layout_height="43dp"
         android:clickable="true"
         android:background="@drawable/selector_mainbutton"
-        >
+         >
         <ImageView
             android:id="@+id/mine_card"
             android:layout_width="wrap_content"

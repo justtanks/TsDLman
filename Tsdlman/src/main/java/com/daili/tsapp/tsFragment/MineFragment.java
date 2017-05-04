@@ -26,6 +26,7 @@ import com.daili.tsapp.tsActivity.KeFuActivity;
 import com.daili.tsapp.tsActivity.MyFormActivity;
 import com.daili.tsapp.tsActivity.PersonalMsgActivity;
 import com.daili.tsapp.tsActivity.SettingActivity;
+import com.daili.tsapp.tsActivity.ShowPersonCardActivity;
 import com.daili.tsapp.tsActivity.TabHomeActivity;
 import com.daili.tsapp.tsBase.BaseData;
 import com.daili.tsapp.tsBase.BaseFragment;
@@ -56,6 +57,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     ProgressDialog dialog;
     TabHomeActivity activity;
     Gson gson = new Gson();
+    LoginBean2.DataBean bean;
     //这个地方的东西使用eventbus实现更好一点
     public MineFragment() {
 
@@ -74,6 +76,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         b.mineYijiedan.setOnClickListener(this);
         b.mineDaipingjia.setOnClickListener(this);
         b.mineYipingjia.setOnClickListener(this);
+        b.mineShoucard.setOnClickListener(this);
         su = new SystemUtil(getActivity());
         setName();
         activity = (TabHomeActivity) getActivity();
@@ -115,8 +118,19 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             case R.id.mine_yipingjia:
                 toform(2);
                 break;
+            case R.id.mine_shoucard:
+                showcard();
+                break;
         }
     }
+
+    //展示个人的名片信息
+    private void showcard() {
+        intent=new Intent(activity, ShowPersonCardActivity.class);
+        intent.putExtra("pic",BaseData.WEBSITE+bean.getWaiter_pic());
+        startActivity(intent);
+    }
+
     private void toform(int id){
         intent = new Intent(activity, MyFormActivity.class);
         intent.putExtra("id",id);
@@ -231,7 +245,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     //设置头像和名字
     private void setName() {
         try {
-            LoginBean2.DataBean bean = DButils.DB.findFirst(LoginBean2.DataBean.class);
+         bean = DButils.DB.findFirst(LoginBean2.DataBean.class);
             if (bean.getWaiter_pic() != null) {
                 String image = bean.getWaiter_pic();
                 if (image.startsWith(".")) {
