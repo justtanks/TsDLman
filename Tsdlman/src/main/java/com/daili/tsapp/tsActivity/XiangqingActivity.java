@@ -306,10 +306,19 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
 
     //复制到粘贴板
     private void setToBoard(String text) {
-        ClipboardManager cm = (ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE);
-        // 将文本内容放到系统剪贴板里。
-        cm.setText(text);
-        Toast.makeText(this, "复制成功", Toast.LENGTH_LONG).show();
+//        ClipboardManager cm = (ClipboardManager) getSystemService(this.CLIPBOARD_SERVICE);
+//        // 将文本内容放到系统剪贴板里。
+//        cm.setText(text);
+//        Toast.makeText(this, "复制成功", Toast.LENGTH_LONG).show();
+        if("http://www.qichengcheng.cnnull".equals(text)){
+            toast("没有图片可以传递");
+            return;
+        }
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
     }
 
     private void showweituo(String url) {

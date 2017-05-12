@@ -65,7 +65,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     ProgressDialog dialog = null;
     Map<String, Boolean> isEnable = new HashMap<>();
     public static String DATAS_KEY = "datas";//使用合伙人代码时候加入的 暂时不要删除
-   Intent intent;
+    Intent intent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,27 +89,28 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     }
 
-  //跳转到首页activity
-    private  void jumpToFindforActivity(){
+    //跳转到首页activity
+    private void jumpToFindforActivity() {
         Intent intent = new Intent(this, TabHomeActivity.class);
-        startActivityForResult(intent,1122);
+        startActivityForResult(intent, 1122);
 
     }
+
     //自动登录 首先处理好数据传输问题 因为是所哟数据一起进行传递，所以需要找个地方访问数据
     private void autoLogin() {
         if ("".equals(su.showPhone()) || su.showPhone() == null || "".equals(su.showPwd()) || su.showPwd() == null) {
             return;
         } else {
             intent = new Intent(this, TabHomeActivity.class);
-            intent.putExtra("isfresh",getIntent().getIntExtra("isfresh",0));
-            startActivityForResult(intent,1122);
+            intent.putExtra("isfresh", getIntent().getIntExtra("isfresh", 0));
+            startActivityForResult(intent, 1122);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==3333){
+        if (resultCode == 3333) {
             finish();
         }
     }
@@ -125,14 +126,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 startActivity(intent);
                 break;
             case R.id.login_forgetpass:
-               getPass();
+                getPass();
                 break;
             case R.id.login_loginbutton:
                 loginToNet();
                 break;
         }
     }
-
 
 
     //登录操作
@@ -157,14 +157,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             public void onSuccess(String result) {
                 if (result != null) {
                     Gson gson = new Gson();
-                    if(result.substring(0,18).contains("Error")){
-                        ErrorBean bean=gson.fromJson(result,ErrorBean.class);
+                    if (result.substring(0, 18).contains("Error")) {
+                        ErrorBean bean = gson.fromJson(result, ErrorBean.class);
                         toast(bean.getMsg());
                         return;
                     }
                     final LoginBean2 bean = gson.fromJson(result, LoginBean2.class);
                     if ("Success".equals(bean.getFlag())) {
-                        saveNameAndPass(name, pasword, bean.getData().get(0).getWaiter_id(),bean.getData().get(0).getIs_renzheng());
+                        saveNameAndPass(name, pasword, bean.getData().get(0).getWaiter_id(), bean.getData().get(0).getIs_renzheng());
                         MobclickAgent.onProfileSignIn(name);
                         new Thread(new Runnable() {
                             @Override
@@ -203,12 +203,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             }
         });
     }
+
     @Override
     public void onBackPressed() {
-        if(dialog!=null&&dialog.isShowing()){
+        if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
             cancel.cancel();
-        }else{
+        } else {
             super.onBackPressed();
         }
     }
@@ -217,8 +218,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     protected void onRestart() {
         super.onRestart();
     }
+
     //保存用户名和密码
-    private void saveNameAndPass(String name, String pass, String uid,int isrenzheng) {
+    private void saveNameAndPass(String name, String pass, String uid, int isrenzheng) {
         su.savePhone(name);
         su.savePwd(pass);
         su.saveUid(Integer.parseInt(uid));
@@ -248,9 +250,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         }
     }
-//跳转到修改密码界面
+
+    //跳转到修改密码界面
     public void getPass() {
-         Intent intent=new Intent(this,GetPassActivity.class);
+        Intent intent = new Intent(this, GetPassActivity.class);
         startActivity(intent);
     }
 
@@ -302,6 +305,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
         }
     }
+
     //设置点击按钮可以点击 及变化颜色
     private void judge() {
         if (isEnable.get("name") && isEnable.get("pass")) {
