@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.daili.tsapp.R;
 import com.daili.tsapp.jsBean.netBean.GetversionBean;
@@ -16,17 +17,21 @@ import com.daili.tsapp.utils.SystemUtil;
 import com.google.gson.Gson;
 
 import org.xutils.common.Callback;
+import org.xutils.x;
 
 public class WelcomeActivity extends BaseActivity {
     SystemUtil su = new SystemUtil(this);
     Intent intent;
     int isFresh=0;
     Handler handler = new Handler();
+    ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStates();
         setContentView(R.layout.activity_welcome);
+        img= (ImageView) findViewById(R.id.welcom_imageView);
+        x.image().bind(img,"http://www.qichengcheng.cn/Uploads/app/index/dailiren.jpg");
         fresh();
         handler.postDelayed(new Runnable() {
             @Override

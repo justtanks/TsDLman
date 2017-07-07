@@ -57,7 +57,7 @@ public class AddcardDoneActivity extends BaseActivity {
         dialog.show();
         Map<String, Object> parm = new HashMap<>();
         parm.put("waiter_id", su.showUid());
-     cancel=   NetUtils.Post(BaseData.GETCARDS, parm, new Callback.CommonCallback<String>() {
+        cancel=   NetUtils.Post(BaseData.GETCARDS, parm, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Gson gson = new Gson();

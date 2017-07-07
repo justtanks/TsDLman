@@ -34,7 +34,6 @@ public class GetPassActivity extends BaseActivity implements View.OnClickListene
         b.getpassBack.setOnClickListener(this);
         b.getpassTijiao.setOnClickListener(this);
         b.getpassTextback.setOnClickListener(this);
-
     }
 
     @Override
@@ -158,7 +157,6 @@ public class GetPassActivity extends BaseActivity implements View.OnClickListene
                     b.getpassBttext.setText(R.string.huoquyanzhengma);
                     break;
             }
-
         }
     };
     Runnable runnable = new Runnable() {

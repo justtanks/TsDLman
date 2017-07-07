@@ -81,7 +81,6 @@ public class ItemWaitformlistAdapter extends BaseAdapter {
             myformHead = (ImageView) view.findViewById(R.id.myform_head);
             myformWaitreceiveTitle = (TextView) view.findViewById(R.id.myform_waitreceive_title);
             myformWaitreceiveFuwufeinum = (TextView) view.findViewById(R.id.myform_waitreceive_fuwufeinum);
-
             myformWaitreceiveGuanfei = (TextView) view.findViewById(R.id.myform_waitreceive_guanfei);
             dingdanhao= (TextView) view.findViewById(R.id.waitform_dingdannum);
             waitformAllmoney = (TextView) view.findViewById(R.id.waitform_allmoney);

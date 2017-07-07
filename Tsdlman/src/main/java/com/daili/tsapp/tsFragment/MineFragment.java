@@ -28,6 +28,7 @@ import com.daili.tsapp.tsActivity.PersonalMsgActivity;
 import com.daili.tsapp.tsActivity.SettingActivity;
 import com.daili.tsapp.tsActivity.ShowPersonCardActivity;
 import com.daili.tsapp.tsActivity.TabHomeActivity;
+import com.daili.tsapp.tsActivity.TuiSongActivity;
 import com.daili.tsapp.tsBase.BaseData;
 import com.daili.tsapp.tsBase.BaseFragment;
 import com.daili.tsapp.tsDB.DButils;
@@ -58,6 +59,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     TabHomeActivity activity;
     Gson gson = new Gson();
     LoginBean2.DataBean bean;
+
     //这个地方的东西使用eventbus实现更好一点
     public MineFragment() {
 
@@ -77,6 +79,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         b.mineDaipingjia.setOnClickListener(this);
         b.mineYipingjia.setOnClickListener(this);
         b.mineShoucard.setOnClickListener(this);
+        b.homeTuisong.setOnClickListener(this);
         su = new SystemUtil(getActivity());
         setName();
         activity = (TabHomeActivity) getActivity();
@@ -121,21 +124,30 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             case R.id.mine_shoucard:
                 showcard();
                 break;
+            case R.id.home_tuisong:
+                toTuisong();
+                break;
         }
+    }
+
+    //跳转到后台推送的用户信息界面
+    private void toTuisong() {
+        startActivity(new Intent(activity, TuiSongActivity.class));
     }
 
     //展示个人的名片信息
     private void showcard() {
-        intent=new Intent(activity, ShowPersonCardActivity.class);
-        intent.putExtra("pic",BaseData.WEBSITE+bean.getWaiter_pic());
+        intent = new Intent(activity, ShowPersonCardActivity.class);
+        intent.putExtra("pic", BaseData.WEBSITE + bean.getWaiter_pic());
         startActivity(intent);
     }
 
-    private void toform(int id){
+    private void toform(int id) {
         intent = new Intent(activity, MyFormActivity.class);
-        intent.putExtra("id",id);
+        intent.putExtra("id", id);
         startActivity(intent);
     }
+
     Callback.Cancelable cancel;
 //跳转到我的订单界面
 //    private void toForms(final int id) {
@@ -177,7 +189,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
 
 
     //跳转到我的银行卡界面
-    private void tocard(){
+    private void tocard() {
         intent = new Intent(activity, CardActivity.class);
         startActivity(intent);
     }
@@ -188,7 +200,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         dialog.show();
         Map<String, Object> parm = new HashMap<>();
         parm.put("waiter_id", su.showUid());
-      cancel=  NetUtils.Post(BaseData.SHANCHANG, parm, new Callback.CommonCallback<String>() {
+        cancel = NetUtils.Post(BaseData.SHANCHANG, parm, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 Gson gson = new Gson();
@@ -245,7 +257,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     //设置头像和名字
     private void setName() {
         try {
-         bean = DButils.DB.findFirst(LoginBean2.DataBean.class);
+            bean = DButils.DB.findFirst(LoginBean2.DataBean.class);
             if (bean.getWaiter_pic() != null) {
                 String image = bean.getWaiter_pic();
                 if (image.startsWith(".")) {
@@ -254,9 +266,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 } else {
                     Picasso.with(getActivity()).load(BaseData.BASEURL + "//" + image).into(b.mineHead);
                 }
-                if(su.showIsRenzheng()==1){
+                if (su.showIsRenzheng() == 1) {
                     b.mineRenzhengtext.setText("代理人");
-                }else{
+                } else {
                     b.mineRenzhengtext.setText("尚未认证");
                 }
             }
