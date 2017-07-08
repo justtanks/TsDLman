@@ -30,6 +30,7 @@ public class SystemUtil {
     private static final String IS_SHOW = "is_show";
     private static final String REGESTERSTATE = "regesterstate";
     private static final String ISRENZHENG = "isrenzheng";
+    private  static  final String HAVENEWUSER="HAVENEWUSER";
     public SystemUtil(Context context) {
         this.context = context;
     }
@@ -82,8 +83,19 @@ public class SystemUtil {
         int isShow = preferences.getInt(IS_SHOW, 0);
         return isShow;
     }
-
-
+    public void saveHaveUser(int num) {
+        SharedPreferences preferences = context.getSharedPreferences(MINE,
+                Context.MODE_PRIVATE);
+        Editor editor = preferences.edit();
+        editor.putInt(HAVENEWUSER, num);
+        editor.commit();
+    }
+    public int showHaveUser() {
+        SharedPreferences preferences = context.getSharedPreferences(MINE,
+                Context.MODE_PRIVATE);
+        int isShow = preferences.getInt(HAVENEWUSER, 0);
+        return isShow;
+    }
     public void savePinlun(int num) {
         SharedPreferences preferences = context.getSharedPreferences(MINE,
                 Context.MODE_PRIVATE);

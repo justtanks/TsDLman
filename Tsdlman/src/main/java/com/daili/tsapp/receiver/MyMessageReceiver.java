@@ -7,8 +7,10 @@ import android.widget.Toast;
 
 import com.alibaba.sdk.android.push.MessageReceiver;
 import com.alibaba.sdk.android.push.notification.CPushMessage;
+import com.daili.tsapp.jsBean.TuiSongBusBean;
 import com.daili.tsapp.tsService.DownLoadHelper;
 import com.daili.tsapp.tsService.UpdateService;
+import com.daili.tsapp.utils.SystemUtil;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -38,12 +40,9 @@ public class MyMessageReceiver extends MessageReceiver {
     @Override
     public void onNotification(Context context, String title, String summary, Map<String, String> extraMap) {
         // TODO 处理推送通知
-        Log.e("MyMessageReceiver", "Receive notification, title: " + title + ", summary: " + summary + ", extraMap: " + extraMap);
-          String tes=   extraMap.get("gengxin");
-          if(tes.equals("1")){
-              DownLoadHelper down=new DownLoadHelper(context);
-              down.startDown();
-          }
+        EventBus.getDefault().postSticky(new TuiSongBusBean(11));
+        new SystemUtil(context).saveHaveUser(1);
+
     }
 
     /*
@@ -71,6 +70,7 @@ public class MyMessageReceiver extends MessageReceiver {
     @Override
     public void onNotificationOpened(Context context, String title, String summary, String extraMap) {
         Log.e("MyMessageReceiver", "onNotificationOpened, title: " + title + ", summary: " + summary + ", extraMap:" + extraMap);
+        EventBus.getDefault().postSticky(new TuiSongBusBean(11));
     }
 
     /*
@@ -96,7 +96,8 @@ public class MyMessageReceiver extends MessageReceiver {
 
     @Override
     protected void onNotificationReceivedInApp(Context context, String title, String summary, Map<String, String> extraMap, int openType, String openActivity, String openUrl) {
-        Log.e("MyMessageReceiver", "onNotificationReceivedInApp, title: " + title + ", summary: " + summary + ", extraMap:" + extraMap + ", openType:" + openType + ", openActivity:" + openActivity + ", openUrl:" + openUrl);
+//        Log.e("MyMessageReceiver", "onNotificationReceivedInApp, title: " + title + ", summary: " + summary + ", extraMap:" + extraMap + ", openType:" + openType + ", openActivity:" + openActivity + ", openUrl:" + openUrl);
+
     }
 
     /*

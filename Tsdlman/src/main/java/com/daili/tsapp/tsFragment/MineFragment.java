@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.daili.tsapp.R;
 import com.daili.tsapp.databinding.FragmentMineBinding;
+import com.daili.tsapp.jsBean.TuiSongBusBean;
 import com.daili.tsapp.jsBean.netBean.CardsBean;
 import com.daili.tsapp.jsBean.netBean.FormlistDateBean;
 import com.daili.tsapp.jsBean.netBean.LoginBean2;
@@ -37,6 +38,9 @@ import com.daili.tsapp.utils.SystemUtil;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.xutils.common.Callback;
 import org.xutils.ex.DbException;
 import org.xutils.http.RequestParams;
@@ -68,6 +72,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        EventBus.getDefault().register(this);
         b = DataBindingUtil.inflate(inflater, R.layout.fragment_mine, container, false);
         b.homeMyset.setOnClickListener(this);
         b.homeMykefu.setOnClickListener(this);
@@ -81,8 +86,14 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         b.mineShoucard.setOnClickListener(this);
         b.homeTuisong.setOnClickListener(this);
         su = new SystemUtil(getActivity());
-        setName();
         activity = (TabHomeActivity) getActivity();
+        if(su.showHaveUser()==1){
+            b.homeHongdian.setVisibility(View.VISIBLE);
+
+        }else{
+            b.homeHongdian.setVisibility(View.GONE);
+        }
+        setName();
         return b.getRoot();
     }
 
@@ -91,7 +102,17 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Override
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(TuiSongBusBean event) {
+        if(event.getSs()==11){
+          b.homeHongdian.setVisibility(View.VISIBLE);
+            Toast.makeText(getContext(),"您有新的注册用户",Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
+        @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.home_myset:
@@ -132,6 +153,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
 
     //跳转到后台推送的用户信息界面
     private void toTuisong() {
+        b.homeHongdian.setVisibility(View.GONE);
+        su.saveHaveUser(0);
         startActivity(new Intent(activity, TuiSongActivity.class));
     }
 
@@ -275,10 +298,21 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
             if (bean.getWaiter_name() != null) {
                 b.mineName.setText(bean.getWaiter_name());
             }
+//            Log.e("receiver",""+bean.getNew_gays()+"newgay");
+//            if(bean.getNew_gays()==1){
+//                b.homeHongdian.setVisibility(View.VISIBLE);
+//            }else{
+//                b.homeHongdian.setVisibility(View.GONE);
+//                su.saveHaveUser(0);
+//            }
         } catch (DbException e) {
             e.printStackTrace();
         }
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

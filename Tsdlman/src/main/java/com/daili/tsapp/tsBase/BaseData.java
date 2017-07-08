@@ -4,15 +4,7 @@ public class BaseData {
 
     //设置重新请求订单的间隔
     public static final int REFRESHTIME = 20000;
-    /*注册信息上传
-     http://localhost/brand/index.php/Home/Index/agent_register/agent_name/姓名(字符串)/agent_id_card/身份证(字符串)/agent_pic/
-     头像(base64图片)/agent_sex/性别(1:男  2:女)/agent_tel/手机号/agent_work_time/工作年限(int)/agent_good_work/擅长业务(int)/agent_password/(密码)
-     */
-/*
-用户注册
-http://192.168.100.33/brand/index.php/Home/Index/agent_register/agent_name/shaowei/agent_id_card/222222222222222
-/agent_pic/000000/agent_sex/1)/agent_tel/15621295399/agent_work_time/工作年限(int)/agent_good_work/擅长业务(int)/agent_password/(密码)
- */
+
     public static final String BASEURL = "http://121.199.32.4:8088";
     public static final String WEBSITE = "http://www.qichengcheng.cn";
     //新订单接口
@@ -20,6 +12,16 @@ http://192.168.100.33/brand/index.php/Home/Index/agent_register/agent_name/shaow
     public static final String BASEIMG = "http://121.199.32.4:8088";
     //brand/index.php/Home/Index/sendcode/agent_tel/18266142739  短信验证
     public static final String DUANXINYANZHENG = BASEURL + "/index.php/Home/Index/sendcode/";
+
+    /*注册信息上传
+   http://localhost/brand/index.php/Home/Index/agent_register/agent_name/姓名(字符串)/agent_id_card/身份证(字符串)/agent_pic/
+   头像(base64图片)/agent_sex/性别(1:男  2:女)/agent_tel/手机号/agent_work_time/工作年限(int)/agent_good_work/擅长业务(int)/agent_password/(密码)
+   */
+/*
+用户注册
+http://192.168.100.33/brand/index.php/Home/Index/agent_register/agent_name/shaowei/agent_id_card/222222222222222
+/agent_pic/000000/agent_sex/1)/agent_tel/15621295399/agent_work_time/工作年限(int)/agent_good_work/擅长业务(int)/agent_password/(密码)
+ */
     //用户注册
     public static final String REGISTER = BASEURL + "/index.php/Home/Index/agent_register/";
 

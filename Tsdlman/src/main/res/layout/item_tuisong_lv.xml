@@ -41,8 +41,8 @@
 
     <ImageView
         android:id="@+id/tuisong_lv_hongdian"
-        android:layout_width="9dp"
-        android:layout_height="9dp"
+        android:layout_width="7dp"
+        android:layout_height="7dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:layout_marginEnd="10dp"

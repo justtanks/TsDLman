@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.TextView
 import com.daili.tsapp.R
-
+//展示所有用户的activity
 class ShowUseActivity : AppCompatActivity() {
 
     private var mTextMessage: TextView? = null

@@ -93,7 +93,16 @@ public class LoginBean2 {
         private int is_renzheng;
        @Column(name = "evaluate_num")
        private int evaluate_num;
+       @Column(name = "new_gays")
+       private int new_gays;
 
+       public int getNew_gays() {
+           return new_gays;
+       }
+
+       public void setNew_gays(int new_gays) {
+           this.new_gays = new_gays;
+       }
 
        public int getEvaluate_num() {
            return evaluate_num;
