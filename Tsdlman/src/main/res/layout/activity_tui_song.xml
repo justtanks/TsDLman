@@ -41,9 +41,44 @@
             android:layout_marginStart="15dp"
             android:src="@mipmap/fanhui" />
     </RelativeLayout>
-    <ListView
-        android:id="@+id/tuisong_lv"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/tuisong_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </ListView>
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ListView
+                android:id="@+id/tuisong_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                >
+            </ListView>
+            <RelativeLayout
+                android:id="@+id/tuisong_relativelayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/users_nonet"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="100dp"
+                    />
+                <TextView
+                    android:id="@+id/tuisong_errmsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="200dp"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp"
+                    android:text="@string/notconnetserver"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

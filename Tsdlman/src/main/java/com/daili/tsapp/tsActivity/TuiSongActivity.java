@@ -5,12 +5,14 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.daili.tsapp.R;
 import com.daili.tsapp.jsBean.netBean.ErrorBean;
@@ -31,11 +33,15 @@ import java.util.Map;
 
 import static com.daili.tsapp.R.mipmap.phone;
 
-public class TuiSongActivity extends BaseActivity {
+//展示新注册用户的activity
+public class TuiSongActivity extends BaseActivity implements SwipeRefreshLayout.OnRefreshListener {
     ListView mListView;
-    private  List<TuiSongUserBean.MsgBean> datas=new ArrayList<>();
+    private List<TuiSongUserBean.MsgBean> datas = new ArrayList<>();
     private TuiSongAdapter adapter;
     AlertDialog.Builder builder;
+    SwipeRefreshLayout swipe;
+    RelativeLayout mRelativeLayout;
+    TextView errormsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +52,18 @@ public class TuiSongActivity extends BaseActivity {
 
     private void init() {
         builder = new AlertDialog.Builder(this);
-        mListView= (ListView) findViewById(R.id.tuisong_lv);
-       findViewById(R.id.tuisong_back).setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               onBackPressed();
-           }
-       });
-        adapter=new TuiSongAdapter(this,datas);
+        mListView = (ListView) findViewById(R.id.tuisong_lv);
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.tuisong_relativelayout);
+        swipe = (SwipeRefreshLayout) findViewById(R.id.tuisong_refresh);
+        swipe.setColorSchemeResources(android.R.color.holo_blue_bright);
+        errormsg = (TextView) findViewById(R.id.tuisong_errmsg);
+        findViewById(R.id.tuisong_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        adapter = new TuiSongAdapter(this, datas);
         mListView.setAdapter(adapter);
         getDataOnNet();
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -66,15 +76,16 @@ public class TuiSongActivity extends BaseActivity {
                 popDialog(position);
             }
         });
-
+        swipe.setOnRefreshListener(this);
     }
+
     //弹出dialog 询问是否打电话
     private void popDialog(final int position) {
         builder.setTitle("确定要进行电话沟通？");
         builder.setCancelable(false).setPositiveButton("是", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                 changeUserCase(position);
+                changeUserCase(position);
                 dialog.cancel();
             }
         }).setNegativeButton("否", new DialogInterface.OnClickListener() {
@@ -87,12 +98,13 @@ public class TuiSongActivity extends BaseActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
     //改变用户的是否打过电话的状态  改变界面状态  然后跳转到打电话界面
-    private void changeUserCase(final  int position){
+    private void changeUserCase(final int position) {
         datas.get(position).setNew_gays(0);
         adapter.setDatas(datas);
-        Map<String,Object> param=new HashMap<>();
-        param.put("waiter_id",datas.get(position).getId());
+        Map<String, Object> param = new HashMap<>();
+        param.put("waiter_id", datas.get(position).getId());
         NetUtils.Post(BaseData.QUXIAOBIAOJI, param, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
@@ -114,34 +126,39 @@ public class TuiSongActivity extends BaseActivity {
 
             }
         });
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+datas.get(position).getUser_telphone()));
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + datas.get(position).getUser_telphone()));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
 
-
     //获取用户列表
-    private  void getDataOnNet(){
+    private void getDataOnNet() {
 
         NetUtils.Post(BaseData.ALLNEWUSER, new HashMap<String, Object>(), new Callback.CommonCallback<String>() {
 
             @Override
             public void onSuccess(String result) {
-                if(result.substring(0,18).contains("Error")){
-                    ErrorBean err=new Gson().fromJson(result,ErrorBean.class);
+                if (result.substring(0, 18).contains("Error")) {
+                    ErrorBean err = new Gson().fromJson(result, ErrorBean.class);
                     toast(err.getMsg());
+                    mListView.setVisibility(View.GONE);
+                    mRelativeLayout.setVisibility(View.VISIBLE);
+                    errormsg.setText(err.getMsg());
                     return;
                 }
-                TuiSongUserBean  data=new Gson().fromJson(result,TuiSongUserBean.class);
-                datas=data.getMsg();
+                TuiSongUserBean data = new Gson().fromJson(result, TuiSongUserBean.class);
+                datas = data.getMsg();
                 adapter.setDatas(datas);
-
+                mListView.setVisibility(View.VISIBLE);
+                mRelativeLayout.setVisibility(View.GONE);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                  toast("出现错误，请检查网络并重新进入界面");
+                mRelativeLayout.setVisibility(View.VISIBLE);
+                mListView.setVisibility(View.GONE);
+                errormsg.setText(getResources().getString(R.string.notconnetserver));
             }
 
             @Override
@@ -151,8 +168,13 @@ public class TuiSongActivity extends BaseActivity {
 
             @Override
             public void onFinished() {
-
+                swipe.setRefreshing(false);
             }
         });
+    }
+
+    @Override
+    public void onRefresh() {
+        getDataOnNet();
     }
 }
