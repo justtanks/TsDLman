@@ -50,7 +50,7 @@ public class GetPassActivity extends BaseActivity implements View.OnClickListene
                 break;
         }
     }
-   //tel/18266142739/new_password/123456
+   //tel/18266142739/new_password/123456   重新设计用户名和密码
     private void changePassOnNet() {
         String phone = b.getpassPhone.getText().toString();
         String psw = b.getpassPass.getText().toString();

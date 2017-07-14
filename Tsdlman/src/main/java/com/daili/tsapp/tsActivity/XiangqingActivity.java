@@ -198,7 +198,7 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
         return null;
     }
 
-    //通过popuwindow 查看大图
+    //通过popuwindow 查看大图  暂时没有使用
     private void showBigImage() {
         View popupView = getLayoutInflater().inflate(R.layout.xiangqing_bigimge, null);
         ImageView bigimage = (ImageView) popupView.findViewById(R.id.xiangqing_bigimage);
@@ -334,14 +334,14 @@ public class XiangqingActivity extends BaseActivity implements View.OnClickListe
         }
     }
 
-    private void showzhizhao() {
-    }
-
-    private void showhetong() {
-    }
-
-    private void showshenfen() {
-    }
+//    private void showzhizhao() {
+//    }
+//
+//    private void showhetong() {
+//    }
+//
+//    private void showshenfen() {
+//    }
 
     //显示并且添加进度 跳转到进度展示界面 通过网络获取到现在的进度，并传递两个对象
     //一个是网络获取的进度数据，一个是订单数据

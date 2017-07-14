@@ -65,14 +65,43 @@
         android:layout_marginEnd="15dp"
         android:layout_marginTop="14dp"
         >
-    <ListView
-        android:id="@+id/card_lv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:divider="#00000000"
-        android:dividerHeight="2dp"
-        ></ListView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ListView
+                android:id="@+id/card_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:divider="#00000000"
+                android:dividerHeight="2dp"
+                android:visibility="gone"
+                ></ListView>
+            <RelativeLayout
+                android:id="@+id/card_relative"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/users_nonet"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="100dp"
+                    />
+                <TextView
+                    android:id="@+id/card_tishi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/notconnetserver"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="200dp"
+                    android:textColor="@color/gray"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
 </layout>

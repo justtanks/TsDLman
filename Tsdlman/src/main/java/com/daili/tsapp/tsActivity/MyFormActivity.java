@@ -136,6 +136,7 @@ public class MyFormActivity extends BaseActivity implements View.OnClickListener
         position_three = position_one * 3;
     }
 
+    //设置文字tab文字颜色
     private void setTextColor(int currIndex) {
         for (TextView ts : textViews) {
             ts.setTextColor(getResources().getColor(R.color.gray3));
@@ -226,7 +227,7 @@ public class MyFormActivity extends BaseActivity implements View.OnClickListener
             b.orderViewpager.setCurrentItem(index);
         }
     }
-
+//访问网络获取到所有订单信息 根据用户id
     private void fresh() {
         b.formFresh.setRefreshing(true);
         Map<String, Object> parm = new HashMap<>();

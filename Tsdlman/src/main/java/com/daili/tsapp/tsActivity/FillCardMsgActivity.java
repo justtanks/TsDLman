@@ -51,12 +51,12 @@ public class FillCardMsgActivity extends BaseActivity implements View.OnClickLis
         }
 
     }
-
+//展示代理人协议界面
     private void agree() {
         Intent intent=new Intent(this,AgreeMentActivity.class);
         startActivity(intent);
     }
-
+//跳转到下一步骤界面 验证手机号正确性
     private void jumpTonext(){
         String text=binding.fillcarmsgPhone.getText().toString();
         if(!StringUtils.isPhone(text)){
@@ -69,6 +69,7 @@ public class FillCardMsgActivity extends BaseActivity implements View.OnClickLis
         intent.putExtra("cardnum",carnum);
         startActivity(intent);
     }
+    //控制下一步按钮是否可以点击
     class PhonetexWatcher implements TextWatcher{
 
         @Override

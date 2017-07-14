@@ -268,7 +268,7 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
             public void onSuccess(String result) {
 
                 if (result.substring(0, 18).contains("Error")) {
-//                    NetError error = gson.fromJson(result, NetError.class);
+                    NetError error = gson.fromJson(result, NetError.class);
 //                    if (error.getMsg().equals("0")) {
 //                        //没有银行卡
 //                        toast("您现在没有银行卡银行卡");
@@ -277,10 +277,14 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
 //                    } else if (error.getMsg().equals("1")) {
 //                        Toast.makeText(CardActivity.this, "您还没有进行认证，无法获取银行卡信息", Toast.LENGTH_SHORT).show();
 //                    }
-                    toast("您现在没有银行卡银行卡");
-                    carddatas = new CardsBean();
-                    adatper.setDatas(carddatas.getData());
+                    bingding.cardLv.setVisibility(View.GONE);
+                    bingding.cardRelative.setVisibility(View.VISIBLE);
+                    bingding.cardTishi.setText(error.getMsg());
+//                    carddatas = new CardsBean();
+//                    adatper.setDatas(carddatas.getData());
                 } else {
+                    bingding.cardLv.setVisibility(View.VISIBLE);
+                    bingding.cardRelative.setVisibility(View.GONE);
                     carddatas = gson.fromJson(result, CardsBean.class);
                     adatper.setDatas(carddatas.getData());
                 }
@@ -289,6 +293,8 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 toast(getString(R.string.getcardagain));
+                bingding.cardLv.setVisibility(View.GONE);
+                bingding.cardRelative.setVisibility(View.VISIBLE);
             }
 
             @Override

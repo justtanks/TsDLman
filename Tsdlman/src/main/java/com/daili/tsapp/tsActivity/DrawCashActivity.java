@@ -211,7 +211,6 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
                     NetError error = gson.fromJson(result, NetError.class);
                     toast(error.getMsg());
                     error = null;
-                    return;
                 } else {
                     DrawCashDoneBean bean = gson.fromJson(result, DrawCashDoneBean.class);
                     if (bean != null && "Success".equalsIgnoreCase(bean.getFlag())) {
@@ -264,7 +263,7 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
 
             String money = moneyEdit.getText().toString();
 
-            if (money == null || "".equals(money)) {
+            if ("".equals(money)) {
                 setButton(false);
                 return;
             }
@@ -273,7 +272,6 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
                 if (num > largestMoney) {
                     toast("超出可提现余额，不能提现");
                     setButton(false);
-                    return;
                 } else {
                     setButton(true);
                 }
@@ -303,9 +301,9 @@ public class DrawCashActivity extends BaseActivity implements View.OnClickListen
         super.onBackPressed();
     }
 
-    private void setButtonBack(int text) {
-
-    }
+//    private void setButtonBack(int text) {
+//
+//    }
 
     Callback.Cancelable cancel;
     /*

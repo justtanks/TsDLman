@@ -1,9 +1,14 @@
 package com.daili.tsapp.tsActivity;
 
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -30,16 +35,18 @@ import cn.sharesdk.framework.ShareSDK;
 /**
  * 首页存放tab和fragment的activity  也就是登录界面跳转之后的界面
  */
-public class TabHomeActivity extends BaseActivity implements View.OnClickListener,ViewPager.OnPageChangeListener{
+public class TabHomeActivity extends BaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
     TabHomeBinding b;
     //建立三个fragment
-    HomeFragment fra1=new HomeFragment();
-    GetOrderFragment fra2=new GetOrderFragment();
-    MineFragment fra3= new MineFragment();
-    private ArrayList<Fragment> fragmentList=new ArrayList<>();
+    HomeFragment fra1 = new HomeFragment();
+    GetOrderFragment fra2 = new GetOrderFragment();
+    MineFragment fra3 = new MineFragment();
+    private ArrayList<Fragment> fragmentList = new ArrayList<>();
     private long currentTime;
     AlertDialog.Builder builder;
     MenuItem prevMenuItem;
+    NetChangeReceiver nr;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +58,21 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
         this.setResult(3333);
         initAdapter();
         getFresh();
+        registBroadcaseReceiver();
 
     }
+    //添加网络变化的广播
+    private void registBroadcaseReceiver(){
+        nr=new NetChangeReceiver();
+        IntentFilter inf=new IntentFilter();
+        inf.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(nr,inf);
+    }
+
     //显示是否具有新版本并进行更新
-    private  void getFresh(){
-        if(getIntent().getIntExtra("isfresh",0)==1){
-               showDialog();
+    private void getFresh() {
+        if (getIntent().getIntExtra("isfresh", 0) == 1) {
+            showDialog();
         }
 
     }
@@ -68,7 +84,7 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.action_home:
-                     b.firstPager.setCurrentItem(0);
+                    b.firstPager.setCurrentItem(0);
                     return true;
                 case R.id.action_qiangdan:
                     b.firstPager.setCurrentItem(1);
@@ -81,6 +97,7 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
         }
 
     };
+
     //弹出对话框
     private void showDialog() {
         builder = new AlertDialog.Builder(this);
@@ -89,7 +106,7 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
                 setCancelable(false).setPositiveButton("是", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent service = new Intent(TabHomeActivity.this,UpdateService.class);
+                Intent service = new Intent(TabHomeActivity.this, UpdateService.class);
                 startService(service);
                 dialog.cancel();
             }
@@ -105,7 +122,7 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
     }
 
 
-    void initAdapter(){
+    void initAdapter() {
         fragmentList.add(fra1);
         fragmentList.add(fra2);
         fragmentList.add(fra3);
@@ -114,9 +131,10 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
         b.firstPager.setAdapter(new OrderFragmentPagerAdapter(getSupportFragmentManager(), fragmentList));//解决fragment嵌套问题
         b.firstPager.addOnPageChangeListener(this);
     }
+
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
         }
     }
@@ -134,13 +152,14 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
             b.firstTab.getMenu().getItem(0).setChecked(false);
         }
         b.firstTab.getMenu().getItem(position).setChecked(true);
-        prevMenuItem =  b.firstTab.getMenu().getItem(position);
+        prevMenuItem = b.firstTab.getMenu().getItem(position);
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
 
     }
+
     @Override
     public void onBackPressed() {
         long time = System.currentTimeMillis();
@@ -151,5 +170,33 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
         }
 
         super.onBackPressed();
-     }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(nr);
+    }
+
+    class NetChangeReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
+                NetworkInfo info = intent
+                        .getParcelableExtra(ConnectivityManager.EXTRA_NETWORK_INFO);
+                if (info != null) {
+                    if (NetworkInfo.State.CONNECTED == info.getState() && info.isAvailable()) {
+                        if (info.getType() == ConnectivityManager.TYPE_WIFI
+                                || info.getType() == ConnectivityManager.TYPE_MOBILE) {
+                            b.firstTishi.setVisibility(View.GONE);
+                        }
+                    } else {
+                        b.firstTishi.setVisibility(View.VISIBLE);
+                    }
+
+                }
+            }
+        }
+    }
 }
