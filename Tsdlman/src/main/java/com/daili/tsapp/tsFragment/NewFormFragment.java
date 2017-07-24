@@ -96,7 +96,6 @@ public class NewFormFragment extends BaseEventFragment {
     /*
     请求网络  找到订单  定时
      */
-
     private void searchFormOnNet() {
         cancelable = Xutils.Post(BaseData.XINDINGDAN, new HashMap<String, Object>(), new Callback.CommonCallback<String>() {
             @Override
