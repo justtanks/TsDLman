@@ -9,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -74,6 +75,24 @@ public class TuiSongActivity extends BaseActivity implements SwipeRefreshLayout.
 //                    return;
 //                }
                 popDialog(position);
+            }
+        });
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                boolean enable = false;
+                if (mListView != null && mListView.getChildCount() > 0) {
+                    boolean firstItemVisible = mListView.getFirstVisiblePosition() == 0;
+                    boolean topOfFirstItemVisible =mListView.getChildAt(0).getTop() == 0;
+                    enable = firstItemVisible && topOfFirstItemVisible;
+                }
+               swipe.setEnabled(enable);
+
             }
         });
         swipe.setOnRefreshListener(this);
@@ -142,7 +161,7 @@ public class TuiSongActivity extends BaseActivity implements SwipeRefreshLayout.
                 if (result.substring(0, 18).contains("Error")) {
                     ErrorBean err = new Gson().fromJson(result, ErrorBean.class);
                     toast(err.getMsg());
-                    mListView.setVisibility(View.GONE);
+                    mListView.setVisibility(View.INVISIBLE);
                     mRelativeLayout.setVisibility(View.VISIBLE);
                     errormsg.setText(err.getMsg());
                     return;
@@ -157,7 +176,7 @@ public class TuiSongActivity extends BaseActivity implements SwipeRefreshLayout.
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 mRelativeLayout.setVisibility(View.VISIBLE);
-                mListView.setVisibility(View.GONE);
+                mListView.setVisibility(View.INVISIBLE);
                 errormsg.setText(getResources().getString(R.string.notconnetserver));
             }
 

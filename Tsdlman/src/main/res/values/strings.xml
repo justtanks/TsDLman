@@ -153,7 +153,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_show_use">ShowUseActivity</string>
-    <string name="mine_tuisong">后台信息</string>
+    <string name="mine_tuisong">新用户注册</string>
     <string name="userlist">用户列表</string>
     <string name="notconnetserver">无法连接服务器</string>
     <string name="cannotconnectnet">网络无法连接</string>

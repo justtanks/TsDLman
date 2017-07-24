@@ -42,6 +42,10 @@ public class MyMessageReceiver extends MessageReceiver {
         // TODO 处理推送通知
         EventBus.getDefault().postSticky(new TuiSongBusBean(11));
         new SystemUtil(context).saveHaveUser(1);
+        for(String s:extraMap.keySet()){
+            Log.e("hello",s);
+            Log.e("hello",extraMap.get(s));
+        }
     }
 
     /*

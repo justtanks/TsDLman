@@ -120,7 +120,7 @@
         android:layout_toRightOf="@id/mine_form"
         android:layout_centerVertical="true"
         android:layout_marginStart="7dp"
-        android:text="我的订单"
+        android:text="新的订单"
         />
 
     <ImageView

@@ -1,5 +1,4 @@
 package com.daili.tsapp.tsAdapter;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -15,19 +14,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.daili.tsapp.R;
-import com.daili.tsapp.jsBean.daoBean.Testuser;
 import com.daili.tsapp.jsBean.netBean.FormListnew;
 import com.daili.tsapp.tsBase.BaseData;
-import com.daili.tsapp.utils.CameraManager;
-
 import org.xutils.x;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
-
 /**
  * Created by Administrator on 2017/1/5.
  * 已经抢到的订单界面的listview的adapter

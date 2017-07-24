@@ -4,6 +4,7 @@ package com.ts.databending.activity;
  */
 import android.databinding.DataBindingUtil;
  import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,16 @@ public class Binding1Fragment extends Fragment {
         stu=new FucBean();
         ben.setFuck(stu);
         stu.mystring.set("hahha");
+
         return ben.getRoot();
+
     }
-    //有机会的话组建自己的家庭
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //设置保存状态是true
+        setRetainInstance(true);
+    }
 }

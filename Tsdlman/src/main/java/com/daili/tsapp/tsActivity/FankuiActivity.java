@@ -25,7 +25,6 @@ import java.util.Map;
 public class FankuiActivity extends BaseActivity implements View.OnClickListener {
 
     ActivityFankuiBinding b;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +76,6 @@ public class FankuiActivity extends BaseActivity implements View.OnClickListener
 
             @Override
             public void onCancelled(CancelledException cex) {
-
             }
 
             @Override

@@ -68,7 +68,7 @@
              android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="30dp"
-             android:text=""
+             android:text="400-66-10369"
             />
 
         <ImageView

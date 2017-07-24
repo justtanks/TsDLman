@@ -63,7 +63,6 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
         bingding.cardLv.setOnItemLongClickListener(this);
         adatper = new CardListviewAdatper(this, carddatas.getData());
         bingding.cardLv.setAdapter(adatper);
-
     }
 
     private void setCircle() {

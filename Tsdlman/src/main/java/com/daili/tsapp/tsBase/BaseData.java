@@ -7,6 +7,8 @@ public class BaseData {
 
     public static final String BASEURL = "http://121.199.32.4:8088";
     public static final String WEBSITE = "http://www.qichengcheng.cn";
+
+    //http://www.qichengcheng.cn/index.php/Home/Index/wait_order_taking.html
     //新订单接口
     public static final String XINDINGDAN = BASEURL + "/index.php/Home/Index/wait_order_taking.html";
     public static final String BASEIMG = "http://121.199.32.4:8088";
@@ -45,9 +47,7 @@ http://192.168.100.33/brand/index.php/Home/Index/agent_register/agent_name/shaow
    http://121.199.32.4:8088/index.php/Home/Index/get_type  获取进度列表  不使用了
     */
 //    public  static  final  String JINDULIEBIAO="http://121.199.32.4:8088/index.php/Home/Index/get_type";
-
-
-    //    http://121.199.32.4:8088/index.php/Home/index/get_all_evaluate/waiter_id/2  获取所有评论列表
+    //http://121.199.32.4:8088/index.php/Home/index/get_all_evaluate/waiter_id/2  获取所有评论列表
     public static final String PINGLUN = BASEURL + "/index.php/Home/index/get_all_evaluate";
 
     //http://www.qichengcheng.cn/index.php/Home/Index/get_order_type/order_id/126    请求订单进度展示的接口
@@ -97,10 +97,15 @@ http://192.168.100.33/brand/index.php/Home/Index/agent_register/agent_name/shaow
     public static final  String SHARECARD=WEBSITE+"/index.php/Home/Brand/waiter_share/waiter_id/";
 
     //获取所有使用用户注册列表
-    public static final String   ALLNEWUSER="http://www.qichengcheng.cn/Home/Waiter/user_list";
+    public static final String   ALLNEWUSER=BASEURL+"/Home/Waiter/user_list";
 
     //http://www.qichengcheng.cn/Home/Waiter/remove_new_gay/waiter_id/1  取消新注册用户标记，表示已经有人联系
     public static  final  String QUXIAOBIAOJI =BASEURL+"/Home/Waiter/remove_new_gay";
+
+    //http://www.qichengcheng.cn/index.php/Home/Waiter/user_order_list  智能下单新订单列表
+    public static final String NEWORDER=BASEURL+"/index.php/Home/Waiter/user_order_list";
+    //http://www.qichengcheng.cn/index.php/Home/Waiter/remove_new_list/order_id/17  根据订单id取消标记
+    public static  final String CHANGEORDERSTATE=BASEURL+"/index.php/Home/Waiter/remove_new_list/";
 
     //语音合成key
 //    public static final String YUYINAPPID = "9215030";

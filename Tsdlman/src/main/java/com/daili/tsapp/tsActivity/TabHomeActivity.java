@@ -61,12 +61,13 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
         registBroadcaseReceiver();
 
     }
+
     //添加网络变化的广播
-    private void registBroadcaseReceiver(){
-        nr=new NetChangeReceiver();
-        IntentFilter inf=new IntentFilter();
+    private void registBroadcaseReceiver() {
+        nr = new NetChangeReceiver();
+        IntentFilter inf = new IntentFilter();
         inf.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(nr,inf);
+        registerReceiver(nr, inf);
     }
 
     //显示是否具有新版本并进行更新

@@ -70,8 +70,6 @@ public class DownLoadHelper {
         //执行的数据类型
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setDataAndType(uri, "application/vnd.android.package-archive");
-        //不加下面这句话是可以的，查考的里面说如果不加上这句的话在apk安装完成之后点击单开会崩溃
-        // android.os.Process.killProcess(android.os.Process.myPid());
         context.startActivity(intent);
     }
 }

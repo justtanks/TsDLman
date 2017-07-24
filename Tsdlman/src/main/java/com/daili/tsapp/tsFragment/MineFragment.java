@@ -25,6 +25,7 @@ import com.daili.tsapp.tsActivity.CardActivity;
 import com.daili.tsapp.tsActivity.FankuiActivity;
 import com.daili.tsapp.tsActivity.KeFuActivity;
 import com.daili.tsapp.tsActivity.MyFormActivity;
+import com.daili.tsapp.tsActivity.NewOrderActivity;
 import com.daili.tsapp.tsActivity.PersonalMsgActivity;
 import com.daili.tsapp.tsActivity.SettingActivity;
 import com.daili.tsapp.tsActivity.ShowPersonCardActivity;
@@ -131,7 +132,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 tocard();
                 break;
             case R.id.home_myform:
-                toform(0);
+               startActivity(new Intent(getActivity(), NewOrderActivity.class));
                 break;
             case R.id.mine_yijiedan:
                 toform(0);

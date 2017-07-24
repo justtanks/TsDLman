@@ -122,21 +122,15 @@ public class GetPassActivity extends BaseActivity implements View.OnClickListene
                 yanzheng = phoneMsg.getMsg();
                 userphone = phone;
             }
-
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 toast(getString(R.string.net_error));
-
             }
-
             @Override
             public void onCancelled(CancelledException cex) {
-
             }
-
             @Override
             public void onFinished() {
-
             }
         });
 
