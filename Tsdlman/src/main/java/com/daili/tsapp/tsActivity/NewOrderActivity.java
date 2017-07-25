@@ -7,6 +7,7 @@ import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -90,7 +91,6 @@ public class NewOrderActivity extends BaseActivity implements SwipeRefreshLayout
         }).setNegativeButton("否", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 dialog.cancel();
             }
         });
@@ -101,16 +101,16 @@ public class NewOrderActivity extends BaseActivity implements SwipeRefreshLayout
     //点击打电话之后改变界面的状态和服务器的关于订单的一个状态
     private void changeUserCase(int position) {
         Map<String,Object>param=new HashMap<>();
-        param.put("order_id",datas.get(position));
+        param.put("order_id",datas.get(position).getId());
         NetUtils.Post(BaseData.CHANGEORDERSTATE, param, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-
+                loge(result);
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-
+                loge("hava  some error in it");
             }
 
             @Override

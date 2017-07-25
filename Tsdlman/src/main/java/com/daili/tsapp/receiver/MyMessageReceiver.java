@@ -40,16 +40,29 @@ public class MyMessageReceiver extends MessageReceiver {
     @Override
     public void onNotification(Context context, String title, String summary, Map<String, String> extraMap) {
         // TODO 处理推送通知
-        EventBus.getDefault().postSticky(new TuiSongBusBean(11));
-        new SystemUtil(context).saveHaveUser(1);
-        for(String s:extraMap.keySet()){
-            Log.e("hello",s);
-            Log.e("hello",extraMap.get(s));
+
+        //根据服务端传过来数据键值key对分为四种业务 1，新用户注册  2，app的订单，3抢单订单  4，选择代理人下单
+        int value=Integer.parseInt(extraMap.get("key"));
+        switch (value){
+            case 1:
+                EventBus.getDefault().postSticky(new TuiSongBusBean(1));//传值1 表示在应用内改变相关界面标识的值
+                new SystemUtil(context).saveHaveUser(1);
+                break;
+            case  2:
+                EventBus.getDefault().postSticky(new TuiSongBusBean(2));
+                new SystemUtil(context).saveHaveNewAppOrder(1);
+                break;
+            case 3:
+                break;
+            case  4:
+                EventBus.getDefault().postSticky(new TuiSongBusBean(4));
+                break;
         }
+
     }
 
     /*
-    消息接收回调             不会显示到通知栏
+    消息接收回调不会显示到通知栏
     用于接收服务端推送的消息。
     消息不会弹窗，而是回调该方法。
     类型，可以获取消息Id、消息标题和内容。

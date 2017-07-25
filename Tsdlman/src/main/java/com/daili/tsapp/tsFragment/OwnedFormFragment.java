@@ -1,12 +1,7 @@
 package com.daili.tsapp.tsFragment;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -15,7 +10,8 @@ import android.widget.Toast;
 import com.daili.tsapp.R;
 import com.daili.tsapp.jsBean.HadFormNum;
 import com.daili.tsapp.jsBean.daoBean.FormEvent;
-import com.daili.tsapp.jsBean.netBean.FormListnew;
+import com.daili.tsapp.jsBean.netBean.NewFormsBean;
+import com.daili.tsapp.jsBean.netBean.OwnFormsBean;
 import com.daili.tsapp.tsActivity.XiangqingActivity;
 import com.daili.tsapp.tsAdapter.HadFormAdapter;
 import com.daili.tsapp.tsBase.BaseData;
@@ -23,16 +19,11 @@ import com.daili.tsapp.tsDB.DButils;
 import com.daili.tsapp.tsNet.Xutils;
 import com.daili.tsapp.utils.SystemUtil;
 import com.google.gson.Gson;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.DbManager;
 import org.xutils.common.Callback;
-import org.xutils.ex.DbException;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,10 +46,10 @@ public class OwnedFormFragment extends BaseEventFragment implements AdapterView.
     PtrClassicFrameLayout pulltorefresh;
     @ViewInject(R.id.fragment_hadform_list)
     ListView listView;
-    List<FormListnew.DataBean> users;
     private HadFormAdapter hadFormAdapter;
     private SystemUtil su;
     private  static  int REFRESH=3;
+    private OwnFormsBean mOwnFormsBean;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -87,32 +78,32 @@ public class OwnedFormFragment extends BaseEventFragment implements AdapterView.
     private void init() {
         su=new SystemUtil(getContext());
         setPulltorefresh();
-        hadFormAdapter = new HadFormAdapter(new ArrayList<FormListnew.DataBean>(), getContext());
+        hadFormAdapter = new HadFormAdapter(new ArrayList<OwnFormsBean.DataBean>(), getContext());
         listView.setAdapter(hadFormAdapter);
         listView.setOnItemClickListener(this);
         getAllFormsFromNet();
 
     }
 
-    // 刷新数据
-    private void fresh() {
-        //访问网络，然后将数据下载,更新数据库
-        users = getFormFromDB();
-        if (users != null) {
-            EventBus.getDefault().post(new HadFormNum(users.size()));
-            listView.setVisibility(View.VISIBLE);
-            relativeLayout.setVisibility(View.GONE);
-            hadFormAdapter.setData(users);
-            hadFormAdapter.notifyDataSetChanged();
-        } else {
-            EventBus.getDefault().post(new HadFormNum(0));
-            listView.setVisibility(View.GONE);
-            relativeLayout.setVisibility(View.VISIBLE);
-
-
-        }
-        pulltorefresh.refreshComplete();
-    }
+//    // 刷新数据
+//    private void fresh() {
+//        //访问网络，然后将数据下载,更新数据库  改变从数据库获取数据的方式
+//        users = getFormFromDB();
+//        if (users != null) {
+//            EventBus.getDefault().post(new HadFormNum(users.size()));
+//            listView.setVisibility(View.VISIBLE);
+//            relativeLayout.setVisibility(View.GONE);
+//            hadFormAdapter.setData(users);
+//            hadFormAdapter.notifyDataSetChanged();
+//        } else {
+//            EventBus.getDefault().post(new HadFormNum(0));
+//            listView.setVisibility(View.GONE);
+//            relativeLayout.setVisibility(View.VISIBLE);
+//
+//
+//        }
+//        pulltorefresh.refreshComplete();
+//    }
 
     //调用更新数据库和界面的程序
     @Subscribe
@@ -121,7 +112,7 @@ public class OwnedFormFragment extends BaseEventFragment implements AdapterView.
     }
 
 
-    //返回订单，将网络请求数据返回，然后删掉旧表，新建表
+    //返回订单，将网络请求数据返回，然后删掉旧表，新建表  这段程序太烂了 明天删掉
     private void getAllFormsFromNet() {
         Map<String,String> parems=new HashMap<>();
         parems.put("waiter_id",su.showUid()+"");
@@ -130,32 +121,44 @@ public class OwnedFormFragment extends BaseEventFragment implements AdapterView.
             public void onSuccess(String result) {
                 String flat=  result.substring(9,14);
                 if(flat.equals("Error")){
-                    fresh();
+//                  fresh();
                     return;
                 }
                 Gson gson = new Gson();
-                FormListnew bean;
-                if (result != null) {
-                    bean = gson.fromJson(result, FormListnew.class);
-                    //删除表，然后写入
-                    try {
-                        DbManager manager = DButils.DB;
-                        manager.dropTable(FormListnew.DataBean.class);
-                        for (FormListnew.DataBean be : bean.getData()) {
-                            manager.save(be);
-                        }
-                    } catch (DbException e) {
-                        e.printStackTrace();
-                    } finally {
-                        fresh();
-                    }
+
+                    mOwnFormsBean = gson.fromJson(result, OwnFormsBean.class);
+                    //获取到数据之后进行展示  并通知顶部数字变化
+                if(null!=mOwnFormsBean&&mOwnFormsBean.getData().size()!=0){
+                    hadFormAdapter.setData(mOwnFormsBean.getData());
+                    hadFormAdapter.notifyDataSetChanged();
+                    EventBus.getDefault().post(new HadFormNum(mOwnFormsBean.getData().size()));
+                    relativeLayout.setVisibility(View.GONE);
+                    listView.setVisibility(View.VISIBLE);
+                }else{
+                    relativeLayout.setVisibility(View.VISIBLE);
+                    listView.setVisibility(View.GONE);
                 }
+
+
+//                    //删除表，然后写入
+//                    try {
+//                        DbManager manager = DButils.DB;
+//                        manager.dropTable(FormListnew.DataBean.class);
+//                        for (FormListnew.DataBean be : bean.getData()) {
+//                            manager.save(be);
+//                        }
+//                    } catch (DbException e) {
+//                        e.printStackTrace();
+//                    } finally {
+//                        fresh();
+//                    }
+
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 Toast.makeText(getContext(),getString(R.string.net_err),Toast.LENGTH_SHORT).show();
-                fresh();
+//                fresh();
 
             }
 
@@ -186,24 +189,25 @@ public class OwnedFormFragment extends BaseEventFragment implements AdapterView.
 //        }
 //    }
     //从数据库中获取数据
-    private  List<FormListnew.DataBean> getFormFromDB(){
-        try {
-            DbManager manager = x.getDb(DButils.getDaoConfig());
-            List<FormListnew.DataBean> fs = manager.findAll(FormListnew.DataBean.class);
-            if (null != fs) {
-                return fs;
-            }
-        } catch (DbException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    private  List<FormListnew.DataBean> getFormFromDB(){
+//        try {
+//            DbManager manager = x.getDb(DButils.getDaoConfig());
+//            List<FormListnew.DataBean> fs = manager.findAll(FormListnew.DataBean.class);
+//            if (null != fs) {
+//                return fs;
+//            }
+//        } catch (DbException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
+    //单项点击，将对象传递过去，而不是通过数据库进行查询
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(getActivity(), XiangqingActivity.class);
-        //将订单号传过去
-        intent.putExtra("orderid", users.get(position).getOrder_id());
+        //传递订单对象
+        intent.putExtra("orderobject",mOwnFormsBean.getData().get(position));
         startActivityForResult(intent,REFRESH);
     }
 

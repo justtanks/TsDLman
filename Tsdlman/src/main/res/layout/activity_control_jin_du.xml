@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical"
     >
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="@color/qiangdan_toptabtex_notselect"
-        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:background="@color/qiangdan_toptabtex_notselect"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/titiletextcolor"
             android:layout_centerInParent="true"
-            android:textStyle="bold"
             android:text="更改申请进度"
+            android:textColor="@color/titiletextcolor"
+            android:textSize="20sp"
+            android:textStyle="bold"
             />
+
         <RelativeLayout
             android:id="@+id/jindu_back"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             ></RelativeLayout>
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,12 +41,13 @@
             />
 
     </RelativeLayout>
+
     <ExpandableListView
         android:id="@+id/jindu_expendlistview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
         android:childDivider="@color/white"
+        android:scrollbars="none"
         >
     </ExpandableListView>
 

@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.daili.tsapp.R;
 import com.daili.tsapp.databinding.HomeFragBinding;
+import com.daili.tsapp.jsBean.daoBean.FormEvent;
 import com.daili.tsapp.jsBean.netBean.CardsBean;
 import com.daili.tsapp.jsBean.netBean.ErrorBean;
 import com.daili.tsapp.jsBean.netBean.FormlistDateBean;
@@ -215,6 +216,10 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         if (x == 111) {
             getDataOnNet();
         }
+    }
+
+    public void onEventMainThread( FormEvent event){
+       getDataOnNet();
     }
 
     //登录操作 如果是自动登录 访问网络 然后主要修改状态

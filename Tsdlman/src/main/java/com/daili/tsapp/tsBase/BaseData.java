@@ -8,9 +8,9 @@ public class BaseData {
     public static final String BASEURL = "http://121.199.32.4:8088";
     public static final String WEBSITE = "http://www.qichengcheng.cn";
 
-    //http://www.qichengcheng.cn/index.php/Home/Index/wait_order_taking.html
+    //http://www.qichengcheng.cn/index.php/Home/index/wait_order_taking
     //新订单接口
-    public static final String XINDINGDAN = BASEURL + "/index.php/Home/Index/wait_order_taking.html";
+    public static final String XINDINGDAN = BASEURL + "/index.php/Home/index/wait_order_taking";
     public static final String BASEIMG = "http://121.199.32.4:8088";
     //brand/index.php/Home/Index/sendcode/agent_tel/18266142739  短信验证
     public static final String DUANXINYANZHENG = BASEURL + "/index.php/Home/Index/sendcode/";
@@ -35,8 +35,8 @@ http://192.168.100.33/brand/index.php/Home/Index/agent_register/agent_name/shaow
     //    http://121.199.32.4:8088/index.php/Home/Index/jiedan/order_id/10/waiter_id/2
     //order_id/10/waiter_id/2    抢单
     public static final String QIANGDAN = BASEURL + "/index.php/Home/Index/jiedan/";
-    //http://121.199.32.4:8088/index.php/Home/Index/yijiedan/waiter_id/69  已接订单接口
-    public static final String YIJIEDINGDAN = BASEURL + "/index.php/Home/Index/yijiedan/";
+    //http://www.qichengcheng.cn/index.php/Home/index/yijiedan/waiter_id/94  已接订单接口
+    public static final String YIJIEDINGDAN = BASEURL + "/index.php/Home/index/yijiedan/";
     /*
     更改状态接口
     http://121.199.32.4:8088/index.php/Home/Index/put_order_type/order_id/58/order_acceptance_type/%E6%8F%90%E7%8E%B0

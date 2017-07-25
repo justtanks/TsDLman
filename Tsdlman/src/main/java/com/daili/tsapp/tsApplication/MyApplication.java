@@ -48,6 +48,17 @@ public class MyApplication extends Application {
     private void initCloudChannel(Context applicationContext) {
         PushServiceFactory.init(applicationContext);
         CloudPushService pushService = PushServiceFactory.getCloudPushService();
+        pushService.bindAccount(new SystemUtil(applicationContext).showPhone(), new CommonCallback() {
+            @Override
+            public void onSuccess(String s) {
+                Log.e("application", "onSuccess: "+s+1);
+            }
+
+            @Override
+            public void onFailed(String s, String s1) {
+
+            }
+        });
         pushService.register(applicationContext, new CommonCallback() {
             @Override
             public void onSuccess(String response) {

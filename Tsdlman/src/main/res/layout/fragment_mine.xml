@@ -122,7 +122,15 @@
         android:layout_marginStart="7dp"
         android:text="新的订单"
         />
-
+       <ImageView
+           android:id="@+id/mine_ordershow"
+           android:layout_width="7dp"
+           android:layout_height="7dp"
+           android:visibility="gone"
+           android:src="@mipmap/hongdian"
+           android:layout_alignParentEnd="true"
+           android:layout_centerVertical="true"
+           android:layout_marginEnd="40dp"/>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

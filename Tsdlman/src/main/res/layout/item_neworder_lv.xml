@@ -30,7 +30,7 @@
         android:layout_toRightOf="@id/tuisong_lv_num"
         android:layout_marginTop="10dp"
         android:layout_marginStart="5dp"
-        android:text="@{`商标名称`+neworder.trademark_name}"
+        android:text="@{`商标名称: `+neworder.trademark_name}"
         />
 
     <TextView

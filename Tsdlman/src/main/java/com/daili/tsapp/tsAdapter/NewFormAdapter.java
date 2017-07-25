@@ -1,5 +1,4 @@
 package com.daili.tsapp.tsAdapter;
-
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
@@ -7,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,30 +17,22 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.daili.tsapp.R;
 import com.daili.tsapp.jsBean.daoBean.FormEvent;
 import com.daili.tsapp.jsBean.netBean.ChaseFormResult;
-import com.daili.tsapp.jsBean.netBean.FormListnew;
+import com.daili.tsapp.jsBean.netBean.NewFormsBean;
 import com.daili.tsapp.tsBase.BaseData;
-import com.daili.tsapp.tsDB.DButils;
 import com.daili.tsapp.tsNet.Xutils;
 import com.daili.tsapp.utils.SystemUtil;
 import com.google.gson.Gson;
 import com.umeng.analytics.MobclickAgent;
-
 import org.greenrobot.eventbus.EventBus;
-import org.xutils.DbManager;
 import org.xutils.common.Callback;
-import org.xutils.ex.DbException;
 import org.xutils.x;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-
 /**
  * Created by Administrator on 2017/1/5.\
  * 新的订单的listview的adapter
@@ -52,10 +42,10 @@ public class NewFormAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
     private Context context;
-    private List<FormListnew.DataBean> users = new ArrayList<>();
+    private List<NewFormsBean.MsgBean> users = new ArrayList<>();
     SystemUtil su;
 
-    public NewFormAdapter(Context context, List<FormListnew.DataBean> users) {
+    public NewFormAdapter(Context context, List<NewFormsBean.MsgBean> users) {
         this.context = context;
         this.users = users;
         inflater = LayoutInflater.from(context);
@@ -68,7 +58,7 @@ public class NewFormAdapter extends BaseAdapter {
         su = new SystemUtil(context);
     }
 
-    public void setUsers(List<FormListnew.DataBean> users) {
+    public void setUsers(List<NewFormsBean.MsgBean> users) {
         this.users = users;
         notifyDataSetChanged();
     }
@@ -86,7 +76,7 @@ public class NewFormAdapter extends BaseAdapter {
         return users.get(i);
     }
 
-    //抢单成功弹出的成功界面
+    //抢单成功弹出的成功界面  通知首页更新数据， 更新切换卡的订单数量，更新已接订单数据
     private void showSuccessDialog(String userName, String time, String headUrl, final String phonenum) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -171,40 +161,42 @@ public class NewFormAdapter extends BaseAdapter {
         }
         holder.allmoney.setText(users.get(i).getOrder_price() + "￥");
 //        holder.businessimg.setImageResource(R.mipmap.sample);//暂时使用
-        if (users.get(i).getOrder_pic() != null) {
-            x.image().bind(holder.businessimg, BaseData.BASEIMG + users.get(i).getOrder_pic());
+        if (users.get(i).getOrder_picture()!= null) {
+            x.image().bind(holder.businessimg, BaseData.BASEIMG + users.get(i).getOrder_picture());
         } else {
             holder.businessimg.setImageResource(R.mipmap.sample);//暂时使用
         }
-        String typeText = users.get(i).getOrder_types().substring(0, 4);
-        holder.firstkey.setText(typeText + "...");
+        holder.phonenum = users.get(i).getWho_put_order();
+        //设置类型，微信下单没有类型
+//        String typeText = users.get(i).getOrder_types().substring(0, 4);
+//        holder.firstkey.setText(typeText + "...");
 
 
-        if (users.get(i).getOrder_type().equals("企业注册")) {
-
-            if (users.get(i).getOrder_qiye_yingyezhizhao() != null) {
-                x.image().bind(holder.headImg, BaseData.BASEIMG + users.get(i).getOrder_qiye_yingyezhizhao());
-                holder.headurl = users.get(i).getOrder_qiye_yingyezhizhao();
-            } else {
-                holder.headImg.setImageResource(R.mipmap.head_img);
-            }
-            holder.phonenum = users.get(i).getWho_put_order();
-
-
-        } else if (users.get(i).getOrder_type().equals("个人注册")) {
-            if (users.get(i).getOrder_personal_id_card_pic() != null) {
-                x.image().bind(holder.headImg, BaseData.BASEIMG + users.get(i).getOrder_personal_id_card_pic());
-                holder.headurl = users.get(i).getOrder_personal_id_card_pic();
-            } else {
-                holder.headImg.setImageResource(R.mipmap.head_img);
-            }
-            holder.phonenum = users.get(i).getWho_put_order();
-        }
+//        if (users.get(i).GET().equals("企业注册")) {
+//
+//            if (users.get(i).getOrder_qiye_yingyezhizhao() != null) {
+//                x.image().bind(holder.headImg, BaseData.BASEIMG + users.get(i).getOrder_qiye_yingyezhizhao());
+//                holder.headurl = users.get(i).getOrder_qiye_yingyezhizhao();
+//            } else {
+//                holder.headImg.setImageResource(R.mipmap.head_img);
+//            }
+//            holder.phonenum = users.get(i).getWho_put_order();
+//
+//
+//        } else if (users.get(i).getOrder_type().equals("个人注册")) {
+//            if (users.get(i).getOrder_personal_id_card_pic() != null) {
+//                x.image().bind(holder.headImg, BaseData.BASEIMG + users.get(i).getOrder_personal_id_card_pic());
+//                holder.headurl = users.get(i).getOrder_personal_id_card_pic();
+//            } else {
+//                holder.headImg.setImageResource(R.mipmap.head_img);
+//            }
+//            holder.phonenum = users.get(i).getWho_put_order();
+//        }
         holder.name.setText(users.get(i).getWho_put_order());
-        holder.time.setText(users.get(i).getOrder_time());
+        holder.time.setText(users.get(i).getOrder_put_time());
         holder.title.setText("状态:等待接单..");
-        holder.typeview.setText("(" + users.get(i).getOrder_type() + ")");
-        holder.businesscontent.setText(users.get(i).getShangbiao_name());
+//        holder.typeview.setText("(" + users.get(i).getOrder_type() + ")");
+        holder.businesscontent.setText(users.get(i).getOrder_name());
         final View finalContentview = contentview;
         holder.qiangdanBt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,7 +212,7 @@ public class NewFormAdapter extends BaseAdapter {
                         Gson gson = new Gson();
                         ChaseFormResult rel = gson.fromJson(result, ChaseFormResult.class);
                         if (rel.getFlag().equals("Success")) {
-                            showSuccessDialog(users.get(i).getWho_put_order(), users.get(i).getOrder_time(), holder.headurl, holder.phonenum);
+                            showSuccessDialog(users.get(i).getWho_put_order(), users.get(i).getOrder_put_time(), holder.headurl, holder.phonenum);
                             EventBus.getDefault().post(new FormEvent());
                         } else {
                             showFalseDialog();
@@ -231,7 +223,6 @@ public class NewFormAdapter extends BaseAdapter {
                     @Override
                     public void onError(Throwable ex, boolean isOnCallback) {
                         Toast.makeText(context, context.getResources().getText(R.string.net_err), Toast.LENGTH_SHORT).show();
-
                     }
 
                     @Override

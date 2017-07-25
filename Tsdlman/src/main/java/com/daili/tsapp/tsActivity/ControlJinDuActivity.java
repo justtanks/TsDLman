@@ -20,8 +20,8 @@ import com.daili.tsapp.R;
 import com.daili.tsapp.jsBean.ExpendListChildBean;
 import com.daili.tsapp.jsBean.ExpendListGroupBean;
 import com.daili.tsapp.jsBean.GetExpendListDatas;
-import com.daili.tsapp.jsBean.netBean.FormListnew;
 import com.daili.tsapp.jsBean.netBean.NetError;
+import com.daili.tsapp.jsBean.netBean.OwnFormsBean;
 import com.daili.tsapp.jsBean.netBean.SendMsgResultBean;
 import com.daili.tsapp.tsAdapter.ExpandBleadapter;
 import com.daili.tsapp.tsBase.BaseActivity;
@@ -56,7 +56,7 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
     List<List<ExpendListChildBean>> childbean = null;
     TextView jindu;  //当前进度
     Intent intent;
-    FormListnew.DataBean xiangqingdatas;
+    OwnFormsBean.DataBean xiangqingdatas;
     //管理进度的List 通过对其中数字的控制，控制点击效果变化
     List<Integer> contrsList = new ArrayList<>();
     List<Integer> savaList;
@@ -87,8 +87,8 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
         TextView shenqingren = (TextView) view.findViewById(R.id.jindu_shenqinren);
         //绑定headview中的数据
         if (xiangqingdatas != null) {
-            x.image().bind(head, BaseData.BASEURL + xiangqingdatas.getOrder_pic());
-            shanbiaoname.setText(xiangqingdatas.getShangbiao_name());
+            x.image().bind(head, BaseData.BASEURL + xiangqingdatas.getOrder_picture());
+            shanbiaoname.setText(xiangqingdatas.getOrder_name());
             zhucehao.setText(xiangqingdatas.getOrder_num());
             shenqingren.setText(xiangqingdatas.getWho_put_order());
             childbean = datas.setListBackData(contrsList);
@@ -115,7 +115,7 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
     //获取从详情界面传递过来的数据
     void getDataFromXiangqingActivity() {
         intent = getIntent();
-        xiangqingdatas = (FormListnew.DataBean) intent.getSerializableExtra("xiangqing");
+        xiangqingdatas = (OwnFormsBean.DataBean) intent.getSerializableExtra("xiangqing");
         loge(intent.getStringExtra("jindu"));
         contrsList = str2list(intent.getStringExtra("jindu"));
         if (!contrsList.contains(1)) {
@@ -361,7 +361,7 @@ public class ControlJinDuActivity extends BaseActivity implements View.OnClickLi
         dialog = ProgressDialog.show(this, "", "正在更新");
         dialog.show();
         Map<String, Object> parms = new HashMap<>();
-        parms.put("order_id", xiangqingdatas.getOrder_id());
+        parms.put("order_id", xiangqingdatas.getId());
         parms.put("order_acceptance_type", list2Str(contrsList));
         Xutils.Post(BaseData.CHANGESTYLE, parms, new Callback.CommonCallback<String>() {
             @Override

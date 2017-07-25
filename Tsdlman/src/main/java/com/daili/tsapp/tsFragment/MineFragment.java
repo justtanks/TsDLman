@@ -88,11 +88,17 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         b.homeTuisong.setOnClickListener(this);
         su = new SystemUtil(getActivity());
         activity = (TabHomeActivity) getActivity();
+
         if(su.showHaveUser()==1){
             b.homeHongdian.setVisibility(View.VISIBLE);
 
         }else{
             b.homeHongdian.setVisibility(View.GONE);
+        }
+        if(su.showHaveNewAppOrder()==1){
+            b.mineOrdershow.setVisibility(View.VISIBLE);
+        }else{
+            b.mineOrdershow.setVisibility(View.GONE);
         }
         setName();
         return b.getRoot();
@@ -105,9 +111,14 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEventMainThread(TuiSongBusBean event) {
-        if(event.getSs()==11){
+        if(event.getSs()==1){
           b.homeHongdian.setVisibility(View.VISIBLE);
             Toast.makeText(getContext(),"您有新的注册用户",Toast.LENGTH_SHORT).show();
+        }
+        if(event.getSs()==2){
+            b.mineOrdershow.setVisibility(View.VISIBLE);
+            Toast.makeText(getContext(),"有人下单了请及时联系",Toast.LENGTH_SHORT).show();
+
         }
 
     }
@@ -132,7 +143,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 tocard();
                 break;
             case R.id.home_myform:
-               startActivity(new Intent(getActivity(), NewOrderActivity.class));
+              toNewOrder();
                 break;
             case R.id.mine_yijiedan:
                 toform(0);
@@ -150,6 +161,12 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 toTuisong();
                 break;
         }
+    }
+    //跳转到新订单界面
+    private void  toNewOrder(){
+        b.mineOrdershow.setVisibility(View.GONE);
+        su.saveHaveNewAppOrder(0);
+        startActivity(new Intent(getActivity(), NewOrderActivity.class));
     }
 
     //跳转到后台推送的用户信息界面

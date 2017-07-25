@@ -50,7 +50,7 @@
     <string name="dingdanhao">订单号:</string>
     <string name="yijiedan">已接单</string>
     <string name="shangbiaoname">商标名称:</string>
-    <string name="shenqingzizhi">申请资质:</string>
+    <string name="shenqingzizhi">是否支付:</string>
     <string name="allmoney">费用总计:</string>
     <string name="service">服务:</string>
     <string name="yingyezhizhao">营业执照副本</string>
@@ -157,4 +157,5 @@
     <string name="userlist">用户列表</string>
     <string name="notconnetserver">无法连接服务器</string>
     <string name="cannotconnectnet">网络无法连接</string>
+    <string name="di">第</string>
 </resources>

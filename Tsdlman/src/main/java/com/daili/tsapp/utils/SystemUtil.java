@@ -31,6 +31,7 @@ public class SystemUtil {
     private static final String REGESTERSTATE = "regesterstate";
     private static final String ISRENZHENG = "isrenzheng";
     private  static  final String HAVENEWUSER="HAVENEWUSER";
+    private static  final  String HAVAAPPORDER="apporder";
     public SystemUtil(Context context) {
         this.context = context;
     }
@@ -83,6 +84,7 @@ public class SystemUtil {
         int isShow = preferences.getInt(IS_SHOW, 0);
         return isShow;
     }
+    //保存推送后是否有新用户的状态
     public void saveHaveUser(int num) {
         SharedPreferences preferences = context.getSharedPreferences(MINE,
                 Context.MODE_PRIVATE);
@@ -94,6 +96,20 @@ public class SystemUtil {
         SharedPreferences preferences = context.getSharedPreferences(MINE,
                 Context.MODE_PRIVATE);
         int isShow = preferences.getInt(HAVENEWUSER, 0);
+        return isShow;
+    }
+    //保存推送后是否具有app创建订单的状态
+    public void saveHaveNewAppOrder(int num) {
+        SharedPreferences preferences = context.getSharedPreferences(MINE,
+                Context.MODE_PRIVATE);
+        Editor editor = preferences.edit();
+        editor.putInt(HAVAAPPORDER, num);
+        editor.commit();
+    }
+    public int showHaveNewAppOrder() {
+        SharedPreferences preferences = context.getSharedPreferences(MINE,
+                Context.MODE_PRIVATE);
+        int isShow = preferences.getInt(HAVAAPPORDER, 0);
         return isShow;
     }
     public void savePinlun(int num) {
@@ -238,7 +254,6 @@ public class SystemUtil {
     /*
     保存用户电话  同时是用户名
      */
-
     public void savePhone(String num) {
         SharedPreferences preferences = context.getSharedPreferences(MINE,
                 Context.MODE_PRIVATE);
@@ -250,7 +265,7 @@ public class SystemUtil {
     public String showPhone() {
         SharedPreferences preferences = context.getSharedPreferences(MINE,
                 Context.MODE_PRIVATE);
-        String Name = preferences.getString(PHONE, "");
+        String Name = preferences.getString(PHONE, "111111111");
         return Name;
     }
     /*

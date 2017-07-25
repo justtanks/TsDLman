@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.daili.tsapp.R;
 import com.daili.tsapp.databinding.TabHomeBinding;
+import com.daili.tsapp.jsBean.TuiSongBusBean;
 import com.daili.tsapp.tsAdapter.OrderFragmentPagerAdapter;
 import com.daili.tsapp.tsBase.BaseActivity;
 import com.daili.tsapp.tsFragment.GetOrderFragment;
@@ -27,6 +28,10 @@ import com.daili.tsapp.tsFragment.HomeFragment;
 import com.daili.tsapp.tsFragment.MineFragment;
 import com.daili.tsapp.tsService.UpdateService;
 import com.umeng.analytics.MobclickAgent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -51,6 +56,7 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         b = DataBindingUtil.setContentView(this, R.layout.activity_tab_home);
+        EventBus.getDefault().register(this);
         currentTime = System.currentTimeMillis();
         MobclickAgent.openActivityDurationTrack(false);
         ShareSDK.initSDK(this);
@@ -121,6 +127,13 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+    //当有了新订单推送时，将界面切换至订单窗口
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(TuiSongBusBean event) {
+        if(event.getSs()==4){
+          Toast.makeText(this,"您有一条新订单",Toast.LENGTH_LONG).show();
+        }
+    }
 
 
     void initAdapter() {
@@ -177,6 +190,7 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(nr);
+        EventBus.getDefault().unregister(this);
     }
 
     class NetChangeReceiver extends BroadcastReceiver {
