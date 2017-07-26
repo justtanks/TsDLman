@@ -96,7 +96,7 @@ public class TuiSongActivity extends BaseActivity implements SwipeRefreshLayout.
             }
         });
         swipe.setOnRefreshListener(this);
-    }
+     }
 
     //弹出dialog 询问是否打电话
     private void popDialog(final int position) {
@@ -171,6 +171,7 @@ public class TuiSongActivity extends BaseActivity implements SwipeRefreshLayout.
                 adapter.setDatas(datas);
                 mListView.setVisibility(View.VISIBLE);
                 mRelativeLayout.setVisibility(View.GONE);
+
             }
 
             @Override
@@ -178,6 +179,7 @@ public class TuiSongActivity extends BaseActivity implements SwipeRefreshLayout.
                 mRelativeLayout.setVisibility(View.VISIBLE);
                 mListView.setVisibility(View.INVISIBLE);
                 errormsg.setText(getResources().getString(R.string.notconnetserver));
+
             }
 
             @Override

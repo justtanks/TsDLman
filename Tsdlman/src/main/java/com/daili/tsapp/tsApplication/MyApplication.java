@@ -51,7 +51,7 @@ public class MyApplication extends Application {
         pushService.bindAccount(new SystemUtil(applicationContext).showPhone(), new CommonCallback() {
             @Override
             public void onSuccess(String s) {
-                Log.e("application", "onSuccess: "+s+1);
+                Log.e("application", "onSuccess: "+s);
             }
 
             @Override
@@ -70,6 +70,7 @@ public class MyApplication extends Application {
                 Log.d("alituisong", "init cloudchannel failed -- errorcode:" + errorCode + " -- errorMessage:" + errorMessage);
             }
         });
+
 //        设置推送图标
 //        pushService.setNotificationLargeIcon();
     }

@@ -62,6 +62,7 @@ http://192.168.100.33/brand/index.php/Home/Index/agent_register/agent_name/shaow
     public static final String GENGGAISHANCHANG = BASEURL + "/index.php/Home/Index/put_waiter_good_work/";
     //http://www.qichengcheng.cn/index.php/Home/Waiter/get_waiter_bank_card/waiter_id/71  获取银行卡信息
     public static final String GETCARDS = BASEURL + "/index.php/Home/Waiter/get_waiter_bank_card/";
+
     //http://www.qichengcheng.cn/index.php/Home/Waiter/waiter_order/waiter_id/71 代理人订单
     public static final String GETORDERS = BASEURL + "/index.php/Home/Waiter/waiter_order/";
     // 添加银行卡

@@ -65,7 +65,6 @@ public class TabHomeActivity extends BaseActivity implements View.OnClickListene
         initAdapter();
         getFresh();
         registBroadcaseReceiver();
-
     }
 
     //添加网络变化的广播

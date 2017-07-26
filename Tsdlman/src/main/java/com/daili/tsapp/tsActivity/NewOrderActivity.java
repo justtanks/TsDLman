@@ -22,6 +22,7 @@ import com.daili.tsapp.utils.NetUtils;
 import com.google.gson.Gson;
 import org.xutils.common.Callback;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,7 @@ public class NewOrderActivity extends BaseActivity implements SwipeRefreshLayout
                 onBackPressed();
             }
         });
+        Collections.reverse(datas);
         adapter = new ListAdapter<>(this, datas, BR.neworder, R.layout.item_neworder_lv);
         b.neworderRefresh.setColorSchemeResources(android.R.color.holo_blue_bright);
         b.neworderLv.setAdapter(adapter);
@@ -130,14 +132,14 @@ public class NewOrderActivity extends BaseActivity implements SwipeRefreshLayout
         startActivity(intent);
     }
 
-
-    //从服务器端获取到所有这种订单
+    //从服务器端获取到所有APP下的订单
     public void getDataOnServer() {
         NetUtils.Post(BaseData.NEWORDER, new HashMap<String, Object>(), new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                datas = new Gson().fromJson(result, NewOrdersBean.class).getMsg();
                 if (datas.size() > 0) {
+                    Collections.reverse(datas);
                     adapter.setDatas(datas);
                     b.neworderLv.setVisibility(View.VISIBLE);
                     b.neworderRelativelayout.setVisibility(View.GONE);

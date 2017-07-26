@@ -88,7 +88,7 @@ public class OrdersBean implements Serializable{
             private String order_num;
             private String who_put_order;
             private String order_name;
-            private String order_pic;
+            private String order_picture;
             private String order_types;
             private String order_price;
             private String order_wait_taking;
@@ -120,6 +120,23 @@ public class OrdersBean implements Serializable{
             private String waiter_id;
             private String datetime;
             private String get_order_date;
+            private String order_minor_term_count;
+
+            public String getOrder_picture() {
+                return order_picture;
+            }
+
+            public void setOrder_picture(String order_picture) {
+                this.order_picture = order_picture;
+            }
+
+            public String getOrder_minor_term_count() {
+                return order_minor_term_count;
+            }
+
+            public void setOrder_minor_term_count(String order_minor_term_count) {
+                this.order_minor_term_count = order_minor_term_count;
+            }
 
             public String getId() {
                 return id;
@@ -152,15 +169,6 @@ public class OrdersBean implements Serializable{
             public void setOrder_name(String order_name) {
                 this.order_name = order_name;
             }
-
-            public String getOrder_pic() {
-                return order_pic;
-            }
-
-            public void setOrder_pic(String order_pic) {
-                this.order_pic = order_pic;
-            }
-
             public String getOrder_types() {
                 return order_types;
             }
