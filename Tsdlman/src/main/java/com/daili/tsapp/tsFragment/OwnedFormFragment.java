@@ -3,6 +3,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -57,7 +58,6 @@ public class OwnedFormFragment extends BaseEventFragment implements AdapterView.
         init();
 
     }
-
     public void setPulltorefresh() {
         pulltorefresh.setLastUpdateTimeRelateObject(this);
         pulltorefresh.setPtrHandler(new PtrHandler() {
@@ -81,6 +81,24 @@ public class OwnedFormFragment extends BaseEventFragment implements AdapterView.
         hadFormAdapter = new HadFormAdapter(new ArrayList<OwnFormsBean.DataBean>(), getContext());
         listView.setAdapter(hadFormAdapter);
         listView.setOnItemClickListener(this);
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+            }
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                boolean enable = false;
+                if (listView != null &&listView.getChildCount() > 0) {
+                    boolean firstItemVisible =listView.getFirstVisiblePosition() == 0;
+                    boolean topOfFirstItemVisible = listView.getChildAt(0).getTop() == 0;
+                    enable = firstItemVisible && topOfFirstItemVisible;
+                }
+                pulltorefresh.setEnabled(enable);
+                if(listView.getVisibility()!=View.VISIBLE){
+                    pulltorefresh .setEnabled(true);
+                }
+            }
+        });
         getAllFormsFromNet();
 
     }

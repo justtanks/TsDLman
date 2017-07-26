@@ -1,74 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:background="@color/qiangdanback"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="8dp"
-    android:layout_height="match_parent">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/qiangdanback"
+              android:orientation="vertical"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              android:paddingTop="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@color/qiangdanback"
+        android:orientation="vertical"
         >
-
-        <RelativeLayout
-            android:id="@+id/hadform_linear"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:visibility="visible"
-            >
-
-            <ImageView
-                android:id="@+id/hadform_bigimg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/qiangdan_nomsgs"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="82dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/had_form_bigtex"
-                android:layout_below="@+id/hadform_bigimg"
-                android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true"
-                android:textSize="20sp"
-                android:textColor="@color/qiangdan_nomsg"
-                />
-        </RelativeLayout>
         <in.srain.cube.views.ptr.PtrClassicFrameLayout
-        android:id="@+id/hadform_pullview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:ptr_duration_to_close="200"
-        app:ptr_duration_to_close_header="1000"
-        app:ptr_keep_header_when_refresh="true"
-        app:ptr_pull_to_fresh="false"
-        app:ptr_ratio_of_header_height_to_refresh="1.2"
-        app:ptr_resistance="1.7">
-
-        <ListView
-            android:id="@+id/fragment_hadform_list"
+            android:id="@+id/hadform_pullview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@color/qiangdanback"
-            android:visibility="gone"
-            android:scrollbars="none"
-            android:dividerHeight="16dp" ></ListView>
+            app:ptr_duration_to_close="200"
+            app:ptr_duration_to_close_header="1000"
+            app:ptr_keep_header_when_refresh="true"
+            app:ptr_pull_to_fresh="false"
+            app:ptr_ratio_of_header_height_to_refresh="1.2"
+            app:ptr_resistance="1.7">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/hadform_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:visibility="visible"
+                    >
+
+                    <ImageView
+                        android:id="@+id/hadform_bigimg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="82dp"
+                        android:src="@mipmap/qiangdan_nomsgs"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/hadform_bigimg"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/had_form_bigtex"
+                        android:textColor="@color/qiangdan_nomsg"
+                        android:textSize="20sp"
+                        />
+                </RelativeLayout>
+
+                <ListView
+                    android:id="@+id/fragment_hadform_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="@color/qiangdanback"
+                    android:dividerHeight="16dp"
+                    android:scrollbars="none"
+                    android:visibility="gone"></ListView>
+
+            </RelativeLayout>
+
+
         </in.srain.cube.views.ptr.PtrClassicFrameLayout>
     </LinearLayout>
-
-
-
 
 
 </LinearLayout>
