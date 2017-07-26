@@ -40,6 +40,7 @@ import java.util.Map;
 
 //订单详情界面 查询数据库并将数据展示到界面 或者从网络获取到数据
 //修改通过expendlistview 进行展示所有小项信息
+// 如果这是kotlin 直接使用 is 做类型判断 然后就不用新建一个新的详情界面了
 public class OrderXiangqingActivity extends BaseActivity {
     private String phone;
     PopupWindow mPopuwindow;
