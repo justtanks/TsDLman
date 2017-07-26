@@ -83,44 +83,58 @@ public class OrdersBean implements Serializable{
 
         public static class OrderBean implements Serializable{
 
-
-            private String id;
+            private String order_id;
             private String order_num;
             private String who_put_order;
             private String order_name;
             private String order_picture;
-            private String order_types;
+            private String order_put_form;
             private String order_price;
-            private String order_wait_taking;
             private String order_wait_pay;
-            private String order_time;
-            private Object order_always_person;
-            private Object order_qiye_name;
-            private Object order_qiye_address;
-            private Object order_qiye_phone;
-            private Object order_ask_who;
-            private Object order_ask_phone;
-            private Object order_ask_mail;
-            private Object order_qiye_yingyezhizhao;
-            private Object order_always_personal;
-            private String order_personal_name;
-            private String order_personal_id_card;
-            private Object order_personal_tel;
-            private Object order_personal_ask_preson;
-            private Object order_personal_ask_tel;
-            private String order_personal_id_card_pic;
-            private String order_personal_getizhizhao;
-            private String order_type;
-            private Object belong_provice;
-            private Object belong_city;
-            private Object belong_county;
-            private String order_date_day;
-            private String order_acceptance_type;
-            private String order_id;
-            private String waiter_id;
-            private String datetime;
-            private String get_order_date;
-            private String order_minor_term_count;
+            private String order_put_time;
+            private  String order_type;
+            private  String order_minor_term_count;
+            private List<OwnFormsBean.DataBean.OrderMinorTermNavBean> order_minor_term_nav;
+
+            public String getOrder_id() {
+                return order_id;
+            }
+
+            public void setOrder_id(String order_id) {
+                this.order_id = order_id;
+            }
+
+            public String getOrder_put_form() {
+                return order_put_form;
+            }
+
+            public void setOrder_put_form(String order_put_form) {
+                this.order_put_form = order_put_form;
+            }
+
+            public String getOrder_put_time() {
+                return order_put_time;
+            }
+
+            public void setOrder_put_time(String order_put_time) {
+                this.order_put_time = order_put_time;
+            }
+
+            public String getOrder_type() {
+                return order_type;
+            }
+
+            public void setOrder_type(String order_type) {
+                this.order_type = order_type;
+            }
+
+            public List<OwnFormsBean.DataBean.OrderMinorTermNavBean> getOrder_minor_term_nav() {
+                return order_minor_term_nav;
+            }
+
+            public void setOrder_minor_term_nav(List<OwnFormsBean.DataBean.OrderMinorTermNavBean> order_minor_term_nav) {
+                this.order_minor_term_nav = order_minor_term_nav;
+            }
 
             public String getOrder_picture() {
                 return order_picture;
@@ -138,13 +152,6 @@ public class OrdersBean implements Serializable{
                 this.order_minor_term_count = order_minor_term_count;
             }
 
-            public String getId() {
-                return id;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
 
             public String getOrder_num() {
                 return order_num;
@@ -169,13 +176,8 @@ public class OrdersBean implements Serializable{
             public void setOrder_name(String order_name) {
                 this.order_name = order_name;
             }
-            public String getOrder_types() {
-                return order_types;
-            }
 
-            public void setOrder_types(String order_types) {
-                this.order_types = order_types;
-            }
+
 
             public String getOrder_price() {
                 return order_price;
@@ -185,13 +187,7 @@ public class OrdersBean implements Serializable{
                 this.order_price = order_price;
             }
 
-            public String getOrder_wait_taking() {
-                return order_wait_taking;
-            }
 
-            public void setOrder_wait_taking(String order_wait_taking) {
-                this.order_wait_taking = order_wait_taking;
-            }
 
             public String getOrder_wait_pay() {
                 return order_wait_pay;
@@ -201,221 +197,7 @@ public class OrdersBean implements Serializable{
                 this.order_wait_pay = order_wait_pay;
             }
 
-            public String getOrder_time() {
-                return order_time;
-            }
 
-            public void setOrder_time(String order_time) {
-                this.order_time = order_time;
-            }
-
-            public Object getOrder_always_person() {
-                return order_always_person;
-            }
-
-            public void setOrder_always_person(Object order_always_person) {
-                this.order_always_person = order_always_person;
-            }
-
-            public Object getOrder_qiye_name() {
-                return order_qiye_name;
-            }
-
-            public void setOrder_qiye_name(Object order_qiye_name) {
-                this.order_qiye_name = order_qiye_name;
-            }
-
-            public Object getOrder_qiye_address() {
-                return order_qiye_address;
-            }
-
-            public void setOrder_qiye_address(Object order_qiye_address) {
-                this.order_qiye_address = order_qiye_address;
-            }
-
-            public Object getOrder_qiye_phone() {
-                return order_qiye_phone;
-            }
-
-            public void setOrder_qiye_phone(Object order_qiye_phone) {
-                this.order_qiye_phone = order_qiye_phone;
-            }
-
-            public Object getOrder_ask_who() {
-                return order_ask_who;
-            }
-
-            public void setOrder_ask_who(Object order_ask_who) {
-                this.order_ask_who = order_ask_who;
-            }
-
-            public Object getOrder_ask_phone() {
-                return order_ask_phone;
-            }
-
-            public void setOrder_ask_phone(Object order_ask_phone) {
-                this.order_ask_phone = order_ask_phone;
-            }
-
-            public Object getOrder_ask_mail() {
-                return order_ask_mail;
-            }
-
-            public void setOrder_ask_mail(Object order_ask_mail) {
-                this.order_ask_mail = order_ask_mail;
-            }
-
-            public Object getOrder_qiye_yingyezhizhao() {
-                return order_qiye_yingyezhizhao;
-            }
-
-            public void setOrder_qiye_yingyezhizhao(Object order_qiye_yingyezhizhao) {
-                this.order_qiye_yingyezhizhao = order_qiye_yingyezhizhao;
-            }
-
-            public Object getOrder_always_personal() {
-                return order_always_personal;
-            }
-
-            public void setOrder_always_personal(Object order_always_personal) {
-                this.order_always_personal = order_always_personal;
-            }
-
-            public String getOrder_personal_name() {
-                return order_personal_name;
-            }
-
-            public void setOrder_personal_name(String order_personal_name) {
-                this.order_personal_name = order_personal_name;
-            }
-
-            public String getOrder_personal_id_card() {
-                return order_personal_id_card;
-            }
-
-            public void setOrder_personal_id_card(String order_personal_id_card) {
-                this.order_personal_id_card = order_personal_id_card;
-            }
-
-            public Object getOrder_personal_tel() {
-                return order_personal_tel;
-            }
-
-            public void setOrder_personal_tel(Object order_personal_tel) {
-                this.order_personal_tel = order_personal_tel;
-            }
-
-            public Object getOrder_personal_ask_preson() {
-                return order_personal_ask_preson;
-            }
-
-            public void setOrder_personal_ask_preson(Object order_personal_ask_preson) {
-                this.order_personal_ask_preson = order_personal_ask_preson;
-            }
-
-            public Object getOrder_personal_ask_tel() {
-                return order_personal_ask_tel;
-            }
-
-            public void setOrder_personal_ask_tel(Object order_personal_ask_tel) {
-                this.order_personal_ask_tel = order_personal_ask_tel;
-            }
-
-            public String getOrder_personal_id_card_pic() {
-                return order_personal_id_card_pic;
-            }
-
-            public void setOrder_personal_id_card_pic(String order_personal_id_card_pic) {
-                this.order_personal_id_card_pic = order_personal_id_card_pic;
-            }
-
-            public String getOrder_personal_getizhizhao() {
-                return order_personal_getizhizhao;
-            }
-
-            public void setOrder_personal_getizhizhao(String order_personal_getizhizhao) {
-                this.order_personal_getizhizhao = order_personal_getizhizhao;
-            }
-
-            public String getOrder_type() {
-                return order_type;
-            }
-
-            public void setOrder_type(String order_type) {
-                this.order_type = order_type;
-            }
-
-            public Object getBelong_provice() {
-                return belong_provice;
-            }
-
-            public void setBelong_provice(Object belong_provice) {
-                this.belong_provice = belong_provice;
-            }
-
-            public Object getBelong_city() {
-                return belong_city;
-            }
-
-            public void setBelong_city(Object belong_city) {
-                this.belong_city = belong_city;
-            }
-
-            public Object getBelong_county() {
-                return belong_county;
-            }
-
-            public void setBelong_county(Object belong_county) {
-                this.belong_county = belong_county;
-            }
-
-            public String getOrder_date_day() {
-                return order_date_day;
-            }
-
-            public void setOrder_date_day(String order_date_day) {
-                this.order_date_day = order_date_day;
-            }
-
-            public String getOrder_acceptance_type() {
-                return order_acceptance_type;
-            }
-
-            public void setOrder_acceptance_type(String order_acceptance_type) {
-                this.order_acceptance_type = order_acceptance_type;
-            }
-
-            public String getOrder_id() {
-                return order_id;
-            }
-
-            public void setOrder_id(String order_id) {
-                this.order_id = order_id;
-            }
-
-            public String getWaiter_id() {
-                return waiter_id;
-            }
-
-            public void setWaiter_id(String waiter_id) {
-                this.waiter_id = waiter_id;
-            }
-
-            public String getDatetime() {
-                return datetime;
-            }
-
-            public void setDatetime(String datetime) {
-                this.datetime = datetime;
-            }
-
-            public String getGet_order_date() {
-                return get_order_date;
-            }
-
-            public void setGet_order_date(String get_order_date) {
-                this.get_order_date = get_order_date;
-            }
         }
     }
 }

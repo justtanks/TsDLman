@@ -14,6 +14,7 @@ import com.daili.tsapp.R;
 import com.daili.tsapp.databinding.YesBinding;
 import com.daili.tsapp.jsBean.bindingbean.ShowOrdersTypeBean;
 import com.daili.tsapp.jsBean.netBean.FormlistDateBean;
+import com.daili.tsapp.tsActivity.OrderXiangqingActivity;
 import com.daili.tsapp.tsActivity.XiangqingActivity;
 import com.daili.tsapp.tsAdapter.simpleAdapter.ListAdapter;
 import com.daili.tsapp.tsBase.BaseFragment;
@@ -42,14 +43,14 @@ public class YestodayOrdersFragment extends BaseFragment implements AdapterView.
     }
 
     private void init() {
+        b.yesdayLv.setOnItemClickListener(this);
         adapter = new ListAdapter<>(getActivity(), allOrderdatas, BR.allorder, R.layout.item_allorder);
         b.yesdayLv.setAdapter(adapter);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(getActivity(), XiangqingActivity.class);
-        intent.putExtra("id", 3);
+        Intent intent = new Intent(getActivity(), OrderXiangqingActivity.class);
         intent.putExtra("datas", allOrderdatas.get(position));
         startActivity(intent);
     }

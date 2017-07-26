@@ -16,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@mipmap/order_itemback">
-
         <ImageView
             android:id="@+id/itemallday_head"
             android:layout_width="90dp"
@@ -44,7 +43,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/itemallday_head"
-            android:text="申请资质:"
+            android:text="是否支付:"
             android:textColor="@color/gray3"
             android:textSize="13sp" />
 
@@ -75,7 +74,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
             android:layout_toRightOf="@id/itemallday_zizhi"
-            android:text="@{myallorders.order_qiye_name==null?`个人注册`:`企业注册`}"
+            android:text="@{myallorders.order_wait_pay.equals(`1`)?`已支付`:`未支付`}"
             android:textColor="@color/gray3"
             android:textSize="13sp"
 

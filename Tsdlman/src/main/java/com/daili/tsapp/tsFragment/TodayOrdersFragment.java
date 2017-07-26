@@ -14,6 +14,7 @@ import com.daili.tsapp.R;
 import com.daili.tsapp.databinding.TodayBinding;
 import com.daili.tsapp.jsBean.bindingbean.ShowOrdersTypeBean;
 import com.daili.tsapp.jsBean.netBean.FormlistDateBean;
+import com.daili.tsapp.tsActivity.OrderXiangqingActivity;
 import com.daili.tsapp.tsActivity.XiangqingActivity;
 import com.daili.tsapp.tsAdapter.simpleAdapter.ListAdapter;
 import com.daili.tsapp.tsBase.BaseFragment;
@@ -36,6 +37,7 @@ public class TodayOrdersFragment extends BaseFragment implements AdapterView.OnI
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         b = DataBindingUtil.inflate(inflater, R.layout.fragment_order_today, container, false);
+        b.todayLv.setOnItemClickListener(this);
         adapter = new ListAdapter<>(getActivity(), allOrderdatas, BR.allorder, R.layout.item_allorder);
         b.todayLv.setAdapter(adapter);
         return b.getRoot();
@@ -43,8 +45,7 @@ public class TodayOrdersFragment extends BaseFragment implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(getActivity(), XiangqingActivity.class);
-        intent.putExtra("id", 2);
+        Intent intent = new Intent(getActivity(), OrderXiangqingActivity.class);
         intent.putExtra("datas", allOrderdatas.get(position));
         startActivity(intent);
     }
