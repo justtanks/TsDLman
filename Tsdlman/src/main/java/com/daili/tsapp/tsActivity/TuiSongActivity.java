@@ -88,15 +88,17 @@ public class TuiSongActivity extends BaseActivity implements SwipeRefreshLayout.
                 boolean enable = false;
                 if (mListView != null && mListView.getChildCount() > 0) {
                     boolean firstItemVisible = mListView.getFirstVisiblePosition() == 0;
-                    boolean topOfFirstItemVisible =mListView.getChildAt(0).getTop() == 0;
+                    boolean topOfFirstItemVisible = mListView.getChildAt(0).getTop() == 0;
                     enable = firstItemVisible && topOfFirstItemVisible;
                 }
-               swipe.setEnabled(enable);
-
+                swipe.setEnabled(enable);
+                if (mListView.getVisibility() != View.VISIBLE) {
+                    swipe.setEnabled(true);
+                }
             }
         });
         swipe.setOnRefreshListener(this);
-     }
+    }
 
     //弹出dialog 询问是否打电话
     private void popDialog(final int position) {

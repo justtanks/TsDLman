@@ -70,6 +70,9 @@ public class NewOrderActivity extends BaseActivity implements SwipeRefreshLayout
                     enable = firstItemVisible && topOfFirstItemVisible;
                 }
                 b.neworderRefresh.setEnabled(enable);
+                if (b.neworderLv.getVisibility() != View.VISIBLE) {
+                    b.neworderRefresh.setEnabled(true);
+                }
             }
         });
         b.neworderLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -85,6 +85,9 @@ public class CardActivity extends BaseActivity implements View.OnClickListener, 
                     enable = firstItemVisible && topOfFirstItemVisible;
                 }
                 bingding.cardFresh.setEnabled(enable);
+                if(bingding.cardLv.getVisibility()!=View.VISIBLE){
+                    bingding.cardFresh.setEnabled(true);
+                }
             }
         });
     }
