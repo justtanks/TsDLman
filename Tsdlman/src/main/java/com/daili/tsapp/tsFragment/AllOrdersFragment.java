@@ -1,5 +1,4 @@
 package com.daili.tsapp.tsFragment;
-
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -8,25 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-
-
 import com.daili.tsapp.BR;
 import com.daili.tsapp.R;
 import com.daili.tsapp.databinding.AlldayBinding;
-
 import com.daili.tsapp.jsBean.netBean.FormlistDateBean;
 import com.daili.tsapp.tsActivity.OrderXiangqingActivity;
-import com.daili.tsapp.tsActivity.XiangqingActivity;
 import com.daili.tsapp.tsAdapter.simpleAdapter.ListAdapter;
 import com.daili.tsapp.tsBase.BaseFragment;
 import com.daili.tsapp.tsBase.impl.OnOrdersChangeListener;
-
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by Administrator on 2017/2/14.
- * 其中的adapter  缺少 item 的数据 点击之后订单详情数据不同
+ * 最初数据不同，现在可以复用
  */
 
 public class AllOrdersFragment extends BaseFragment implements AdapterView.OnItemClickListener, OnOrdersChangeListener {
