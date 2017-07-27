@@ -37,6 +37,7 @@ public class FankuiActivity extends BaseActivity implements View.OnClickListener
         b.fankuiTijiao.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
