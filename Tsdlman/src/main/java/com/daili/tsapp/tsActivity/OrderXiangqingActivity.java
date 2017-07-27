@@ -38,15 +38,13 @@ import org.xutils.x;
 import java.util.HashMap;
 import java.util.Map;
 
-//订单详情界面 查询数据库并将数据展示到界面 或者从网络获取到数据
-//修改通过expendlistview 进行展示所有小项信息
-// 如果这是kotlin 直接使用 is 做类型判断 然后就不用新建一个新的详情界面了
+//展示首页订单明细中的所有订单的详情
 public class OrderXiangqingActivity extends BaseActivity {
-    private String phone;
+    String phone;
     PopupWindow mPopuwindow;
     FormlistDateBean.DataBean.OrderBean data;
     Gson gson = new Gson();
-    private ProgressDialog dialog;
+    ProgressDialog dialog;
     ExpandableListView mExpandableListView;
     RelativeLayout back;
     XiangQingAdapter mXiangQingAdapter;
@@ -84,7 +82,7 @@ public class OrderXiangqingActivity extends BaseActivity {
             orderNum.setText(data.getOrder_num());
             x.image().bind(head, BaseData.BASEIMG + data.getOrder_picture());
             orderName.setText(data.getOrder_name());
-            isPay.setText(data.getOrder_wait_pay().equals("1")  ? "已支付" : "未支付");
+            isPay.setText(data.getOrder_wait_pay().equals("1") ? "已支付" : "未支付");
             money.setText(data.getOrder_price());
             userName.setText(data.getWho_put_order());
             orderTime.setText(data.getOrder_put_time());
@@ -113,13 +111,14 @@ public class OrderXiangqingActivity extends BaseActivity {
             }
         });
         mExpandableListView.addHeaderView(view);
-        OwnFormsBean.DataBean beteData=new OwnFormsBean.DataBean();
+        OwnFormsBean.DataBean beteData = new OwnFormsBean.DataBean();
         beteData.setOrder_minor_term_nav(data.getOrder_minor_term_nav());
         mXiangQingAdapter = new XiangQingAdapter(this, beteData);
         mExpandableListView.setAdapter(mXiangQingAdapter);
 
 
     }
+
     //通过dialog查看大图
     private void showBydialog(String url) {
         final Dialog dialog = new Dialog(this);
@@ -151,6 +150,7 @@ public class OrderXiangqingActivity extends BaseActivity {
         intent.putExtra("jindu", bean2String(bean));
         startActivity(intent);
     }
+
     /*
     将订单实体类转化为字符串传递
      */
@@ -164,6 +164,7 @@ public class OrderXiangqingActivity extends BaseActivity {
         }
         return bu.substring(0, bu.length() - 1);
     }
+
     /*
     从网络请求订单进度信息
      */
